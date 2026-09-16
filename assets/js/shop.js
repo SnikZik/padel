@@ -57,6 +57,17 @@ if (grid) {
     });
   }
 
+  // on the catalogue itself "לכל המוצרים" means: clear the filter and show the whole grid
+  const allBtn = document.getElementById("shop-all");
+  if (allBtn) allBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    category = "all";
+    nav.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.category === "all")));
+    history.replaceState(null, "", location.pathname);
+    render();
+    grid.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
   repo.list().then((list) => {
     products = list;
     buildNav();

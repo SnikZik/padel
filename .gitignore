@@ -4,3 +4,6 @@ handoff/
 screenshots/
 *.zip
 .DS_Store
+
+# client briefs: business details, not for the public repo
+brief/
