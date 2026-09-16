@@ -14,6 +14,20 @@ python3 -m http.server 8766 --directory /Users/s/padel-azor
 
 After editing `data/products.json`, run `python3 tools/sync_products.py` to refresh the embedded catalogue.
 
+
+## Live preview (GitHub Pages)
+
+Repo: https://github.com/SnikZik/padel  ·  Preview: https://snikzik.github.io/padel/
+
+`main` is the deployed branch (Pages source: root). Push to `main` and the preview updates within a minute.
+
+**Before the real domain goes live, remove the search guards**: `robots.txt` (Disallow all) and the
+`<meta name="robots" content="noindex, nofollow">` line in `index.html` and `shop/index.html`. They exist so the
+preview URL is never indexed; `shop/product.html` keeps its own noindex on purpose.
+
+Not in the repo (see `.gitignore`): `handoff/` (client package, large media), `screenshots/`, `*.zip`.
+`tools/build_hero_video.py` and `tools/build_hero_image.py` need the local `handoff/` folder to re-render the media.
+
 ## Structure
 
 ```
