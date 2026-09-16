@@ -8,10 +8,10 @@
  * system (or WooCommerce) is one more source; nothing in the UI changes.
  *
  * Product model (every field always present after normalize):
- *   id, sku, name, nameEn, category, categoryLabel (singular), accent, badge,
+ *   id, sku, brand, name (Latin, shown on the card), nameHe, category, categoryLabel, badge,
  *   images: [{ src, webp, width, height, alt }],
  *   price: number|null, compareAtPrice: number|null, currency,
- *   stock: number|null, limitedEdition: boolean,
+ *   availability: "in_store" | "order" | "out", availabilityLabel, inStore, attributes,
  *   url: string|null (club product page override), referenceUrl: string|null (manufacturer page),
  *   description: string|null
  *
@@ -22,17 +22,24 @@
 (function (global) {
   "use strict";
 
-  /** Retail categories, in the order the catalogue navigation shows them. */
+  /** Retail categories, in the order the catalogue navigation shows them.
+      `label` is the filter chip, `single` the line above a product name on the card. */
   const CATEGORIES = [
-    { id: "racket",    label: "מחבטים", single: "מחבט" },
-    { id: "balls",     label: "כדורים", single: "כדורים" },
-    { id: "apparel",   label: "ביגוד",  single: "ביגוד" },
-    { id: "shoes",     label: "נעליים", single: "נעליים" },
-    { id: "bag",       label: "תיקים",  single: "תיק" },
-    { id: "accessory", label: "אביזרים", single: "אביזר" }
+    { id: "racket",    label: "מחבטים",  single: "מחבטי פאדל" },
+    { id: "shoes",     label: "נעליים",  single: "נעליים" },
+    { id: "apparel",   label: "ביגוד",   single: "ביגוד" },
+    { id: "balls",     label: "כדורים",  single: "כדורים" },
+    { id: "bag",       label: "תיקים",   single: "תיקים ואביזרים" },
+    { id: "accessory", label: "אביזרים", single: "אביזרים" }
   ];
   const CATEGORY_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
   const BADGES = ["LIMITED", "EXCLUSIVE", "NEW"];
+  /** Shop-floor availability. No online purchase at this stage, so no stock counts. */
+  const AVAILABILITY = {
+    in_store: "זמין בחנות במתחם",
+    order: "בהזמנה מראש",
+    out: "אזל מהמלאי"
+  };
 
   /** Reads the catalogue embedded in the page (<script type="application/json" id="product-data">). */
   class InlineJsonSource {
@@ -116,21 +123,25 @@
     const limited = Boolean(raw.limitedEdition ?? raw.limited_edition);
     let badge = raw.badge ? String(raw.badge).toUpperCase() : (limited ? "LIMITED" : null);
     if (badge && !BADGES.includes(badge)) badge = null;
+    const availability = raw.availability || (raw.stock === 0 ? "out" : "in_store");
 
     return {
       id: String(raw.id || raw.sku || raw.product_code || ""),
       sku: raw.sku || raw.product_code || null,
-      name: raw.name || raw.name_he || "",
-      nameEn: raw.nameEn || raw.name_en || "",
+      brand: raw.brand || "adidas",
+      name: raw.name || raw.nameEn || raw.name_he || "",   // shown on the card, Latin, isolated LTR
+      nameHe: raw.nameHe || raw.name_he || "",             // Hebrew descriptor, used for alt text and search
       category: cat.id,
       categoryLabel: cat.single,
-      accent: raw.accent || null,
       badge,
       images,
       price: toNumberOrNull(raw.price),
       compareAtPrice: toNumberOrNull(raw.compareAtPrice ?? raw.compare_at_price),
       currency: raw.currency || currency,
-      stock: toNumberOrNull(raw.stock),
+      availability,
+      availabilityLabel: AVAILABILITY[availability] || AVAILABILITY.in_store,
+      inStore: availability !== "out",
+      attributes: raw.attributes || {},
       limitedEdition: limited,
       url: raw.url || null,
       referenceUrl: raw.referenceUrl || raw.source_product_url || null,
@@ -150,7 +161,7 @@
   }
 
   global.PadelShop = Object.assign(global.PadelShop || {}, {
-    CATEGORIES, CATEGORY_BY_ID, BADGES, InlineJsonSource, FetchJsonSource, InventoryApiSource, ProductRepository,
+    CATEGORIES, CATEGORY_BY_ID, BADGES, AVAILABILITY, InlineJsonSource, FetchJsonSource, InventoryApiSource, ProductRepository,
     normalize, base, formatPrice
   });
 })(window);

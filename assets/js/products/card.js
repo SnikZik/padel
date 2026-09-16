@@ -1,7 +1,8 @@
 /**
  * Product card: the one card component used on the homepage and on /shop/.
- * Retail structure: large neutral image tile (product floats, never touches the edges),
- * then small category, product name (max 3 lines), optional price, quiet "לפרטים" link.
+ * Retail structure from the approved reference: square neutral image tile (product large, centred,
+ * never cropped), then Hebrew category, Latin product name isolated LTR, availability with a green dot,
+ * and a quiet "לפרטים" link. The club store has no online purchase, so there is no cart control here.
  * Built with DOM APIs so catalogue text is never injected as HTML.
  * Classic script: adds renderProductCard to window.PadelShop.
  */
@@ -46,10 +47,10 @@
 
   /**
    * @param {object} product  normalized Product (see repository.js)
-   * @param {{showPrices?: boolean, showStock?: boolean}} options
+   * @param {{showPrices?: boolean}} options  prices only once the inventory system supplies them
    * @returns {HTMLLIElement}
    */
-  function renderProductCard(product, { showPrices = false, showStock = false } = {}) {
+  function renderProductCard(product, { showPrices = false } = {}) {
     const li = el("li", "product-card");
     li.dataset.category = product.category;
 
@@ -59,14 +60,19 @@
 
     // image tile
     const media = el("div", `product-media is-${product.category}`);
-    if (product.images[0]) media.appendChild(productPicture(product.images[0], "(min-width: 768px) 25vw, 45vw"));
+    if (product.images[0]) media.appendChild(productPicture(product.images[0], "(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 45vw"));
     if (product.badge) media.appendChild(el("span", "product-badge", product.badge));
     link.appendChild(media);
 
     // text
     const body = el("div", "product-body");
     body.appendChild(el("p", "product-cat", product.categoryLabel));
-    body.appendChild(el("h3", "product-name", product.name));
+
+    const name = el("h3", "product-name", product.name);
+    name.dir = "ltr";
+    name.lang = "en";
+    body.appendChild(name);
+
     if (showPrices && product.price !== null) {
       const price = el("p", "product-price", global.PadelShop.formatPrice(product.price, product.currency));
       if (product.compareAtPrice !== null && product.compareAtPrice > product.price) {
@@ -74,9 +80,12 @@
       }
       body.appendChild(price);
     }
-    if (showStock && product.stock !== null) {
-      body.appendChild(el("p", "product-stock", product.stock > 0 ? "במלאי" : "אזל מהמלאי"));
-    }
+
+    const stock = el("p", `product-stock${product.inStore ? " is-available" : ""}`);
+    stock.appendChild(el("i", "product-dot"));
+    stock.appendChild(el("span", null, product.availabilityLabel));
+    body.appendChild(stock);
+
     body.appendChild(el("span", "product-cta", CTA_LABEL));
     link.appendChild(body);
 

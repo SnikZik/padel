@@ -25,25 +25,17 @@ function el(tag, className, text) {
 const grid = document.getElementById("shop-grid");
 if (grid) {
   const nav = document.getElementById("shop-nav");
-  const sort = document.getElementById("shop-sort");
-  const count = document.getElementById("shop-count");
   let products = [];
   let category = (location.hash.match(/cat=([a-z]+)/) || [])[1] || "all";
 
   function render() {
-    let list = products.filter((p) => category === "all" || p.category === category);
-    const mode = sort ? sort.value : "featured";
-    if (mode === "name") list = [...list].sort((a, b) => a.name.localeCompare(b.name, "he"));
-    if (mode === "price-asc") list = [...list].sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
-    if (mode === "price-desc") list = [...list].sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity));
-
+    const list = products.filter((p) => category === "all" || p.category === category);
     grid.replaceChildren();
     if (!list.length) {
       grid.appendChild(el("li", "shop-empty", "אין מוצרים בקטגוריה הזו כרגע."));
     } else {
       list.forEach((p) => grid.appendChild(renderProductCard(p, cardOptions)));
     }
-    if (count) count.textContent = list.length === 1 ? "מוצר אחד" : `${list.length} מוצרים`;
     grid.setAttribute("aria-busy", "false");
   }
 
@@ -67,12 +59,7 @@ if (grid) {
 
   repo.list().then((list) => {
     products = list;
-    // price sorting only makes sense once the inventory supplies prices
-    if (sort && !products.some((p) => p.price !== null)) {
-      [...sort.options].forEach((o) => { if (o.value.startsWith("price")) o.remove(); });
-    }
     buildNav();
-    if (sort) sort.addEventListener("change", render);
     render();
   });
 }
@@ -108,8 +95,9 @@ if (page) {
     }
 
     const info = el("div", "pp-info");
-    info.appendChild(el("p", "eyebrow pp-cat", p.categoryLabel));
-    info.appendChild(el("h1", "pp-title", p.name));
+    info.appendChild(el("p", "pp-cat", p.categoryLabel));
+    const ppTitle = el("h1", "pp-title", p.name); ppTitle.dir = "ltr"; ppTitle.lang = "en";
+    info.appendChild(ppTitle);
     if (cardOptions.showPrices && p.price !== null) {
       const price = el("p", "pp-price", formatPrice(p.price, p.currency));
       if (p.compareAtPrice !== null && p.compareAtPrice > p.price) price.appendChild(el("s", null, formatPrice(p.compareAtPrice, p.currency)));
@@ -119,21 +107,19 @@ if (page) {
 
     const meta = el("ul", "pp-meta");
     const row = (k, v) => { const li = el("li"); li.appendChild(el("span", "pp-meta-key", k)); li.appendChild(el("span", "pp-meta-val", v)); return li; };
-    meta.appendChild(row("מותג", "adidas"));
+    meta.appendChild(row("מותג", p.brand));
     if (p.sku) meta.appendChild(row("דגם", p.sku));
     meta.appendChild(row("קטגוריה", p.categoryLabel));
+    Object.entries(p.attributes || {}).forEach(([k, v]) => meta.appendChild(row(
+      { shape: "צורה", level: "רמה", color: "צבע", pack: "אריזה" }[k] || k, String(v))));
     info.appendChild(meta);
 
-    const cart = el("button", "btn pp-cart", "הוסף לסל");
-    cart.type = "button";
-    if (!shopConfig.checkoutEnabled) {
-      cart.setAttribute("aria-disabled", "true");
-      cart.addEventListener("click", (e) => e.preventDefault());
-      info.appendChild(cart);
-      info.appendChild(el("p", "pp-note", "הרכישה אונליין עדיין לא פעילה."));
-    } else {
-      info.appendChild(cart);
-    }
+    // no online purchase at this stage: the club store sells on the floor
+    const stock = el("p", `pp-stock${p.inStore ? " is-available" : ""}`);
+    stock.appendChild(el("i", "product-dot"));
+    stock.appendChild(el("span", null, p.availabilityLabel));
+    info.appendChild(stock);
+    info.appendChild(el("p", "pp-note", "המוצר זמין לרכישה בחנות שבמתחם המועדון."));
     if (p.referenceUrl) {
       const ref = el("a", "pp-ref", "לעמוד המוצר באתר adidas");
       ref.href = p.referenceUrl; ref.target = "_blank"; ref.rel = "noopener";

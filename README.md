@@ -63,18 +63,23 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
-## Shop ecosystem (retail pass, 2026-09-15)
+## Shop ecosystem (approved retail reference, 2026-09-16)
 
-- Homepage `#shop` = featured products: stone section (#F5F3EE), 320px green intro panel + row of four (≥1280px),
-  stacked below that, 2 per row on phones with a full-width "לכל המוצרים" after the grid.
-- `shop/index.html` = catalogue: heading block, category nav (מחבטים, כדורים, ביגוד, נעליים, תיקים, אביזרים),
-  sort select, count, 4 / 3 / 2 columns. `shop/product.html?id=<id>` = product page (gallery tile, meta, "הוסף לסל"
-  inert until `shop.checkoutEnabled`, link to the manufacturer page).
-- One card component (`assets/js/products/card.js`) on every page: tile #EAEEEF (= the adidas photography background,
-  so products float with no inner square), category, name (3-line clamp), optional price, quiet "לפרטים".
-  Badges LIMITED / EXCLUSIVE / NEW via `badge` or `limitedEdition` in the catalogue (none set on the real products).
-- Pages under `/shop/` set `window.PADEL_BASE = "../"`; renderers prefix catalogue paths with it. Works from disk.
-- WordPress later: cards map to a `product` CPT / WooCommerce loop; catalogue nav = product categories; the same CSS applies.
+Catalogue only: the club sells on its shop floor, so there is no cart, no checkout and no price anywhere.
+Products show `זמין בחנות במתחם` with a green dot and a quiet `לפרטים` link.
+
+- Palette: section `#F5F4F0`, image tile `#EEEEEB`, cards white with a 1px `#E2E2DD` border, radius 7, no shadow.
+  Ink `#101410`, muted `#6E736E`, chips `#ECECE8` / `#555B56`. Brand green only for the active chip, CTA, availability dot and badges.
+- Homepage `#shop`: SHOP label, `ציוד פאדל נבחר`, one-line subtitle, `לכל המוצרים` CTA, then 4 featured products (2x2 on phones).
+- `shop/index.html`: compact banner built from a real club photo, heading block, category chips
+  (הכל, מחבטים, נעליים, ביגוד, כדורים, תיקים, אביזרים), grid 4 / 3 / 2, then the `MORE THAN A GAME` strip.
+- `shop/product.html?id=<id>`: gallery tile, meta table (brand, sku, category, attributes), availability, link to the
+  manufacturer page. No cart control.
+- One card component, `assets/js/products/card.js`. Card fields: category (Hebrew), product name (Latin, `dir="ltr"`),
+  availability, CTA. Badges LIMITED / EXCLUSIVE / NEW come from `badge` in the catalogue; none is set on the real products.
+- Product model (`data/products.json`, schema v2): `id, sku, brand, name, nameHe, category, images[], price,
+  compareAtPrice, availability, badge, description, attributes, url, referenceUrl`. Ready to be replaced by the
+  external inventory API through `InventoryApiSource`.
 
 ## Shop data layer
 
