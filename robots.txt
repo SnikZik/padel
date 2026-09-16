@@ -1,0 +1,5 @@
+# TEMPORARY: this is the GitHub Pages preview of the site, not the production domain.
+# Keep it out of search so the preview URL never gets indexed.
+# DELETE THIS FILE (and the "noindex" meta tags in index.html and shop/index.html) when the site moves to its real domain.
+User-agent: *
+Disallow: /

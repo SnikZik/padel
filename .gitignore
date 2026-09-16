@@ -1,0 +1,6 @@
+# client source package (kept locally; large media, not needed to serve the site)
+handoff/
+# generated deliverables
+screenshots/
+*.zip
+.DS_Store
