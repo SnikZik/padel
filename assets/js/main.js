@@ -54,9 +54,11 @@ if (video) {
 }
 
 /* ---------- booking card: dock to the bottom of the screen once its own slot scrolls past,
-   release again when the footer arrives, so it never covers the page's own ending ---------- */
+   release again when the footer arrives, so it never covers the page's own ending.
+   Off unless site.config.js sets bookingDock: true (Snir turned it off on 17.9.2026: the header has its own pill);
+   while off, the card simply stays in its place under the hero. ---------- */
 const slot = document.getElementById("book-slot");
-if (slot) {
+if (slot && config.bookingDock === true) {
   const card = slot.querySelector(".book-card");
   const footer = document.querySelector(".site-footer");
   let ticking = false;

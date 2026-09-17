@@ -6,6 +6,7 @@ window.PADEL_CONFIG = {
 
   // Booking. 07_copy/content-he.json gives the Lazuz homepage; replace with the club's direct link when supplied.
   bookingUrl: "https://www.lazuz.co.il/",
+  bookingDock: false,   // booking card docking to the bottom of the screen while scrolling: off for now (Snir, 17.9); true turns it back on
 
   instagramUrl: "https://www.instagram.com/padelclub.azor/",
 
