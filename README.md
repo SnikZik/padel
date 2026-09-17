@@ -63,6 +63,21 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## Footer (Snir's footer DEV package, 2026-09-17)
+
+Package in `handoff-extra/footer-dev-2026-09-17/`, built from `assets/footer-reference-desktop.png` (the preferred direction).
+`python3 tools/sync_footer.py` renders the same footer into `index.html`, `shop/index.html` and `shop/product.html`
+(only the asset base path and link targets differ); edit the template there, not the pages.
+
+- Deep green section; the club photo (`assets/footer/footer-bg.webp`, the text-free top of the reference) sits at the top and
+  fades into the green under the invitation, so it never reads as a separate image block.
+- Invitation "הצטרפו לקהילת הפאדל של אזור", line "מגרשים, אנשים טובים ואווירה שמחברת.", CTAs הזמנת מגרש (booking) and דברו איתנו.
+- Logo line: "יותר מפאדל. זו קהילה." with the white outline logo (`assets/brand/logo-outline-240/480.webp`, made from the original artwork).
+- Tiles: address (Waze), phone, WhatsApp, Instagram, Facebook, TikTok (בקרוב, display only). Phone, WhatsApp, Facebook and
+  "דברו איתנו" read `phone`, `whatsappUrl`, `facebookUrl`, `links.contact` in `site.config.js` and stay inert while null.
+  No placeholder numbers are shown on the page; the config comments carry the example formats.
+- Bottom bar: copyright, the same menu as the header, WELLNESS & SOCIAL. Phones: tiles 3 across, menu above the copyright.
+
 ## Small English labels removed (Snir, 2026-09-17)
 
 THE PADEL CLUB AZOR, SHOP (homepage and /shop/), COMMUNITY, VISIT US and TOURNAMENTS are gone from every page, with their styles.
@@ -134,7 +149,10 @@ To connect the inventory system: implement `InventoryApiSource.list()` and map i
 |---|---|---|
 | `siteUrl` | canonical, absolute og:image, schema `url` | null |
 | `bookingUrl` | all "הזמנת מגרש" buttons | Lazuz homepage from content-he.json (no club deep link supplied) |
-| `phone` | schema `telephone` | null |
+| `phone` | footer "טלפון" tile, schema `telephone` | null |
+| `whatsappUrl` | footer "וואטסאפ" tile | null |
+| `facebookUrl` | footer "פייסבוק" tile | null |
+| `links.contact` | footer "דברו איתנו" | null |
 | `openingHours` | schema `openingHours` | null |
 | `links.aboutStory` | "הסיפור שלנו" | null → button inert |
 | `links.shop` | "לחנות" | null → button inert |

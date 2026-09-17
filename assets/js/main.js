@@ -80,6 +80,19 @@ if (slot) {
 /* ---------- config-driven links ---------- */
 document.querySelectorAll("[data-booking]").forEach((a) => { if (config.bookingUrl) a.href = config.bookingUrl; });
 document.querySelectorAll("[data-waze]").forEach((a) => { if (config.wazeUrl) a.href = config.wazeUrl; });
+// footer contact and social tiles: a top-level config value (phone, whatsappUrl, instagramUrl, facebookUrl); null keeps the tile inert
+document.querySelectorAll("[data-config]").forEach((a) => {
+  let target = config[a.dataset.config];
+  if (target && a.dataset.config === "phone") target = `tel:${String(target).replace(/[^\d+]/g, "")}`;
+  if (target) {
+    a.href = target;
+    if (/^https?:/.test(target)) { a.target = "_blank"; a.rel = "noopener"; }
+  } else {
+    a.removeAttribute("href");
+    a.setAttribute("aria-disabled", "true");
+    a.addEventListener("click", (e) => e.preventDefault());
+  }
+});
 document.querySelectorAll("[data-link]").forEach((a) => {
   const target = config.links && config.links[a.dataset.link];
   if (target) {

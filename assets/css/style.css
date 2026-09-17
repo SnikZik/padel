@@ -714,38 +714,99 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .pp-title { font-size: 36px; }
 }
 
-/* ---------- footer ---------- */
-.site-footer { background: var(--green); color: var(--cream); padding: 64px var(--pad-x) 40px; }
-.footer-inner {
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
-  direction: ltr; /* logo left, social right, as approved */
+/* ---------- footer (Snir's footer DEV package, 17.9.2026: assets/footer-reference-desktop.png) ----------
+   One deep green section. The club photo sits at its top and dissolves into the green (never a standalone image block);
+   invitation and CTAs over the fade, logo line, one row of contact and social tiles, a thin bottom bar.
+   Phones: shorter photo, CTAs side by side, tiles 3 across, menu before the copyright line. */
+.site-footer { position: relative; overflow: hidden; background: var(--green); color: var(--cream); }
+.footer-hero { position: relative; }
+.footer-bg { position: absolute; top: 0; left: 0; width: 100%; height: 250px; object-fit: cover; object-position: 50% 45%; }
+.footer-hero::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 252px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(12, 72, 38, 0) 0%, rgba(12, 72, 38, .18) 36%, rgba(12, 72, 38, .74) 72%, var(--green) 100%);
 }
-.footer-inner > * { direction: rtl; }
-.footer-brand { display: block; border-radius: 50%; }
-.footer-brand img { width: 80px; height: 80px; }
-.footer-nav { display: none; }
-.footer-social { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 500; font-size: 16px; min-height: 44px; opacity: .92; transition: opacity .25s var(--ease); }
-.footer-social:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
-.footer-social svg { width: 24px; height: 24px; }
-.footer-rule { margin: 32px 0 24px; border: 0; border-top: 1px solid rgba(255, 250, 244, .16); }
-.footer-bottom {
-  display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.6; color: rgba(255, 250, 244, .8);
-  direction: ltr; text-align: left;
+.footer-hero-inner { position: relative; z-index: 1; padding: 136px var(--gutter) 0; }
+.footer-hero-copy { text-align: right; }
+.footer-title { margin: 0; font-size: 27px; line-height: 1.2; font-weight: 700; color: var(--cream); text-wrap: balance; }
+.footer-title-accent { color: var(--mauve); }
+.footer-sub { margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: rgba(255, 250, 244, .9); }
+.footer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.footer-cta { gap: 8px; min-height: 48px; padding: 0 12px; font-size: 15px; font-weight: 600; }
+.footer-cta-icon { flex: 0 0 auto; width: 16px; height: 16px; }
+.footer-cta--primary { background: var(--mauve); color: var(--green); }
+.footer-cta--primary:hover { background: var(--blush); }
+.footer-cta--ghost { background: transparent; color: var(--cream); border: 1.5px solid rgba(255, 250, 244, .85); }
+.footer-cta--ghost:hover { background: rgba(255, 250, 244, .1); border-color: var(--cream); }
+
+/* logo line: short text, a hairline, the logo on the far left (reference) */
+.footer-brand-block { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 24px; }
+.footer-brand-line { margin: 0; padding-inline-end: 18px; border-inline-end: 1px solid rgba(255, 250, 244, .45); font-size: 15px; line-height: 1.45; color: rgba(255, 250, 244, .92); text-align: left; }
+.footer-brand { display: block; flex: 0 0 auto; border-radius: 50%; }
+.footer-brand img { display: block; width: 76px; height: 76px; }
+
+.footer-inner { position: relative; z-index: 1; padding: 0 var(--gutter) 24px; }
+.footer-contacts {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 14px; margin: 26px 0 0; padding: 18px 0;
+  list-style: none; border-block: 1px solid rgba(255, 250, 244, .18);
 }
-.footer-bottom > * { direction: rtl; unicode-bidi: isolate; text-align: left; }
-.footer-bottom .footer-legal { direction: ltr; } /* © and year first, then the Hebrew line */
+.footer-contacts li:not(:nth-child(3n + 1)) { border-inline-start: 1px solid rgba(255, 250, 244, .14); }
+.footer-contact {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 3px; min-height: 44px; height: 100%;
+  padding: 4px 6px; color: var(--cream); text-align: center; text-decoration: none;
+}
+.footer-icon { width: 24px; height: 24px; margin-bottom: 5px; }
+.footer-contact b { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.footer-contact span { font-size: 12px; line-height: 1.3; color: rgba(255, 250, 244, .72); }
+a.footer-contact:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.footer-contact.is-soon { opacity: .5; } /* TikTok: coming soon, not a link */
+
+.footer-bottom { display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 12px; text-align: center; font-size: 13px; color: rgba(255, 250, 244, .75); }
+.footer-legal { order: 1; margin: 0; direction: ltr; unicode-bidi: isolate; } /* © and year first, then the Hebrew line */
 .footer-legal > span { unicode-bidi: isolate; }
-.footer-bottom .latin:last-child { letter-spacing: .06em; font-size: 13px; }
+.footer-tagline { order: 2; margin: 0; font-family: var(--font-latin); font-size: 11px; font-weight: 500; letter-spacing: .3em; color: rgba(255, 250, 244, .6); }
+.footer-nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 18px; margin: 0; padding: 0; list-style: none; }
+.footer-nav a { display: inline-block; padding: 11px 0; font-size: 14px; color: rgba(255, 250, 244, .9); text-decoration: none; }
+.footer-nav a:hover { color: var(--cream); text-decoration: underline; text-underline-offset: 4px; }
+
+@media (min-width: 768px) {
+  .footer-bg { height: 380px; }
+  .footer-hero::after { height: 382px; }
+  .footer-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 40px; padding: 220px var(--pad-x) 0; }
+  .footer-title { font-size: 36px; }
+  .footer-sub { font-size: 18px; }
+  .footer-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+  .footer-cta { min-height: 50px; padding: 0 26px; font-size: 16px; }
+  .footer-brand-block { margin: 0; gap: 26px; }
+  .footer-brand-line { padding-inline-end: 26px; font-size: 18px; }
+  .footer-brand img { width: 140px; height: 140px; }
+  .footer-inner { padding: 0 var(--pad-x) 28px; }
+  .footer-contacts { margin-top: 36px; padding: 22px 0; }
+  .footer-contact b { font-size: 14px; }
+  .footer-contact span { font-size: 13px; }
+}
 @media (min-width: 1024px) {
-  .site-footer { padding: 64px var(--pad-x) 36px; }
-  .footer-brand img { width: 78px; height: 78px; }
-  .footer-rule { margin: 32px 0 20px; }
-  .footer-bottom { gap: 6px; font-size: 13px; }
-  .footer-nav { display: block; }
-  .footer-nav ul { display: flex; gap: 32px; }
-  .footer-nav a { font-size: 15px; font-weight: 400; text-decoration: none; padding: 8px 0; border-bottom: 1px solid transparent; opacity: .92; transition: border-color .25s var(--ease), opacity .25s var(--ease); }
-  .footer-nav a:hover { border-bottom-color: currentColor; opacity: 1; }
-  .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+  .footer-bg { height: 480px; object-position: 50% 40%; }
+  .footer-hero::after { height: 482px; }
+  .footer-hero-inner { gap: 48px; padding-top: 300px; }
+  .footer-title { font-size: clamp(38px, 3.3vw, 50px); }
+  .footer-sub { margin-top: 10px; font-size: 21px; }
+  .footer-actions { gap: 16px; margin-top: 28px; }
+  .footer-cta { min-height: 54px; padding: 0 32px; font-size: 17px; }
+  .footer-brand-block { gap: 34px; }
+  .footer-brand-line { padding-inline-end: 34px; font-size: 21px; line-height: 1.5; }
+  .footer-brand img { width: 196px; height: 196px; }
+  .footer-contacts { grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 40px; padding: 26px 0; }
+  .footer-contacts li:nth-child(n + 2) { border-inline-start: 1px solid rgba(255, 250, 244, .16); }
+  .footer-icon { width: 26px; height: 26px; }
+  .footer-contact b { font-size: 15px; }
+  .footer-contact span { font-size: 13.5px; }
+  /* bottom bar: copyright on the right, menu in the middle, tagline on the left */
+  .footer-inner { padding-bottom: 30px; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; gap: 24px; padding-top: 22px; }
+  .footer-legal, .footer-tagline { order: 0; }
+  .footer-nav ul { gap: 0; }
+  .footer-nav li + li::before { content: ""; display: inline-block; width: 1px; height: 12px; margin-inline: 14px; background: rgba(255, 250, 244, .32); vertical-align: middle; }
+  .footer-nav a { padding: 8px 0; font-size: 14px; }
 }
 
 /* ---------- phones: centre the editorial blocks (Snir, 2026-09-16) ---------- */
@@ -761,8 +822,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .split-visit .split-copy { display: flex; flex-direction: column; }
   .shop-body { margin-inline: auto; }
   .shop-brand { justify-content: center; }
-  .footer-bottom { text-align: center; align-items: center; }
-  .footer-bottom > * { text-align: center; }
 }
 
 /* ---------- direction guard: Latin-only strings always read LTR, whatever the container rules ----------
