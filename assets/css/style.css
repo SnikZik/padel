@@ -92,6 +92,8 @@ button { font: inherit; }
 .btn-outline { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .7); }
 .btn-outline:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
 .btn-block { width: 100%; }
+.btn-ghost-green { background: transparent; color: var(--green); border: 1.5px solid var(--green); }
+.btn-ghost-green:hover { background: var(--green); color: #fff; }
 
 /* ---------- typography helpers ---------- */
 .eyebrow {
@@ -103,6 +105,7 @@ button { font: inherit; }
 .body { font-size: 17px; line-height: 1.7; color: var(--ink-soft); max-width: 36em; }
 .split-copy .body { margin-bottom: 28px; }
 .latin { font-family: var(--font-latin); direction: ltr; unicode-bidi: isolate; }
+.body .latin { white-space: nowrap; } /* brand names stay on one line inside Hebrew paragraphs */
 
 /* ---------- header ---------- */
 .site-header {
@@ -323,8 +326,11 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .split-copy .body { margin-bottom: 32px; }
   .split-copy .btn { align-self: flex-start; }
 
-  .split-about { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); padding: 36px var(--pad-x) 64px; }
-  .split-about .split-copy { order: -1; text-align: left; }
+  .split-about { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); padding: 36px var(--pad-x) 64px; align-items: center; }
+  .split-about .split-copy { text-align: right; justify-content: center; }
+  .split-about .eyebrow { letter-spacing: .12em; }
+  .split-about .section-title { font-weight: 700; margin-bottom: 18px; }
+  .split-about .body { max-width: 34em; }
 
   .split-community { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); position: static; background: var(--cream); color: var(--ink); padding: 72px var(--pad-x) 40px; }
   .split-community .split-media { position: static; }
@@ -346,7 +352,8 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 }
 /* in a left-aligned Hebrew block the CTA hugs the left edge (mockup); flex-start in RTL is the right, so flip it */
 @media (min-width: 1024px) {
-  .split-about .split-copy .btn, .split-visit .split-copy .btn { align-self: flex-end; }
+  .split-about .split-copy .btn { align-self: flex-start; } /* flex-start in RTL = the right edge, under the copy */
+  .split-visit .split-copy .btn { align-self: flex-end; }
 }
 
 /* ---------- gallery ---------- */
