@@ -132,20 +132,42 @@
     </ul>
   </section>
 
-  <!-- 5. Featured adidas Padel products: the retail zone. Full catalogue lives in /shop/ -->
+  <!-- 5. Featured adidas Padel products, same composition as the approved shop reference:
+          banner, heading and category chips, product grid, brand strip. Full catalogue lives in /shop/ -->
   <section class="shop shop-home" id="shop" aria-labelledby="shop-title">
-    <div class="shop-inner">
-      <div class="shop-intro" data-reveal>
-        <div>
-          <p class="shop-label" dir="ltr" lang="en">SHOP</p>
-          <h2 class="shop-title" id="shop-title">ציוד פאדל נבחר</h2>
-          <p class="shop-body">מוצרי adidas Padel נבחרים מהמלאי בחנות המתחם</p>
-        </div>
-        <a class="btn shop-cta" href="shop/" data-link="shop">לכל המוצרים</a>
+    <div class="shop-banner">
+      <img src="assets/img/gallery_01.webp" width="900" height="650" alt="מגרשי הפאדל של המועדון" loading="lazy" decoding="async">
+      <div class="shop-banner-inner">
+        <p class="shop-banner-start" lang="en">PLAY<br>TRAIN<br>CONNECT</p>
+        <p class="shop-banner-end" lang="en">PADEL<br>LIFESTYLE<br>ADIDAS</p>
       </div>
-      <ul class="product-grid" id="product-grid" aria-live="polite" aria-busy="true">
+    </div>
+
+    <div class="shop-page">
+      <div class="shop-top">
+        <header class="shop-head" data-reveal>
+          <p class="shop-label" dir="ltr" lang="en">SHOP</p>
+          <h2 class="shop-head-title" id="shop-title">ציוד פאדל נבחר</h2>
+          <p class="shop-head-sub">מוצרי <span class="latin" dir="ltr" lang="en">adidas Padel</span> נבחרים מהמלאי בחנות המתחם</p>
+          <a class="btn shop-cta" href="shop/" data-link="shop">לכל המוצרים</a>
+        </header>
+        <nav class="shop-nav" id="shop-nav" aria-label="קטגוריות"></nav>
+      </div>
+
+      <ul class="product-grid shop-grid" id="shop-grid" aria-live="polite" aria-busy="true">
         <noscript><li class="grid-note">להצגת המוצרים יש להפעיל JavaScript.</li></noscript>
       </ul>
+    </div>
+
+    <div class="shop-strip">
+      <img src="assets/img/gallery_03_topdown.webp" width="900" height="650" alt="מבט מלמעלה על מגרש במועדון" loading="lazy" decoding="async">
+      <div class="shop-strip-inner">
+        <p class="shop-strip-latin" lang="en">MORE<br>THAN<br class="br-desk"> A GAME</p>
+        <div class="shop-strip-he">
+          <strong>איכות, ביצועים וסטייל</strong>
+          <span>מוצרי <span class="latin" dir="ltr" lang="en">adidas Padel</span> נבחרים עכשיו במועדון פאדל אזור</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -215,5 +237,6 @@
 <script src="assets/js/products/repository.js" defer></script>
 <script src="assets/js/products/card.js" defer></script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/shop.js" defer></script>
 </body>
 </html>
