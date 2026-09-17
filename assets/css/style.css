@@ -814,6 +814,27 @@ a.footer-contact:hover b { text-decoration: underline; text-underline-offset: 3p
   .footer-nav a { padding: 8px 0; font-size: 14px; }
 }
 
+/* ---------- booking strip: pink, fixed to the bottom of the screen on every page, always visible (Snir, 17.9.2026) ----------
+   The page keeps the strip's height free at its end, so the footer's last line is never covered. */
+body { padding-bottom: calc(52px + env(safe-area-inset-bottom)); }
+.book-strip {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: calc(52px + env(safe-area-inset-bottom)); padding: 0 16px env(safe-area-inset-bottom);
+  background: var(--mauve); color: var(--green); text-decoration: none;
+  font-size: 16px; font-weight: 700; line-height: 1; letter-spacing: .01em;
+  box-shadow: 0 -12px 28px -20px rgba(12, 72, 38, .55);
+  transition: background-color .25s var(--ease);
+}
+.book-strip:hover { background: var(--blush); }
+.book-strip-icon { flex: 0 0 auto; width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.book-strip:hover .book-strip-icon { transform: translateX(-3px); }
+.book-strip:focus-visible { outline: 3px solid var(--green); outline-offset: -7px; }
+@media (min-width: 768px) {
+  body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+  .book-strip { min-height: calc(56px + env(safe-area-inset-bottom)); font-size: 17px; }
+}
+
 /* ---------- phones: centre the editorial blocks (Snir, 2026-09-16) ---------- */
 @media (max-width: 767px) {
   .split-about .split-copy,

@@ -63,6 +63,12 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## Pink booking strip (Snir, 2026-09-17)
+
+"הזמן מגרש עכשיו": a pink strip (`--mauve`, deep green text) fixed to the bottom of the screen on every page and every width,
+always visible, linking to the booking URL. The body keeps its height free at the end so the footer is never covered.
+Rendered with the footer by `tools/sync_footer.py`.
+
 ## Booking card docking off (Snir, 2026-09-17)
 
 The booking card no longer docks to the bottom of the screen while scrolling; it stays in its place under the hero.

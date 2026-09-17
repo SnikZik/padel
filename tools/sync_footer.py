@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the site footer (Snir's footer DEV package, 17.9.2026) into index.html, shop/index.html and shop/product.html,
+"""Render the site footer (Snir's footer DEV package, 17.9.2026) and the pink booking strip into index.html, shop/index.html and shop/product.html,
 between <!-- footer:start --> and <!-- footer:end --> (the first run replaces the old <footer> element).
 
 One template, three pages: only the asset base path and the in-page link targets differ.
@@ -82,6 +82,9 @@ def footer(p):
     </div>
   </div>
 </footer>
+
+<!-- booking strip: pink, fixed to the bottom of the screen on every page, always visible (Snir, 17.9.2026) -->
+<a class="book-strip" href="{BOOKING}" target="_blank" rel="noopener" data-booking><span>הזמן מגרש עכשיו</span>{icon("chevron-left", "book-strip-icon")}</a>
 <!-- footer:end -->'''
 
 for rel, p in PAGES.items():
