@@ -11,9 +11,6 @@
   --paper: #F6F3ED;
   --cream: #FBF8F3;       /* page surfaces */
   --stone: #F3EFE8;       /* shop zone, one step deeper */
-  --orange: #C2500F;      /* booking accent: 4.7:1 with white text */
-  --orange-dark: #A8420C;
-  --orange-text: #B8480E; /* 5.3:1 on white, 5.0:1 on cream */
   --white: #FFFFFF;
   --ink: #15231A;
   --ink-soft: #3B4A41;
@@ -224,46 +221,70 @@ body.nav-open { overflow: hidden; }
   .hero-actions { direction: ltr; }
 }
 
-/* ---------- booking card ----------
-   Sits over the hero's bottom edge, then docks to the bottom of the screen while the page scrolls
-   and releases again when the footer comes into view. The slot keeps the space so nothing jumps. */
+/* ---------- booking card (Snir's mock, 17.9.2026) ----------
+   Cream card, green headline, quiet venue line with centred dots, a hairline divider, green pill CTA.
+   Sits half over the hero's bottom edge, docks to the bottom of the screen while scrolling,
+   releases when the footer arrives. The slot keeps the space so nothing jumps. */
 main { background: var(--cream); } /* the strip beside the card matches About, so nothing reads as a band */
-.book-card-slot { position: relative; z-index: 2; margin: -20px 12px 0; }
+.book-card-slot { position: relative; z-index: 2; margin: -24px 12px 0; }
 .book-card {
-  min-height: 68px; padding: 13px 14px;
-  background: #fff; border-radius: 14px;
-  box-shadow: 0 10px 28px -20px rgba(21, 35, 26, .3), 0 0 0 1px rgba(21, 35, 26, .045);
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 78px; padding: 12px 16px 12px 12px;
+  background: #FAF8F3; border-radius: 18px;
+  box-shadow: 0 16px 36px -22px rgba(21, 35, 26, .34), 0 0 0 1px rgba(21, 35, 26, .045);
+  display: flex; align-items: center; gap: 0;
   transition: box-shadow .3s var(--ease), opacity .25s var(--ease), transform .25s var(--ease);
 }
 .book-card-text { min-width: 0; flex: 1 1 auto; text-align: right; }
-.book-card-title { font-size: 15.5px; font-weight: 600; line-height: 1.25; color: var(--ink); margin: 0; }
-/* venue line: quiet, thin slashes, no icons */
-.book-card-hl { display: flex; flex-wrap: wrap; align-items: baseline; margin: 3px 0 0; padding: 0; list-style: none; font-size: 11.5px; font-weight: 500; line-height: 1.5; color: var(--orange-text); }
+.book-card-title { font-size: clamp(13.5px, 3.85vw, 15px); font-weight: 700; line-height: 1.25; color: var(--green); margin: 0; white-space: nowrap; }
+.book-card-hl { display: flex; flex-wrap: wrap; align-items: baseline; margin: 4px 0 0; padding: 0; list-style: none;
+  font-size: 11px; font-weight: 400; line-height: 1.5; color: #5D635E; }
 .book-card-hl li { white-space: nowrap; }
-.book-card-hl li + li::before { content: "/"; margin-inline: 7px; color: rgba(21, 35, 26, .22); font-weight: 400; }
-.book-card-cta { flex: 0 0 auto; min-height: 40px; height: 40px; padding: 0 20px; font-size: 13px; background: var(--orange); color: #fff; }
-.book-card-cta:hover { background: var(--orange-dark); }
-@media (max-width: 349px) { .book-card { flex-wrap: wrap; } .book-card-cta { width: 100%; } }
+.book-card-hl li + li::before { content: "·"; margin-inline: 6px; color: #9AA09B; font-weight: 700; }
+/* phones: the venue line breaks on purpose, shop on its own line, so a separator never starts a line */
+.book-card-hl li:last-child { flex-basis: 100%; }
+.book-card-hl li:last-child::before { content: none; }
+.book-card-rule { flex: 0 0 1px; align-self: center; width: 1px; height: 44px; margin-inline: 12px 10px; background: #DCD8D0; }
+.book-card-cta { flex: 0 0 auto; min-height: 42px; height: 42px; padding: 0 18px; font-size: 13.5px; font-weight: 600; background: var(--green); color: #fff; }
+.book-card-cta:hover { background: var(--green-dark); }
+/* very narrow phones: tighter CTA and divider first, then let the headline wrap rather than clip */
+@media (max-width: 374px) {
+  .book-card { padding-inline: 12px 10px; }
+  .book-card-rule { margin-inline: 8px 8px; }
+  .book-card-cta { padding: 0 13px; font-size: 12.5px; }
+  .book-card-title { white-space: normal; text-wrap: balance; }
+}
+@media (max-width: 319px) { .book-card { flex-wrap: wrap; } .book-card-rule { display: none; } .book-card-cta { width: 100%; margin-top: 10px; } }
 
 /* docked: pinned to the bottom of the screen */
 .book-card-slot.is-docked .book-card {
   position: fixed; inset-inline: 12px; bottom: 12px; z-index: 40;
-  box-shadow: 0 14px 38px -20px rgba(21, 35, 26, .4), 0 0 0 1px rgba(21, 35, 26, .05);
+  box-shadow: 0 16px 40px -18px rgba(21, 35, 26, .42), 0 0 0 1px rgba(21, 35, 26, .05);
   animation: dock-in .28s var(--ease);
 }
 @keyframes dock-in { from { opacity: 0; } to { opacity: 1; } }
 .book-card-slot.is-hidden .book-card { opacity: 0; transform: translateY(12px); pointer-events: none; }
 
 @media (min-width: 768px) {
-  .book-card-slot { width: min(860px, calc(100% - 64px)); margin: -28px auto 0; }
-  .book-card { min-height: 74px; padding: 14px 16px 14px 24px; border-radius: 16px; gap: 20px; }
-  .book-card-title { font-size: 18px; }
-  .book-card-hl { font-size: 12.5px; margin-top: 4px; }
-  .book-card-hl li + li::before { margin-inline: 9px; }
-  .book-card-cta { min-height: 44px; height: 44px; padding: 0 24px; font-size: 14px; }
-  .book-card-slot.is-docked .book-card { inset-inline: auto; width: min(860px, calc(100vw - 64px)); left: 50%; transform: translateX(-50%); bottom: 20px; }
+  /* mock proportions: card about 6.6 times as wide as it is tall, about half of it over the hero */
+  .book-card-slot { width: min(740px, calc(100% - 64px)); margin: -52px auto 0; }
+  .book-card { min-height: 112px; padding: 16px 36px 16px 30px; border-radius: 24px; }
+  .book-card-title { font-size: 22px; line-height: 1.2; }
+  .book-card-hl { font-size: 13.5px; margin-top: 6px; flex-wrap: nowrap; }
+  .book-card-hl li + li::before { margin-inline: 10px; }
+  .book-card-hl li:last-child { flex-basis: auto; }
+  .book-card-hl li:last-child::before { content: "·"; }
+  .book-card-rule { height: 52px; margin-inline: 24px 20px; }
+  .book-card-cta { min-height: 50px; height: 50px; padding: 0 32px; font-size: 17px; }
+  .book-card-slot.is-docked .book-card { inset-inline: auto; width: min(740px, calc(100vw - 64px)); left: 50%; transform: translateX(-50%); bottom: 20px; }
   .book-card-slot.is-docked.is-hidden .book-card { transform: translateX(-50%) translateY(12px); }
+}
+@media (min-width: 1024px) {
+  .book-card { padding: 16px 36px 16px 30px; }
+  .book-card-title { font-size: 26px; }
+  .book-card-hl { font-size: 15.5px; margin-top: 8px; }
+  .book-card-hl li + li::before { margin-inline: 12px; }
+  .book-card-rule { height: 56px; margin-inline: 30px 26px; }
+  .book-card-cta { min-height: 56px; height: 56px; padding: 0 44px; font-size: 20px; }
 }
 
 /* ---------- split sections (about / community / visit) ---------- */
