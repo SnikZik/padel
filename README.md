@@ -109,14 +109,14 @@ same as `handoff/08_dev/reference.html`.
 
 ## Hero media (Snir, 2026-09-17, fourth revision)
 
-- **Every screen size: the locked-off tripod shot Snir supplied** (original in `handoff-extra/hero-video-source-2026-09-17.mp4`,
-  1916x1080, 24 fps). `tools/build_hero_video.py` renders `hero_desktop.mp4` (1920x1080, >= 768px) and
-  `hero_mobile.mp4` (648x1080 portrait slice over the pink court and the seating, < 768px), each with a poster that
-  is exactly its first frame. The first second is dissolved into the end so the loop has no jump.
-  No zoom, no pan, no stabiliser. Reduced motion or data saver: poster only.
-- The earlier reel-based builder is kept in `handoff-extra/build_hero_video_reel_version.py`; the static desktop
-  image from 17.9 morning is `handoff-extra/hero-desktop-source-2026-09-17.png`.
-- The supplied handoff MP4s stay untouched in `handoff/04_video`.
+- **Phones (< 768px): the club's walkthrough reel**, unchanged (`hero_mobile.mp4` 576x1024, poster `hero_mobile.webp`
+  = its first frame). Rebuild with `tools/build_hero_video_mobile.py "<path to WhatsApp Video 2026-09-10 at 11.23.59 (1).mp4>"`.
+- **Tablet and desktop (>= 768px): the locked-off tripod shot Snir supplied** (original in
+  `handoff-extra/hero-video-source-2026-09-17.mp4`). `tools/build_hero_video.py` renders `hero_desktop.mp4`
+  (1920x1080) and its first-frame poster `hero_desktop.webp`, with the first second dissolved into the end for a
+  seamless loop. It never touches the phone files.
+- No zoom, no pan, no CSS motion on either. Reduced motion or data saver: poster only.
+- The static desktop image from 17.9 morning is kept in `handoff-extra/hero-desktop-source-2026-09-17.png`.
 
 ## Visual polish pass (Snir, 2026-09-15)
 

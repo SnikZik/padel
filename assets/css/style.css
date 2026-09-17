@@ -178,7 +178,7 @@ body.nav-open { overflow: hidden; }
   min-height: 520px; height: min(80svh, 720px); /* the one section that needs a height: it holds the video */
   display: flex; align-items: flex-end;
 }
-.hero-poster, .hero-poster img, .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.hero-poster, .hero-poster img, .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 .hero-poster { margin: 0; }
 /* the hero never moves: no transform, no parallax, no scale. Only the poster to video opacity handoff */
 /* the real-photo poster is always painted; the video fades over it only once it is actually playing */
@@ -191,7 +191,7 @@ body.nav-open { overflow: hidden; }
 }
 @media (min-width: 768px) {
   /* static image: a soft left-to-right gradient behind the left-aligned copy, plus a light base; the pink stays pink */
-  .hero-poster img { object-position: 50% 50%; }
+  .hero-poster img, .hero-media { object-position: 50% 50%; }
   .hero-overlay {
     background:
       linear-gradient(90deg, rgba(6, 30, 16, .50) 0%, rgba(6, 30, 16, .22) 38%, rgba(6, 30, 16, .04) 70%),

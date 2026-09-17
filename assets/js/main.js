@@ -34,8 +34,8 @@ document.addEventListener("keydown", (e) => {
 });
 window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => { if (e.matches) setDrawer(false); });
 
-/* ---------- hero video: the same tripod shot on every screen, a portrait slice on phones ----------
-   The poster under it is the video's own first frame, so the fade-in never jumps. */
+/* ---------- hero video: phones play the club's walkthrough reel, 768px and up the tripod shot ----------
+   Each poster is its own video's first frame, so the fade-in never jumps. */
 const video = document.getElementById("hero-video");
 if (video) {
   const saveData = navigator.connection && navigator.connection.saveData;

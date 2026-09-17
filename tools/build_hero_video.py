@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
-"""Hero video for every screen size, from the locked-off tripod shot Snir supplied (17.9.2026):
+"""Tablet and desktop hero video (>= 768px), from the locked-off tripod shot Snir supplied (17.9.2026):
 handoff-extra/hero-video-source-2026-09-17.mp4 (1916x1080, 24 fps, 15 s, no audio).
 
-Two files from the same shot:
-  assets/video/hero_desktop.mp4  1920x1080  (tablet and desktop, >= 768px)
-  assets/video/hero_mobile.mp4    648x1080  (phones: a portrait slice over the pink court and the seating)
-and a poster for each that is exactly the first frame of its video.
+Output: assets/video/hero_desktop.mp4 (1920x1080) and assets/img/hero_desktop.webp, its exact first frame.
+Phones keep the club's walkthrough reel (tools/build_hero_video_mobile.py). This script never touches the phone files.
 
 Seamless loop: the first second of the shot is dissolved into the end, so the last frame of the file
 equals its first frame. No zoom, no pan, no stabiliser (the shot is already locked off).
 
 usage: python3 tools/build_hero_video.py
-(The earlier version, built from the WhatsApp walkthrough reel, is kept in handoff-extra/.)
 """
 import subprocess, tempfile
 from pathlib import Path
@@ -19,7 +16,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "handoff-extra/hero-video-source-2026-09-17.mp4"
 FADE = 1.0            # seconds of the head dissolved over the tail
-PHONE_X = 240         # left edge of the 648px portrait slice in the 1916px frame
 
 ENC = ["-c:v", "libx264", "-profile:v", "high", "-level", "4.1", "-pix_fmt", "yuv420p", "-preset", "slow",
        "-r", "24", "-g", "48", "-movflags", "+faststart", "-an"]
@@ -48,4 +44,3 @@ def build(out_name, vf, crf, maxrate, poster_name):
     print(f"{out_name}: {probe}, {out.stat().st_size / 1e6:.1f} MB; poster {poster_name}")
 
 build("hero_desktop.mp4", "scale=1920:1080:flags=lanczos", 23, "4500k", "hero_desktop.webp")
-build("hero_mobile.mp4", f"crop=648:1080:{PHONE_X}:0", 24, "2200k", "hero_mobile.webp")
