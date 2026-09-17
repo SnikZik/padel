@@ -249,14 +249,34 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .book-card-rule { flex: 0 0 1px; align-self: center; width: 1px; height: 44px; margin-inline: 12px 10px; background: #DCD8D0; }
 .book-card-cta { flex: 0 0 auto; min-height: 42px; height: 42px; padding: 0 18px; font-size: 13.5px; font-weight: 600; background: var(--green); color: #fff; }
 .book-card-cta:hover { background: var(--green-dark); }
-/* very narrow phones: tighter CTA and divider first, then let the headline wrap rather than clip */
-@media (max-width: 389px) {
-  .book-card { padding-inline: 12px 10px; }
-  .book-card-rule { margin-inline: 8px 8px; }
-  .book-card-cta { padding: 0 13px; font-size: 12.5px; }
-  .book-card-title { white-space: normal; text-wrap: balance; }
+/* phones: the headline takes the full width of the card on its own row, large; under it the venue line
+   (emphasised, two lines) sits beside the divider and the CTA, so the card reads full rather than squeezed */
+@media (max-width: 767px) {
+  .book-card {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "title title title" "hl rule cta";
+    align-items: center; row-gap: 8px; padding: 14px 16px 14px 14px;
+  }
+  .book-card-text { display: contents; }
+  .book-card-title { grid-area: title; font-size: clamp(18px, 5.2vw, 21px); line-height: 1.2; white-space: normal; text-wrap: balance; text-align: right; }
+  .book-card-hl { grid-area: hl; margin: 0; font-size: clamp(12.5px, 3.45vw, 13.5px); font-weight: 500; line-height: 1.45; color: #3E4640; text-align: right; }
+  .book-card-hl li + li::before { color: var(--green); opacity: .55; }
+  /* two deliberate lines, never a separator at the start of a line: courts / café · shop */
+  .book-card-hl li:first-child { flex-basis: 100%; }
+  .book-card-hl li:nth-child(2)::before { content: none; }
+  .book-card-hl li:last-child { flex-basis: auto; }
+  .book-card-hl li:last-child::before { content: "·"; }
+  .book-card-rule { grid-area: rule; height: 40px; margin-inline: 10px 12px; }
+  .book-card-cta { grid-area: cta; min-height: 44px; height: 44px; padding: 0 18px; font-size: 14px; }
 }
-@media (max-width: 319px) { .book-card { flex-wrap: wrap; } .book-card-rule { display: none; } .book-card-cta { width: 100%; margin-top: 10px; } }
+@media (max-width: 374px) {
+  .book-card-rule { margin-inline: 8px; }
+  .book-card-cta { padding: 0 14px; font-size: 13px; }
+}
+@media (max-width: 339px) {
+  /* narrowest phones: one item per line, no separators */
+  .book-card-hl li { flex-basis: 100% !important; }
+  .book-card-hl li::before { content: none !important; }
+}
 
 /* docked: pinned to the bottom of the screen */
 .book-card-slot.is-docked .book-card {
