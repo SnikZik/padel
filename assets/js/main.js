@@ -93,21 +93,31 @@ document.querySelectorAll("[data-link]").forEach((a) => {
   }
 });
 
-/* ---------- scroll spy for the header menu ---------- */
+/* ---------- scroll spy for the header menu ----------
+   The current section is the last one (in page order) whose top has passed a line 30% down the screen, so a short
+   section the menu jumped to (the gallery) and a tall one (the tournaments) are both marked correctly.
+   At the very bottom of the page the last section wins, so the closing section still gets its turn. */
 const navLinks = [...nav.querySelectorAll('a[href^="#"]')];
 const spied = navLinks
   .map((a) => document.querySelector(a.getAttribute("href")))
   .filter((el, i, arr) => el && arr.indexOf(el) === i);
-if ("IntersectionObserver" in window && spied.length) {
-  const spy = new IntersectionObserver((entries) => {
-    const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
+if (spied.length) {
+  const byPage = [...spied].sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+  let queued = false;
+  const mark = () => {
+    queued = false;
+    const line = window.innerHeight * 0.3;
+    let current = byPage[0];
+    byPage.forEach((el) => { if (el.getBoundingClientRect().top <= line) current = el; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = byPage[byPage.length - 1];
     navLinks.forEach((a) => {
-      const isCurrent = a.getAttribute("href") === `#${visible.target.id}`;
-      if (isCurrent) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      if (a.getAttribute("href") === `#${current.id}`) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
     });
-  }, { rootMargin: "-40% 0px -50% 0px", threshold: [0, .2, .5] });
-  spied.forEach((el) => spy.observe(el));
+  };
+  const request = () => { if (!queued) { queued = true; requestAnimationFrame(mark); } };
+  window.addEventListener("scroll", request, { passive: true });
+  window.addEventListener("resize", request);
+  mark();
 }
 
 /* ---------- reveals: subtle, only for content below the first screen ---------- */

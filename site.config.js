@@ -21,7 +21,7 @@ window.PADEL_CONFIG = {
     aboutStory: null,      // "הסיפור שלנו"
     shop: "shop/",         // "לחנות" / "לכל המוצרים" → the catalogue page
     communityEvents: null, // "אירועים וקהילה"
-    tournamentsAll: null,  // "לכל הטורנירים" (tournaments section): no tournaments page yet
+    tournamentsUpcoming: null, // "טורנירים קרובים" (tournaments section, tablet and desktop): no destination yet
     communityJoin: null    // "להצטרפות לקהילה" (tournaments community banner)
   },
 

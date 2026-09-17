@@ -63,17 +63,24 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## Small English labels removed (Snir, 2026-09-17)
+
+THE PADEL CLUB AZOR, SHOP (homepage and /shop/), COMMUNITY, VISIT US and TOURNAMENTS are gone from every page, with their styles.
+Section titles now open each block.
+
 ## Tournaments (Snir's DEV package, 2026-09-17)
 
 Package kept in `handoff-extra/tournaments-dev-2026-09-17/` (mockups `final-mockups/01` desktop and `02` mobile, reference photos,
-brand palette). Section `#tournaments` sits between the gallery and the shop; the menu item "אירועים" points to it.
+brand palette). Section `#tournaments` sits between the shop and the community block (Snir moved the shop above it);
+the menu item "אירועים" points to it.
 
 - Content lives in `data/tournaments.json` (`id, date, title, organizer, level, participants, pairs, prizes, crowd, image,
   registrationUrl, status`). `python3 tools/sync_tournaments.py` renders the filter chips, the cards and the schema.org
   `SportsEvent` list into `index.html` (plain HTML, works without JS). Values that were not supplied stay null and are not shown.
 - Chips: הכל, קרוב (the next tournament from today on), and one chip per level in the data. Filtering is `assets/js/tournaments.js`.
-- "לפרטים והרשמה" is inert until a card gets `registrationUrl`; "לכל הטורנירים" and "להצטרפות לקהילה" wait for
-  `links.tournamentsAll` / `links.communityJoin` in `site.config.js`.
+- Phones (< 768px) show neither the chips nor the intro button (Snir): every card is listed. The button reads "טורנירים קרובים".
+- "לפרטים והרשמה" is inert until a card gets `registrationUrl`; "טורנירים קרובים" and "להצטרפות לקהילה" wait for
+  `links.tournamentsUpcoming` / `links.communityJoin` in `site.config.js`.
 - Images in `assets/tournaments/`: the top banner is cut from the mockups themselves (desktop 1378x182, phone 700x163,
   inset past their rounded corners), so it is only as sharp as the mockup; replace it with full-size artwork when supplied.
   Card photos are square crops of the package's reference photos, clear of the Instagram carousel arrows and dots
@@ -100,7 +107,7 @@ Products show `זמין בחנות במתחם` with a green dot and a quiet `ל�
 
 - Palette: section `#F5F4F0`, image tile `#EEEEEB`, cards white with a 1px `#E2E2DD` border, radius 7, no shadow.
   Ink `#101410`, muted `#6E736E`, chips `#ECECE8` / `#555B56`. Brand green only for the active chip, CTA, availability dot and badges.
-- Homepage `#shop`: SHOP label, `ציוד פאדל נבחר`, one-line subtitle, `לכל המוצרים` CTA, then 4 featured products (2x2 on phones).
+- Homepage `#shop`: `ציוד פאדל נבחר`, one-line subtitle, `לכל המוצרים` CTA, then 4 featured products (2x2 on phones).
 - `shop/index.html`: compact banner built from a real club photo, heading block, category chips
   (הכל, מחבטים, נעליים, ביגוד, כדורים, תיקים, אביזרים), grid 4 / 3 / 2, then the `MORE THAN A GAME` strip.
 - `shop/product.html?id=<id>`: gallery tile, meta table (brand, sku, category, attributes), availability, link to the
@@ -131,7 +138,7 @@ To connect the inventory system: implement `InventoryApiSource.list()` and map i
 | `links.aboutStory` | "הסיפור שלנו" | null → button inert |
 | `links.shop` | "לחנות" | null → button inert |
 | `links.communityEvents` | "אירועים וקהילה" | null → button inert |
-| `links.tournamentsAll` | "לכל הטורנירים" | null → button inert (no tournaments page yet) |
+| `links.tournamentsUpcoming` | "טורנירים קרובים" (tablet and desktop) | null → button inert |
 | `links.communityJoin` | "להצטרפות לקהילה" (tournaments banner) | null → button inert |
 | `shop.inventory` | product source | null → static catalogue |
 

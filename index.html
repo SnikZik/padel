@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
 <link rel="preload" as="image" href="assets/img/hero_mobile.webp" media="(max-width: 767px)">
 <link rel="preload" as="image" href="assets/img/hero_desktop.webp" media="(min-width: 768px)">
-<link rel="stylesheet" href="assets/css/style.css?v=20260917-tournaments">
+<link rel="stylesheet" href="assets/css/style.css?v=20260917-order">
 <script type="application/ld+json" id="schema-business">
 {
   "@context": "https://schema.org",
@@ -116,7 +116,6 @@
            alt="מבט מלמעלה על המועדון בשעת שקיעה, שחקני פאדל על המגרשים הוורודים, אזור הישיבה המוצל ומגרש הכדורסל">
     </figure>
     <div class="split-copy" data-reveal>
-      <p class="eyebrow" dir="ltr" lang="en">THE PADEL CLUB AZOR</p>
       <h2 class="section-title">מקום של פאדל ואנשים</h2>
       <p class="body"><span class="latin" dir="ltr" lang="en">The Padel Club Azor</span> הוא מועדון פאדל מקורה ברמה גבוהה בלב אזור, עם 4 מגרשים מקצועיים בגובה 8 מטר, מגרש ורוד ושלושה מגרשים ירוקים. במתחם תמצאו ישיבה מקורה, קפיטריה אמיתית, חנות <span class="latin" dir="ltr" lang="en">adidas Padel</span> רשמית ואווירה חיה של שחקנים ואנשים לאורך כל היום. המועדון מנוהל על ידי רוי, הבעלים, המנהל והמאמן הראשי, שהוא גם שחקן פאדל מקצועי.</p>
       <a class="btn btn-ghost-green" href="#courts">גלו את המועדון שלנו</a>
@@ -132,7 +131,37 @@
     </ul>
   </section>
 
-  <!-- 4b. Tournaments (Snir's DEV package, 17.9.2026: final-mockups 01 desktop / 02 mobile).
+  <!-- 5. Featured adidas Padel products: top banner, heading and category chips, product grid, bottom banner.
+          Full catalogue lives in /shop/ -->
+  <section class="shop shop-home" id="shop" aria-labelledby="shop-title">
+    <!-- approved shop banner artwork, used as supplied (handoff-extra/shop-banners-2026-09-17) -->
+    <picture class="shop-banner shop-banner--top">
+      <source media="(max-width: 767px)" srcset="assets/shop/02-shop-top-mobile.webp" width="1080" height="900">
+      <img src="assets/shop/01-shop-top-desktop.webp" alt="The Padel Club Azor, adidas Padel" width="1920" height="520" loading="lazy" decoding="async">
+    </picture>
+
+    <div class="shop-page">
+      <div class="shop-top">
+        <header class="shop-head" data-reveal>
+          <h2 class="shop-head-title" id="shop-title">ציוד פאדל נבחר</h2>
+          <p class="shop-head-sub">מוצרי <span class="latin" dir="ltr" lang="en">adidas Padel</span> נבחרים מהמלאי בחנות המתחם</p>
+          <a class="btn shop-cta" href="shop/" data-link="shop">לכל המוצרים</a>
+        </header>
+        <nav class="shop-nav" id="shop-nav" aria-label="קטגוריות"></nav>
+      </div>
+
+      <ul class="product-grid shop-grid" id="shop-grid" aria-live="polite" aria-busy="true">
+        <noscript><li class="grid-note">להצגת המוצרים יש להפעיל JavaScript.</li></noscript>
+      </ul>
+    </div>
+
+    <picture class="shop-banner shop-banner--bottom">
+      <source media="(max-width: 767px)" srcset="assets/shop/04-shop-bottom-mobile.webp" width="1080" height="520">
+      <img src="assets/shop/03-shop-bottom-desktop.webp" alt="The Padel Club Azor, adidas Padel" width="1920" height="360" loading="lazy" decoding="async">
+    </picture>
+  </section>
+
+  <!-- 5b. Tournaments, below the shop (Snir, 17.9.2026). DEV package mockups: final-mockups 01 desktop / 02 mobile.
           Chips, cards and schema are generated from data/tournaments.json by tools/sync_tournaments.py -->
   <section class="tournaments-section" id="tournaments" aria-labelledby="tournaments-title">
     <div class="tournaments-inner">
@@ -144,10 +173,9 @@
 
       <div class="tournaments-top">
         <header class="tournaments-header">
-          <p class="eyebrow" dir="ltr" lang="en">TOURNAMENTS</p>
           <h2 class="tournaments-title" id="tournaments-title">טורנירים במועדון</h2>
           <p class="tournaments-intro">תחרויות, קהילה ואווירה מנצחת. הצטרפו לטורנירים שלנו ופגשו שחקנים, חוו תחרות אמיתית ורגעים בלתי נשכחים.</p>
-          <a class="btn btn-primary tournaments-cta" data-link="tournamentsAll">לכל הטורנירים</a>
+          <a class="btn btn-primary tournaments-cta" data-link="tournamentsUpcoming">טורנירים קרובים</a>
         </header>
       <!-- tournaments-filters:start / generated from data/tournaments.json by tools/sync_tournaments.py -->
       <div class="tournaments-filters" role="group" aria-label="סינון טורנירים">
@@ -322,38 +350,6 @@
     </div>
   </section>
 
-
-  <!-- 5. Featured adidas Padel products: top banner, heading and category chips, product grid, bottom banner.
-          Full catalogue lives in /shop/ -->
-  <section class="shop shop-home" id="shop" aria-labelledby="shop-title">
-    <!-- approved shop banner artwork, used as supplied (handoff-extra/shop-banners-2026-09-17) -->
-    <picture class="shop-banner shop-banner--top">
-      <source media="(max-width: 767px)" srcset="assets/shop/02-shop-top-mobile.webp" width="1080" height="900">
-      <img src="assets/shop/01-shop-top-desktop.webp" alt="The Padel Club Azor, adidas Padel" width="1920" height="520" loading="lazy" decoding="async">
-    </picture>
-
-    <div class="shop-page">
-      <div class="shop-top">
-        <header class="shop-head" data-reveal>
-          <p class="shop-label" dir="ltr" lang="en">SHOP</p>
-          <h2 class="shop-head-title" id="shop-title">ציוד פאדל נבחר</h2>
-          <p class="shop-head-sub">מוצרי <span class="latin" dir="ltr" lang="en">adidas Padel</span> נבחרים מהמלאי בחנות המתחם</p>
-          <a class="btn shop-cta" href="shop/" data-link="shop">לכל המוצרים</a>
-        </header>
-        <nav class="shop-nav" id="shop-nav" aria-label="קטגוריות"></nav>
-      </div>
-
-      <ul class="product-grid shop-grid" id="shop-grid" aria-live="polite" aria-busy="true">
-        <noscript><li class="grid-note">להצגת המוצרים יש להפעיל JavaScript.</li></noscript>
-      </ul>
-    </div>
-
-    <picture class="shop-banner shop-banner--bottom">
-      <source media="(max-width: 767px)" srcset="assets/shop/04-shop-bottom-mobile.webp" width="1080" height="520">
-      <img src="assets/shop/03-shop-bottom-desktop.webp" alt="The Padel Club Azor, adidas Padel" width="1920" height="360" loading="lazy" decoding="async">
-    </picture>
-  </section>
-
   <!-- 6. Community: real venue photo (no crowd image was supplied) -->
   <section class="split split-community on-dark" id="community">
     <figure class="split-media">
@@ -361,7 +357,6 @@
            alt="מבט על המתחם, מגרשי הפאדל, אזור הישיבה המרוצף ומגרש הכדורסל">
     </figure>
     <div class="split-copy" data-reveal>
-      <p class="eyebrow" dir="ltr" lang="en">COMMUNITY</p>
       <h2 class="section-title">משחקים. נפגשים. שייכים.</h2>
       <p class="body">קהילה של אנשים שאוהבים פאדל, מפגשים ואווירה חברתית סביב המשחק.</p>
       <a class="btn btn-outline" href="#" data-link="communityEvents">אירועים וקהילה</a>
@@ -371,7 +366,6 @@
   <!-- 7. Visit -->
   <section class="split split-visit" id="visit">
     <div class="split-copy" data-reveal>
-      <p class="eyebrow" dir="ltr" lang="en">VISIT US</p>
       <h2 class="section-title" dir="ltr" lang="en">The Padel Club Azor</h2>
       <address class="address">ז׳בוטינסקי 28, אזור</address>
       <a class="btn btn-primary" href="https://waze.com/ul?q=%D7%96%27%D7%91%D7%95%D7%98%D7%99%D7%A0%D7%A1%D7%A7%D7%99%2028%20%D7%90%D7%96%D7%95%D7%A8&navigate=yes" target="_blank" rel="noopener" data-waze>ניווט למתחם</a>

@@ -12,7 +12,7 @@
   --green: #0C4826;       /* deep green: headings, text, buttons, footer */
   --green-2: #216D41;     /* green: secondary text, hover */
   --blush: #FFDFE5;       /* light pink */
-  --mauve: #E1A6C2;       /* pink: the small English labels (THE PADEL CLUB AZOR, SHOP, COMMUNITY, VISIT US) */
+  --mauve: #E1A6C2;       /* pink: accents (tournament level badge) */
   --white: #FFFFFF;       /* product cards */
   --ink: var(--green);
   --ink-soft: var(--green);
@@ -98,11 +98,6 @@ button { font: inherit; }
 .btn-ghost-green:hover { background: var(--green); color: var(--cream); }
 
 /* ---------- typography helpers ---------- */
-.eyebrow {
-  font-family: var(--font-latin); font-weight: 600; font-size: 12px;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--mauve);
-  direction: ltr; unicode-bidi: isolate; margin-bottom: 14px;
-}
 .section-title { font-size: 30px; line-height: 1.2; font-weight: 500; color: var(--green); margin: 0 0 18px; }
 .body { font-size: 17px; line-height: 1.7; color: var(--ink-soft); max-width: 36em; }
 .split-copy .body { margin-bottom: 28px; }
@@ -349,7 +344,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 
   .split-about { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); padding: 36px var(--pad-x) 64px; align-items: center; }
   .split-about .split-copy { text-align: right; justify-content: center; }
-  .split-about .eyebrow { letter-spacing: .12em; }
   .split-about .section-title { font-weight: 700; margin-bottom: 18px; }
   .split-about .body { max-width: 34em; }
 
@@ -393,7 +387,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
    Top banner (artwork cut from the approved mockups), intro with the filter chips, three cards, community banner.
    Brand palette only. Phones and tablets: horizontal cards, photo on the left; desktop: three cards in a row.
    Chips and cards come from data/tournaments.json (tools/sync_tournaments.py), filtering in assets/js/tournaments.js. */
-.tournaments-section { background: var(--cream); padding: 4px 12px 48px; scroll-margin-top: calc(var(--header-h) + 8px); } /* menu "אירועים" lands below the fixed header */
+.tournaments-section { background: var(--cream); padding: 32px 12px 44px; scroll-margin-top: calc(var(--header-h) + 8px); } /* menu "אירועים" lands below the fixed header */
 .tournaments-inner { max-width: 1400px; margin-inline: auto; }
 
 .tournaments-banner-top { display: block; overflow: hidden; border-radius: 14px; background: var(--mauve); }
@@ -401,12 +395,11 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 
 .tournaments-top { margin: 22px 0 16px; }
 .tournaments-header { text-align: right; }
-.tournaments-header .eyebrow { margin-bottom: 6px; }
 .tournaments-title { font-size: 30px; line-height: 1.15; font-weight: 700; color: var(--green); margin: 0 0 10px; }
 .tournaments-intro { font-size: 15px; line-height: 1.65; color: var(--green-2); max-width: 36em; margin: 0; }
-.tournaments-cta { margin-top: 16px; min-height: 46px; padding: 0 26px; font-size: 15px; }
+.tournaments-cta { display: none; margin-top: 16px; min-height: 46px; padding: 0 26px; font-size: 15px; } /* phones: hidden (Snir) */
 
-.tournaments-filters { display: flex; gap: 6px; margin-top: 18px; }
+.tournaments-filters { display: none; gap: 6px; margin-top: 18px; } /* phones: hidden (Snir), every card shows */
 .tournaments-chip {
   flex: 1 1 0; min-width: 0; height: 40px; padding: 0 6px; border: 0; border-radius: var(--radius-pill);
   background: var(--tint); color: var(--green); font: 500 13px/1 var(--font-he); white-space: nowrap; cursor: pointer;
@@ -478,7 +471,9 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .tournaments-banner-cta:hover { background: var(--green); color: var(--cream); }
 
 @media (min-width: 768px) {
-  .tournaments-section { padding: 8px var(--pad-x) 64px; }
+  .tournaments-section { padding: 48px var(--pad-x) 56px; }
+  .tournaments-cta { display: inline-flex; }
+  .tournaments-filters { display: flex; }
   .tournaments-banner-top { border-radius: 16px; }
   .tournaments-top { margin: 28px 0 20px; }
   .tournaments-title { font-size: 40px; }
@@ -508,7 +503,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .tournaments-banner-cta { min-height: 44px; height: 44px; padding: 0 26px; font-size: 14.5px; }
 }
 @media (min-width: 1024px) {
-  .tournaments-section { padding: 8px var(--pad-x) 72px; }
+  .tournaments-section { padding: 64px var(--pad-x) 8px; }
   /* intro on the right, chips on the left of the same band; content sits 24px inside the banners (desktop mockup) */
   .tournaments-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 40px; margin: 34px 24px 28px; }
   .tournaments-title { font-size: 48px; margin-bottom: 12px; }
@@ -553,7 +548,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .shop { background: var(--shop-bg); color: var(--shop-ink); padding: 40px 12px 44px; }
 .shop-inner { max-width: 1360px; margin-inline: auto; }
 .shop-intro { text-align: right; margin-bottom: 20px; }
-.shop-intro .shop-label { font-family: var(--font-latin); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--mauve); margin: 0 0 8px; direction: ltr; unicode-bidi: isolate; }
 .shop-title { font-size: 26px; line-height: 1.15; font-weight: 600; color: var(--shop-ink); margin: 0; }
 .shop-body { font-size: 13.5px; line-height: 1.6; color: var(--shop-muted); margin: 8px 0 0; }
 .shop-cta { margin-top: 16px; width: 100%; min-height: 44px; height: 44px; font-size: 13.5px; background: var(--green); color: var(--cream); }
@@ -646,7 +640,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 /* heading band */
 .shop-top { margin-bottom: 16px; }
 .shop-head { text-align: center; }
-.shop-head .shop-label { font-family: var(--font-latin); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--mauve); margin: 0 0 6px; direction: ltr; unicode-bidi: isolate; }
 .shop-head-title { font-size: 25px; line-height: 1.15; font-weight: 600; color: var(--shop-ink); margin: 0; }
 .shop-head-sub { font-size: 12.5px; line-height: 1.6; color: var(--shop-muted); margin: 6px 0 0; }
 .shop-head .shop-cta { display: flex; width: 100%; margin: 14px 0 0; }
@@ -775,7 +768,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 /* ---------- direction guard: Latin-only strings always read LTR, whatever the container rules ----------
    Alignment is inherited from the block: every copy block declares an explicit edge (right / left / center),
    never `start`, so an LTR label sits on the same edge as the Hebrew around it. */
-[dir="ltr"], .latin, .eyebrow { direction: ltr; unicode-bidi: isolate; }
+[dir="ltr"], .latin { direction: ltr; unicode-bidi: isolate; }
 .hero .hero-title { text-align: left; }
 
 /* tablet only: stacked layout, so the shop CTA sits centred and the inset photos stay shallower */
