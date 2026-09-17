@@ -27,7 +27,7 @@ head = re.sub(r"<meta charset=[^>]*>\s*", "", head)
 head = re.sub(r"<meta name=\"viewport\"[^>]*>\s*", "", head)
 head = re.sub(r"<title>.*?</title>", "<title>The Padel Club Azor</title>", head, flags=re.S)
 css = (ROOT / "assets/css/style.css").read_text(encoding="utf-8")
-head = re.sub(r"<link rel=\"stylesheet\" href=\"assets/css/style.css\">", "<style>\n" + css + "\n</style>", head)
+head = re.sub(r"<link rel=\"stylesheet\" href=\"assets/css/style.css(\?[^\"]*)?\">", lambda m: "<style>\n" + css + "\n</style>", head)
 
 # body: inline the runtime config; the catalogue is already embedded by tools/sync_products.py,
 # and the classic scripts stay as published files
