@@ -129,7 +129,8 @@ button { font: inherit; }
 .menu-btn .icon-close { display: none; }
 .site-header.is-open .menu-btn .icon-menu { display: none; }
 .site-header.is-open .menu-btn .icon-close { display: block; }
-.header-cta { display: none; }
+.header-cta { display: none; gap: 8px; }
+.header-cta-icon { flex: 0 0 auto; width: 19px; height: 19px; }
 /* phones and tablets: the booking pill in our pink between the logo and the menu button (Snir, 17.9.2026) */
 @media (max-width: 1023px) {
   .header-cta { display: inline-flex; min-height: 42px; padding: 0 18px; font-size: 14px; background: var(--mauve); color: var(--green); }
