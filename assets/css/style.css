@@ -247,7 +247,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .book-card-cta { flex: 0 0 auto; min-height: 42px; height: 42px; padding: 0 18px; font-size: 13.5px; font-weight: 600; background: var(--green); color: #fff; }
 .book-card-cta:hover { background: var(--green-dark); }
 /* very narrow phones: tighter CTA and divider first, then let the headline wrap rather than clip */
-@media (max-width: 374px) {
+@media (max-width: 389px) {
   .book-card { padding-inline: 12px 10px; }
   .book-card-rule { margin-inline: 8px 8px; }
   .book-card-cta { padding: 0 13px; font-size: 12.5px; }
