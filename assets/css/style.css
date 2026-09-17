@@ -10,9 +10,9 @@
      hero's dark legibility overlay are not recoloured. */
   --cream: #FFFAF4;       /* page surfaces, light text on green */
   --green: #0C4826;       /* deep green: headings, text, buttons, footer */
-  --green-2: #216D41;     /* green: labels, secondary text, hover */
+  --green-2: #216D41;     /* green: secondary text, hover */
   --blush: #FFDFE5;       /* light pink */
-  --mauve: #E1A6C2;       /* pink */
+  --mauve: #E1A6C2;       /* pink: the small English labels (THE PADEL CLUB AZOR, SHOP, COMMUNITY, VISIT US) */
   --white: #FFFFFF;       /* product cards */
   --ink: var(--green);
   --ink-soft: var(--green);
@@ -100,7 +100,7 @@ button { font: inherit; }
 /* ---------- typography helpers ---------- */
 .eyebrow {
   font-family: var(--font-latin); font-weight: 600; font-size: 12px;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--green-2);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--mauve);
   direction: ltr; unicode-bidi: isolate; margin-bottom: 14px;
 }
 .section-title { font-size: 30px; line-height: 1.2; font-weight: 500; color: var(--green); margin: 0 0 18px; }
@@ -329,7 +329,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   padding: 140px var(--gutter) 44px;
   background: linear-gradient(180deg, rgba(12, 72, 38, 0) 10%, rgba(12, 72, 38, .55) 55%, rgba(12, 72, 38, .92) 100%);
 }
-.split-community .eyebrow { color: var(--blush); } /* over the photo: the light pink stays readable, the darker pink does not */
 .split-community .section-title { color: var(--cream); }
 .split-community .body { color: rgba(255, 250, 244, .92); }
 .split-community .btn { width: 100%; }
@@ -358,7 +357,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .split-community .split-media { position: static; }
   .split-community .split-media img { height: auto; border-radius: var(--r-img); }
   .split-community .split-copy { min-height: 0; padding: 0; background: none; text-align: right; align-items: flex-start; justify-content: center; }
-  .split-community .eyebrow { color: var(--green-2); }
   .split-community .section-title { color: var(--green); }
   .split-community .body { color: var(--ink-soft); }
   .split-community .btn { width: auto; background: var(--green); color: var(--cream); border-color: transparent; } /* white copy block: green pill as in the mockup */
@@ -405,7 +403,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .shop { background: var(--shop-bg); color: var(--shop-ink); padding: 40px 12px 44px; }
 .shop-inner { max-width: 1360px; margin-inline: auto; }
 .shop-intro { text-align: right; margin-bottom: 20px; }
-.shop-intro .shop-label { font-family: var(--font-latin); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--shop-muted); margin: 0 0 8px; direction: ltr; unicode-bidi: isolate; }
+.shop-intro .shop-label { font-family: var(--font-latin); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--mauve); margin: 0 0 8px; direction: ltr; unicode-bidi: isolate; }
 .shop-title { font-size: 26px; line-height: 1.15; font-weight: 600; color: var(--shop-ink); margin: 0; }
 .shop-body { font-size: 13.5px; line-height: 1.6; color: var(--shop-muted); margin: 8px 0 0; }
 .shop-cta { margin-top: 16px; width: 100%; min-height: 44px; height: 44px; font-size: 13.5px; background: var(--green); color: var(--cream); }
@@ -498,7 +496,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 /* heading band */
 .shop-top { margin-bottom: 16px; }
 .shop-head { text-align: center; }
-.shop-head .shop-label { font-family: var(--font-latin); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--shop-muted); margin: 0 0 6px; direction: ltr; unicode-bidi: isolate; }
+.shop-head .shop-label { font-family: var(--font-latin); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--mauve); margin: 0 0 6px; direction: ltr; unicode-bidi: isolate; }
 .shop-head-title { font-size: 25px; line-height: 1.15; font-weight: 600; color: var(--shop-ink); margin: 0; }
 .shop-head-sub { font-size: 12.5px; line-height: 1.6; color: var(--shop-muted); margin: 6px 0 0; }
 .shop-head .shop-cta { display: flex; width: 100%; margin: 14px 0 0; }
