@@ -68,7 +68,9 @@ three-bar proportions. Replace it with the official asset from the club's adidas
 Four supplied files in `assets/shop/`, byte-identical to the package (kept in `handoff-extra/shop-banners-2026-09-17/`):
 `01-shop-top-desktop.webp` 1920x520, `02-shop-top-mobile.webp` 1080x900, `03-shop-bottom-desktop.webp` 1920x360,
 `04-shop-bottom-mobile.webp` 1080x520. Each banner is a `<picture>`: mobile file below 768px, desktop file from 768px.
-Full width, `height: auto`, no crop, no overlay, no filter, no text on top. Used on the homepage shop section and on
+Full width, no overlay, no filter, no text on top. Top banner: native aspect ratio, no crop. Bottom banner: Snir asked
+for it thinner at full width (17.9), so it is trimmed top and bottom by CSS only (phones 1080x430 of 520, desktop
+1920x250 of 360), with the window placed so the text and the ball's logo stay in frame. The files are untouched. Used on the homepage shop section and on
 `/shop/`, top banner above the heading, bottom banner after the grid. Paths are relative (the site lives under
 `/padel/` on GitHub Pages), and the alt text uses a comma instead of the package's dash (no-dash rule).
 

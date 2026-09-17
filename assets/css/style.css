@@ -486,11 +486,12 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
    no crop, no overlay, no filter. Mobile files below 768px, desktop files from 768px up (<picture>). */
 .shop-banner { display: block; width: 100%; overflow: hidden; background: var(--shop-ink); }
 .shop-banner img { display: block; width: 100%; height: auto; }
-/* bottom banner a size smaller than full bleed: scaled down as a whole (never cropped), centred on the shop surface */
-.shop-banner--bottom { width: 80%; max-width: 1152px; margin: 0 auto 32px; border-radius: 8px; }
-@media (min-width: 768px) { .shop-banner--bottom { margin-bottom: 56px; } }
-/* keep that bottom margin inside the stone shop surface instead of collapsing onto the next section */
-.shop.shop-home, .page-shop-main { display: flow-root; }
+/* bottom banner: full width but thinner (Snir, 17.9). The artwork is trimmed top and bottom by the viewport,
+   with the window placed so the text and the ball's logo always stay in frame (measured on the files):
+   phones 1080x520 shown as 1080x430, window rows 76 to 506 (logo bars from about 86, Hebrew line 439 to 493);
+   desktop 1920x360 shown as 1920x250, window rows 110 to 360 (all text between 185 and 341). */
+.shop-banner--bottom img { aspect-ratio: 1080 / 430; object-fit: cover; object-position: 50% 84%; }
+@media (min-width: 768px) { .shop-banner--bottom img { aspect-ratio: 1920 / 250; object-position: 50% 100%; } }
 
 /* heading band */
 .shop-top { margin-bottom: 16px; }
