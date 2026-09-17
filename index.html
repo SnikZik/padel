@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
 <link rel="preload" as="image" href="assets/img/hero_mobile.webp" media="(max-width: 767px)">
 <link rel="preload" as="image" href="assets/img/hero_desktop.webp" media="(min-width: 768px)">
-<link rel="stylesheet" href="assets/css/style.css?v=20260917-pink">
+<link rel="stylesheet" href="assets/css/style.css?v=20260917-tournaments">
 <script type="application/ld+json" id="schema-business">
 {
   "@context": "https://schema.org",
@@ -56,7 +56,7 @@
         <li><a href="#top" aria-current="true">בית</a></li>
         <li><a href="#courts">מגרשים</a></li>
         <li><a href="#community">קהילה</a></li>
-        <li><a href="#community" data-link="eventsMenu">אירועים</a></li>
+        <li><a href="#tournaments">אירועים</a></li>
         <li><a href="#shop">חנות</a></li>
         <li><a href="#about">אודות</a></li>
         <li><a href="#visit">צור קשר</a></li>
@@ -132,6 +132,197 @@
     </ul>
   </section>
 
+  <!-- 4b. Tournaments (Snir's DEV package, 17.9.2026: final-mockups 01 desktop / 02 mobile).
+          Chips, cards and schema are generated from data/tournaments.json by tools/sync_tournaments.py -->
+  <section class="tournaments-section" id="tournaments" aria-labelledby="tournaments-title">
+    <div class="tournaments-inner">
+      <picture class="tournaments-banner-top">
+        <source media="(min-width: 1024px)" srcset="assets/tournaments/banner-top-desktop.webp" width="1378" height="182">
+        <img src="assets/tournaments/banner-top-mobile.webp" width="700" height="163" loading="lazy" decoding="async"
+             alt="PLAY PEOPLE TOURNAMENTS, כדור טניס ליד הרשת על מגרש ורוד, The Padel Club Azor">
+      </picture>
+
+      <div class="tournaments-top">
+        <header class="tournaments-header">
+          <p class="eyebrow" dir="ltr" lang="en">TOURNAMENTS</p>
+          <h2 class="tournaments-title" id="tournaments-title">טורנירים במועדון</h2>
+          <p class="tournaments-intro">תחרויות, קהילה ואווירה מנצחת. הצטרפו לטורנירים שלנו ופגשו שחקנים, חוו תחרות אמיתית ורגעים בלתי נשכחים.</p>
+          <a class="btn btn-primary tournaments-cta" data-link="tournamentsAll">לכל הטורנירים</a>
+        </header>
+      <!-- tournaments-filters:start / generated from data/tournaments.json by tools/sync_tournaments.py -->
+      <div class="tournaments-filters" role="group" aria-label="סינון טורנירים">
+        <button class="tournaments-chip" type="button" data-filter="all" aria-pressed="true">הכל</button>
+        <button class="tournaments-chip" type="button" data-filter="upcoming" aria-pressed="false">קרוב</button>
+        <button class="tournaments-chip" type="button" data-filter="level:A" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">A</span></button>
+        <button class="tournaments-chip" type="button" data-filter="level:C" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">C</span></button>
+        <button class="tournaments-chip" type="button" data-filter="level:D" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">D</span></button>
+      </div>
+      <!-- tournaments-filters:end -->
+      </div>
+
+    <!-- tournaments-cards:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->
+    <ul class="tournaments-grid" id="tournaments-grid">
+      <li class="tournament-card" data-level="A" data-date="2026-09-29">
+        <article aria-labelledby="t-tom-ceah-2026-09-29">
+          <div class="tournament-media" style="--pos: 50% 70%; --pos-phone: 50% 70%">
+            <img src="assets/tournaments/card-tom-ceah.webp" srcset="assets/tournaments/card-tom-ceah-600.webp 600w, assets/tournaments/card-tom-ceah.webp 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
+                 width="1000" height="1000" alt="מגרש פאדל ורוד מקורה, ובקדמת התמונה שני כיסאות נוח ירוקים" loading="lazy" decoding="async">
+            <p class="tournament-date"><time datetime="2026-09-29" dir="ltr"><b>29/09</b><span>2026</span></time></p>
+          </div>
+          <div class="tournament-body">
+            <div class="tournament-head">
+              <h3 class="tournament-title" id="t-tom-ceah-2026-09-29">טורניר של <span class="latin" dir="ltr" lang="en">Tom Ceah</span></h3>
+              <p class="tournament-level"><span>רמה <span class="latin" dir="ltr" lang="en">A</span></span><span class="tournament-level-letter" aria-hidden="true">A</span></p>
+            </div>
+            <ul class="tournament-details">
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"/><circle cx="14" cy="25" r="6"/><circle cx="50" cy="25" r="6"/><path d="M19 50c0-9 5-15 13-15s13 6 13 15M4 49c0-7 4-12 10-12 4 0 7 2 9 5M60 49c0-7-4-12-10-12-4 0-7 2-9 5"/></svg><span>32 משתתפים / 16 זוגות</span></li>
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg><span>פרסים גבוהים</span></li>
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"/><circle cx="14" cy="25" r="6"/><circle cx="50" cy="25" r="6"/><path d="M19 50c0-9 5-15 13-15s13 6 13 15M4 49c0-7 4-12 10-12 4 0 7 2 9 5M60 49c0-7-4-12-10-12-4 0-7 2-9 5"/></svg><span><bdi dir="ltr">100+</bdi> קהל</span></li>
+            </ul>
+            <a class="btn tournament-cta" aria-disabled="true">לפרטים והרשמה</a>
+          </div>
+        </article>
+      </li>
+      <li class="tournament-card" data-level="C" data-date="2026-10-02">
+        <article aria-labelledby="t-the-padel-club-azor-2026-10-02">
+          <div class="tournament-media" style="--pos: 50% 40%; --pos-phone: 62% 50%">
+            <img src="assets/tournaments/card-padel-club-azor.webp" srcset="assets/tournaments/card-padel-club-azor-600.webp 600w, assets/tournaments/card-padel-club-azor.webp 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
+                 width="1000" height="1000" alt="קיר המיתוג של The Padel Club עם מחבטים מעוצבים ומדף כדורים" loading="lazy" decoding="async">
+            <p class="tournament-date"><time datetime="2026-10-02" dir="ltr"><b>02/10</b><span>2026</span></time></p>
+          </div>
+          <div class="tournament-body">
+            <div class="tournament-head">
+              <h3 class="tournament-title" id="t-the-padel-club-azor-2026-10-02"><span class="latin" dir="ltr" lang="en">The Padel Club Azor</span></h3>
+              <p class="tournament-level"><span>רמה <span class="latin" dir="ltr" lang="en">C</span></span><span class="tournament-level-letter" aria-hidden="true">C</span></p>
+            </div>
+            <ul class="tournament-details">
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"/><circle cx="14" cy="25" r="6"/><circle cx="50" cy="25" r="6"/><path d="M19 50c0-9 5-15 13-15s13 6 13 15M4 49c0-7 4-12 10-12 4 0 7 2 9 5M60 49c0-7-4-12-10-12-4 0-7 2-9 5"/></svg><span>32 משתתפים / 16 זוגות</span></li>
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg><span>פרסים טובים</span></li>
+            </ul>
+            <a class="btn tournament-cta" aria-disabled="true">לפרטים והרשמה</a>
+          </div>
+        </article>
+      </li>
+      <li class="tournament-card" data-level="D" data-date="2026-10-09">
+        <article aria-labelledby="t-ilpa-2026-10-09">
+          <div class="tournament-media" style="--pos: 50% 45%; --pos-phone: 58% 50%">
+            <img src="assets/tournaments/card-ilpa.webp" srcset="assets/tournaments/card-ilpa-600.webp 600w, assets/tournaments/card-ilpa.webp 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
+                 width="1000" height="1000" alt="שחקנים בחולצות ורודות מתאספים ליד קיר המיתוג של המועדון" loading="lazy" decoding="async">
+            <p class="tournament-date"><time datetime="2026-10-09" dir="ltr"><b>09/10</b><span>2026</span></time></p>
+          </div>
+          <div class="tournament-body">
+            <div class="tournament-head">
+              <h3 class="tournament-title" id="t-ilpa-2026-10-09">טורניר <span class="latin" dir="ltr" lang="en">ILPA</span></h3>
+              <p class="tournament-level"><span>רמה <span class="latin" dir="ltr" lang="en">D</span></span><span class="tournament-level-letter" aria-hidden="true">D</span></p>
+            </div>
+            <ul class="tournament-details">
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg><span>פרסים למשתתפים</span></li>
+            </ul>
+            <a class="btn tournament-cta" aria-disabled="true">לפרטים והרשמה</a>
+          </div>
+        </article>
+      </li>
+      <li class="tournaments-empty" hidden>אין כרגע טורניר קרוב.</li>
+    </ul>
+    <script type="application/ld+json" id="schema-tournaments">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    "name": "טורניר של Tom Ceah",
+    "startDate": "2026-09-29",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "sport": "Padel",
+    "location": {
+      "@type": "Place",
+      "name": "The Padel Club Azor",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ז׳בוטינסקי 28",
+        "addressLocality": "אזור",
+        "addressCountry": "IL"
+      }
+    },
+    "organizer": {
+      "@type": "Person",
+      "name": "Tom Ceah"
+    },
+    "image": [
+      "assets/tournaments/card-tom-ceah.webp"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    "name": "The Padel Club Azor",
+    "startDate": "2026-10-02",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "sport": "Padel",
+    "location": {
+      "@type": "Place",
+      "name": "The Padel Club Azor",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ז׳בוטינסקי 28",
+        "addressLocality": "אזור",
+        "addressCountry": "IL"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "The Padel Club Azor"
+    },
+    "image": [
+      "assets/tournaments/card-padel-club-azor.webp"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    "name": "טורניר ILPA",
+    "startDate": "2026-10-09",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "sport": "Padel",
+    "location": {
+      "@type": "Place",
+      "name": "The Padel Club Azor",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ז׳בוטינסקי 28",
+        "addressLocality": "אזור",
+        "addressCountry": "IL"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "ILPA"
+    },
+    "image": [
+      "assets/tournaments/card-ilpa.webp"
+    ]
+  }
+]
+    </script>
+    <!-- tournaments-cards:end -->
+
+      <aside class="tournaments-banner-bottom" aria-labelledby="tournaments-community-title">
+        <div class="tournaments-banner-media">
+          <img src="assets/tournaments/banner-bottom-ball.webp" width="1080" height="400" alt="" loading="lazy" decoding="async">
+          <p class="tournaments-banner-tagline" dir="ltr" lang="en">A STRONGER<br>PADEL COMMUNITY</p>
+        </div>
+        <div class="tournaments-banner-copy">
+          <h3 class="tournaments-banner-title" id="tournaments-community-title">יותר מטורנירים, זו קהילה.</h3>
+          <p class="tournaments-banner-sub">משחקים · אנשים · חוויות אמיתיות</p>
+        </div>
+        <a class="btn tournaments-banner-cta" data-link="communityJoin">להצטרפות לקהילה</a>
+      </aside>
+    </div>
+  </section>
+
+
   <!-- 5. Featured adidas Padel products: top banner, heading and category chips, product grid, bottom banner.
           Full catalogue lives in /shop/ -->
   <section class="shop shop-home" id="shop" aria-labelledby="shop-title">
@@ -203,7 +394,7 @@
         <li><a href="#top">בית</a></li>
         <li><a href="#courts">מגרשים</a></li>
         <li><a href="#community">קהילה</a></li>
-        <li><a href="#community" data-link="eventsMenu">אירועים</a></li>
+        <li><a href="#tournaments">אירועים</a></li>
         <li><a href="#shop">חנות</a></li>
         <li><a href="#about">אודות</a></li>
         <li><a href="#visit">צור קשר</a></li>
@@ -230,5 +421,6 @@
 <script src="assets/js/products/card.js" defer></script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/shop.js" defer></script>
+<script src="assets/js/tournaments.js" defer></script>
 </body>
 </html>

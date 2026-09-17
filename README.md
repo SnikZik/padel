@@ -63,6 +63,25 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## Tournaments (Snir's DEV package, 2026-09-17)
+
+Package kept in `handoff-extra/tournaments-dev-2026-09-17/` (mockups `final-mockups/01` desktop and `02` mobile, reference photos,
+brand palette). Section `#tournaments` sits between the gallery and the shop; the menu item "אירועים" points to it.
+
+- Content lives in `data/tournaments.json` (`id, date, title, organizer, level, participants, pairs, prizes, crowd, image,
+  registrationUrl, status`). `python3 tools/sync_tournaments.py` renders the filter chips, the cards and the schema.org
+  `SportsEvent` list into `index.html` (plain HTML, works without JS). Values that were not supplied stay null and are not shown.
+- Chips: הכל, קרוב (the next tournament from today on), and one chip per level in the data. Filtering is `assets/js/tournaments.js`.
+- "לפרטים והרשמה" is inert until a card gets `registrationUrl`; "לכל הטורנירים" and "להצטרפות לקהילה" wait for
+  `links.tournamentsAll` / `links.communityJoin` in `site.config.js`.
+- Images in `assets/tournaments/`: the top banner is cut from the mockups themselves (desktop 1378x182, phone 700x163,
+  inset past their rounded corners), so it is only as sharp as the mockup; replace it with full-size artwork when supplied.
+  Card photos are square crops of the package's reference photos, clear of the Instagram carousel arrows and dots
+  (1000 and 600 px). The community banner photo is the text-free top of `assets/shop/04-shop-bottom-mobile.webp`,
+  with "A STRONGER PADEL COMMUNITY" set as live text.
+- Layout: phones and tablets show horizontal cards (photo on the left), desktop three cards in a row; card header row and the
+  one-row community banner from 1280px. Colours are the brand palette tokens only.
+
 ## Shop banners (approved artwork, 2026-09-17)
 
 Four supplied files in `assets/shop/`, byte-identical to the package (kept in `handoff-extra/shop-banners-2026-09-17/`):
@@ -112,7 +131,8 @@ To connect the inventory system: implement `InventoryApiSource.list()` and map i
 | `links.aboutStory` | "הסיפור שלנו" | null → button inert |
 | `links.shop` | "לחנות" | null → button inert |
 | `links.communityEvents` | "אירועים וקהילה" | null → button inert |
-| `links.eventsMenu` | menu item "אירועים" | `#community` (no events section exists) |
+| `links.tournamentsAll` | "לכל הטורנירים" | null → button inert (no tournaments page yet) |
+| `links.communityJoin` | "להצטרפות לקהילה" (tournaments banner) | null → button inert |
 | `shop.inventory` | product source | null → static catalogue |
 
 "לפרטים" on a product card opens the manufacturer page (`referenceUrl`, new tab) until `url` (the club's own product page) is set,

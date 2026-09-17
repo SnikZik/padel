@@ -1,0 +1,66 @@
+{
+  "schema": "padel-azor.tournaments.v1",
+  "note": "Source: Snir's tournaments DEV package (handoff-extra/tournaments-dev-2026-09-17). Nothing invented: values that were not supplied stay null and are not shown. {Braces} mark a Latin run, rendered as an isolated LTR span. Run python3 tools/sync_tournaments.py after editing.",
+  "tournaments": [
+    {
+      "id": "tom-ceah-2026-09-29",
+      "date": "2026-09-29",
+      "title": "טורניר של {Tom Ceah}",
+      "organizer": { "type": "Person", "name": "Tom Ceah" },
+      "level": "A",
+      "participants": 32,
+      "pairs": 16,
+      "prizes": "פרסים גבוהים",
+      "crowd": "100+",
+      "image": {
+        "src": "assets/tournaments/card-tom-ceah.webp",
+        "small": "assets/tournaments/card-tom-ceah-600.webp",
+        "alt": "מגרש פאדל ורוד מקורה, ובקדמת התמונה שני כיסאות נוח ירוקים",
+        "position": "50% 70%",
+        "positionPhone": "50% 70%"
+      },
+      "registrationUrl": null,
+      "status": "scheduled"
+    },
+    {
+      "id": "the-padel-club-azor-2026-10-02",
+      "date": "2026-10-02",
+      "title": "{The Padel Club Azor}",
+      "organizer": { "type": "Organization", "name": "The Padel Club Azor" },
+      "level": "C",
+      "participants": 32,
+      "pairs": 16,
+      "prizes": "פרסים טובים",
+      "crowd": null,
+      "image": {
+        "src": "assets/tournaments/card-padel-club-azor.webp",
+        "small": "assets/tournaments/card-padel-club-azor-600.webp",
+        "alt": "קיר המיתוג של The Padel Club עם מחבטים מעוצבים ומדף כדורים",
+        "position": "50% 40%",
+        "positionPhone": "62% 50%"
+      },
+      "registrationUrl": null,
+      "status": "scheduled"
+    },
+    {
+      "id": "ilpa-2026-10-09",
+      "date": "2026-10-09",
+      "title": "טורניר {ILPA}",
+      "organizer": { "type": "Organization", "name": "ILPA" },
+      "level": "D",
+      "participants": null,
+      "pairs": null,
+      "prizes": "פרסים למשתתפים",
+      "crowd": null,
+      "image": {
+        "src": "assets/tournaments/card-ilpa.webp",
+        "small": "assets/tournaments/card-ilpa-600.webp",
+        "alt": "שחקנים בחולצות ורודות מתאספים ליד קיר המיתוג של המועדון",
+        "position": "50% 45%",
+        "positionPhone": "58% 50%"
+      },
+      "registrationUrl": null,
+      "status": "scheduled"
+    }
+  ]
+}
