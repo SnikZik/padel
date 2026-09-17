@@ -387,7 +387,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
    Top banner (artwork cut from the approved mockups), intro with the filter chips, three cards, community banner.
    Brand palette only. Phones and tablets: horizontal cards, photo on the left; desktop: three cards in a row.
    Chips and cards come from data/tournaments.json (tools/sync_tournaments.py), filtering in assets/js/tournaments.js. */
-.tournaments-section { background: var(--cream); padding: 32px 12px 44px; scroll-margin-top: calc(var(--header-h) + 8px); } /* menu "אירועים" lands below the fixed header */
+.tournaments-section { background: var(--cream); padding: 12px 12px 44px; scroll-margin-top: calc(var(--header-h) + 8px); } /* menu "אירועים" lands below the fixed header */
 .tournaments-inner { max-width: 1400px; margin-inline: auto; }
 
 .tournaments-banner-top { display: block; overflow: hidden; border-radius: 14px; background: var(--mauve); }
@@ -471,7 +471,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .tournaments-banner-cta:hover { background: var(--green); color: var(--cream); }
 
 @media (min-width: 768px) {
-  .tournaments-section { padding: 48px var(--pad-x) 56px; }
+  .tournaments-section { padding: 16px var(--pad-x) 56px; }
   .tournaments-cta { display: inline-flex; }
   .tournaments-filters { display: flex; }
   .tournaments-banner-top { border-radius: 16px; }
@@ -503,7 +503,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .tournaments-banner-cta { min-height: 44px; height: 44px; padding: 0 26px; font-size: 14.5px; }
 }
 @media (min-width: 1024px) {
-  .tournaments-section { padding: 64px var(--pad-x) 8px; }
+  .tournaments-section { padding: 24px var(--pad-x) 8px; }
   /* intro on the right, chips on the left of the same band; content sits 24px inside the banners (desktop mockup) */
   .tournaments-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 40px; margin: 34px 24px 28px; }
   .tournaments-title { font-size: 48px; margin-bottom: 12px; }
