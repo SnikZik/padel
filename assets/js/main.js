@@ -34,21 +34,22 @@ document.addEventListener("keydown", (e) => {
 });
 window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => { if (e.matches) setDrawer(false); });
 
-/* ---------- hero video: phones only (the real club reel); tablet and desktop show the static hero image ---------- */
+/* ---------- hero video: the same tripod shot on every screen, a portrait slice on phones ----------
+   The poster under it is the video's own first frame, so the fade-in never jumps. */
 const video = document.getElementById("hero-video");
 if (video) {
   const saveData = navigator.connection && navigator.connection.saveData;
-  const phone = !desktopMedia.matches; // < 768px
-  if (phone && !reducedMotion && !saveData) {
+  if (!reducedMotion && !saveData) {
     const hero = video.closest(".hero");
+    const file = desktopMedia.matches ? "hero_desktop.mp4" : "hero_mobile.mp4";
     video.muted = true; // the IDL property, not only the attribute: required for autoplay in some browsers
     video.addEventListener("playing", () => hero.classList.add("is-playing"));
     video.addEventListener("pause", () => hero.classList.remove("is-playing"));
     video.preload = "auto";
-    video.src = (window.PADEL_BASE || "") + "assets/video/hero_mobile.mp4";
+    video.src = (window.PADEL_BASE || "") + "assets/video/" + file;
     video.play().catch(() => { /* poster stays; autoplay was declined by the browser */ });
   } else {
-    video.remove(); // poster / static image only
+    video.remove(); // reduced motion or data saver: the poster alone
   }
 }
 

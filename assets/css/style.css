@@ -178,9 +178,9 @@ body.nav-open { overflow: hidden; }
   min-height: 520px; height: min(80svh, 720px); /* the one section that needs a height: it holds the video */
   display: flex; align-items: flex-end;
 }
-.hero-poster, .hero-poster img, .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.hero-poster, .hero-poster img, .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .hero-poster { margin: 0; }
-/* the hero never moves: no transform, no parallax, no scale. Only the poster to video opacity handoff on phones */
+/* the hero never moves: no transform, no parallax, no scale. Only the poster to video opacity handoff */
 /* the real-photo poster is always painted; the video fades over it only once it is actually playing */
 .hero-media { opacity: 0; transition: opacity .6s var(--ease); }
 .hero.is-playing .hero-media { opacity: 1; }

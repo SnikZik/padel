@@ -107,22 +107,16 @@ To connect the inventory system: implement `InventoryApiSource.list()` and map i
 "לפרטים" on a product card opens the manufacturer page (`referenceUrl`, new tab) until `url` (the club's own product page) is set,
 same as `handoff/08_dev/reference.html`.
 
-## Hero media (Snir, 2026-09-15, third revision)
+## Hero media (Snir, 2026-09-17, fourth revision)
 
-- **Phones (< 768px): the club's real walkthrough reel** (`WhatsApp Video 2026-09-10 at 11.23.59 (1).mp4`, 576×1024).
-  `tools/build_hero_video.py` cuts the pink-court passage (pink court box → pink net → bench → court "3" → turf),
-  then the lounge with the logo wall, then dissolves into a still of the opening frame so the loop is seamless. Light
-  deshake (16px window) only; no zoom, no pan, no CSS motion. Poster `hero_mobile.webp` = the exact first frame.
-  Output stays at the reel's resolution (no fake upscale), 10.3 s, ~2.9 MB, H.264 4:2:0.
-- **Tablet and desktop (≥ 768px): static image only.** Since 17.9.2026 this is the image Snir supplied
-  (original kept locally in `handoff-extra/`, served as `assets/img/hero_desktop.webp`, 1672×941, not upscaled).
-  The earlier composed aerial crop is still reproducible with `tools/build_hero_image.py`, which now writes
-  `hero_desktop_aerial.webp` so it cannot overwrite the live hero. Previously: it built `hero_desktop.webp` from the
-  real aerial photo `court_03.jpg`: composed crop (pink courts as the hero, planter/cones/far right dropped), +6% contrast,
-  +10% colour, unsharp, soft vignette. No retouching, no generated content. The JS never loads a video at this width.
-- Overlays: phone = vertical gradient (light top, firmer under the copy); desktop = left-to-right gradient behind the copy.
-- The supplied MP4s stay untouched in `handoff/04_video` (they are H.264 4:4:4, which iPhones do not decode).
-- `community_real_placeholder.webp` uses court_01 so the wide shot is not repeated.
+- **Every screen size: the locked-off tripod shot Snir supplied** (original in `handoff-extra/hero-video-source-2026-09-17.mp4`,
+  1916x1080, 24 fps). `tools/build_hero_video.py` renders `hero_desktop.mp4` (1920x1080, >= 768px) and
+  `hero_mobile.mp4` (648x1080 portrait slice over the pink court and the seating, < 768px), each with a poster that
+  is exactly its first frame. The first second is dissolved into the end so the loop has no jump.
+  No zoom, no pan, no stabiliser. Reduced motion or data saver: poster only.
+- The earlier reel-based builder is kept in `handoff-extra/build_hero_video_reel_version.py`; the static desktop
+  image from 17.9 morning is `handoff-extra/hero-desktop-source-2026-09-17.png`.
+- The supplied handoff MP4s stay untouched in `handoff/04_video`.
 
 ## Visual polish pass (Snir, 2026-09-15)
 
