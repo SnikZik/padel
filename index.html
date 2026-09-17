@@ -132,16 +132,14 @@
     </ul>
   </section>
 
-  <!-- 5. Featured adidas Padel products, same composition as the approved shop reference:
-          banner, heading and category chips, product grid, brand strip. Full catalogue lives in /shop/ -->
+  <!-- 5. Featured adidas Padel products: top banner, heading and category chips, product grid, bottom banner.
+          Full catalogue lives in /shop/ -->
   <section class="shop shop-home" id="shop" aria-labelledby="shop-title">
-    <div class="shop-banner">
-      <img src="assets/img/gallery_01.webp" width="900" height="650" alt="מגרשי הפאדל של המועדון" loading="lazy" decoding="async">
-      <div class="shop-banner-inner">
-        <p class="shop-banner-start" lang="en">PLAY<br>TRAIN<br>CONNECT</p>
-        <p class="shop-banner-end" lang="en">PADEL<br>LIFESTYLE<br>ADIDAS</p>
-      </div>
-    </div>
+    <!-- approved shop banner artwork, used as supplied (handoff-extra/shop-banners-2026-09-17) -->
+    <picture class="shop-banner shop-banner--top">
+      <source media="(max-width: 767px)" srcset="assets/shop/02-shop-top-mobile.webp" width="1080" height="900">
+      <img src="assets/shop/01-shop-top-desktop.webp" alt="The Padel Club Azor, adidas Padel" width="1920" height="520" loading="lazy" decoding="async">
+    </picture>
 
     <div class="shop-page">
       <div class="shop-top">
@@ -159,16 +157,10 @@
       </ul>
     </div>
 
-    <div class="shop-strip">
-      <img src="assets/img/gallery_03_topdown.webp" width="900" height="650" alt="מבט מלמעלה על מגרש במועדון" loading="lazy" decoding="async">
-      <div class="shop-strip-inner">
-        <p class="shop-strip-latin" lang="en">MORE<br>THAN<br class="br-desk"> A GAME</p>
-        <div class="shop-strip-he">
-          <strong>איכות, ביצועים וסטייל</strong>
-          <span>מוצרי <span class="latin" dir="ltr" lang="en">adidas Padel</span> נבחרים עכשיו במועדון פאדל אזור</span>
-        </div>
-      </div>
-    </div>
+    <picture class="shop-banner shop-banner--bottom">
+      <source media="(max-width: 767px)" srcset="assets/shop/04-shop-bottom-mobile.webp" width="1080" height="520">
+      <img src="assets/shop/03-shop-bottom-desktop.webp" alt="The Padel Club Azor, adidas Padel" width="1920" height="360" loading="lazy" decoding="async">
+    </picture>
   </section>
 
   <!-- 6. Community: real venue photo (no crowd image was supplied) -->
