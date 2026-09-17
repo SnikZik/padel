@@ -24,7 +24,6 @@ window.PADEL_CONFIG = {
   links: {
     aboutStory: null,      // "הסיפור שלנו"
     shop: "shop/",         // "לחנות" / "לכל המוצרים" → the catalogue page
-    communityEvents: null, // "אירועים וקהילה"
     tournamentsUpcoming: null, // "טורנירים קרובים" (tournaments section, tablet and desktop): no destination yet
     communityJoin: null,   // "להצטרפות לקהילה" (tournaments community banner)
     contact: null          // footer "דברו איתנו": WhatsApp or phone link once supplied

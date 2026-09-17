@@ -31,7 +31,7 @@ Not in the repo (see `.gitignore`): `handoff/` (client package, large media), `s
 ## Structure
 
 ```
-index.html                 the page, section order exactly as the spec (header → hero → features → about → gallery → shop → community → visit → footer)
+index.html                 the page: header → hero → booking card → about → gallery → shop → tournaments → footer
 site.config.js             runtime config + every TODO value (see below)
 assets/css/style.css       tokens from handoff/08_dev/design-tokens.json, mobile first, breakpoints 768 / 1024
 assets/js/main.js          header, drawer, hero video, reveals, scroll spy, product rendering, schema patch
@@ -62,6 +62,13 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
+
+## Community and Visit sections removed (Snir, 2026-09-17)
+
+The homepage is now hero, booking card, About, gallery, shop, tournaments, footer. "קהילה" left the menus and
+"צור קשר" points at the footer (`#site-footer`), which carries the address, navigation and the contact tiles.
+`links.communityEvents` is gone from `site.config.js`; `assets/img/community_real_placeholder.webp` and
+`assets/img/location.webp` are no longer used by any page.
 
 ## Pink booking strip (Snir, 2026-09-17)
 
