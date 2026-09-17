@@ -84,8 +84,10 @@ pick up the change).
 
 ## Header booking pill on phones and tablets (Snir, 2026-09-17)
 
-Below 1024px the header shows "הזמנת מגרש" as a pink pill (`--mauve` with deep green text) between the logo and the menu
-button, over the hero and on the solid header alike. Desktop keeps its cream / green header button.
+Below 1024px the header shows a pink pill (`--mauve` with deep green text) between the logo and the menu button, over the
+hero and on the solid header alike; desktop keeps its cream / green header button. Since 17.9 the pill reads "ניווט למתחם"
+with the Waze glyph (`assets/icons/waze.svg`, simple-icons, CC0) and opens Waze; booking lives in the bottom strip, the hero,
+the booking card and the drawer.
 
 ## Footer (Snir's footer DEV package, 2026-09-17)
 
@@ -192,10 +194,11 @@ same as `handoff/08_dev/reference.html`.
 
 - **Phones (< 768px): the club's walkthrough reel**, unchanged (`hero_mobile.mp4` 576x1024, poster `hero_mobile.webp`
   = its first frame). Rebuild with `tools/build_hero_video_mobile.py "<path to WhatsApp Video 2026-09-10 at 11.23.59 (1).mp4>"`.
-- **Tablet and desktop (>= 768px): the locked-off tripod shot Snir supplied** (original in
-  `handoff-extra/hero-video-source-2026-09-17.mp4`). `tools/build_hero_video.py` renders `hero_desktop.mp4`
-  (1920x1080) and its first-frame poster `hero_desktop.webp`, with the first second dissolved into the end for a
-  seamless loop. It never touches the phone files.
+- **Tablet and desktop (>= 768px): the rooftop padel and basketball loop Snir supplied on 17.9 (second version)**,
+  original in `handoff-extra/hero-desktop-2026-09-17b/` (1920x1080, 24 fps, 19.2 s, already seamless).
+  `tools/build_hero_video.py` re-muxes it to `assets/video/hero_desktop.mp4` (picture untouched) and writes
+  `hero_desktop.webp`, its exact first frame. It never touches the phone files. The earlier tripod shot stays in
+  `handoff-extra/hero-video-source-2026-09-17.mp4`.
 - No zoom, no pan, no CSS motion on either. Reduced motion or data saver: poster only.
 - The static desktop image from 17.9 morning is kept in `handoff-extra/hero-desktop-source-2026-09-17.png`.
 

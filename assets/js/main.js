@@ -46,7 +46,8 @@ if (video) {
     video.addEventListener("playing", () => hero.classList.add("is-playing"));
     video.addEventListener("pause", () => hero.classList.remove("is-playing"));
     video.preload = "auto";
-    video.src = (window.PADEL_BASE || "") + "assets/video/" + file;
+    // the version query only busts caches when a hero file is replaced (17.9.2026: new desktop loop)
+    video.src = (window.PADEL_BASE || "") + "assets/video/" + file + (file === "hero_desktop.mp4" ? "?v=2" : "");
     video.play().catch(() => { /* poster stays; autoplay was declined by the browser */ });
   } else {
     video.remove(); // reduced motion or data saver: the poster alone
