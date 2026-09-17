@@ -114,7 +114,10 @@ same as `handoff/08_dev/reference.html`.
   then the lounge with the logo wall, then dissolves into a still of the opening frame so the loop is seamless. Light
   deshake (16px window) only; no zoom, no pan, no CSS motion. Poster `hero_mobile.webp` = the exact first frame.
   Output stays at the reel's resolution (no fake upscale), 10.3 s, ~2.9 MB, H.264 4:2:0.
-- **Tablet and desktop (≥ 768px): static image only.** `tools/build_hero_image.py` builds `hero_desktop.webp` from the
+- **Tablet and desktop (≥ 768px): static image only.** Since 17.9.2026 this is the image Snir supplied
+  (original kept locally in `handoff-extra/`, served as `assets/img/hero_desktop.webp`, 1672×941, not upscaled).
+  The earlier composed aerial crop is still reproducible with `tools/build_hero_image.py`, which now writes
+  `hero_desktop_aerial.webp` so it cannot overwrite the live hero. Previously: it built `hero_desktop.webp` from the
   real aerial photo `court_03.jpg`: composed crop (pink courts as the hero, planter/cones/far right dropped), +6% contrast,
   +10% colour, unsharp, soft vignette. No retouching, no generated content. The JS never loads a video at this width.
 - Overlays: phone = vertical gradient (light top, firmer under the copy); desktop = left-to-right gradient behind the copy.

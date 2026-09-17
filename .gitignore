@@ -7,3 +7,6 @@ screenshots/
 
 # client briefs: business details, not for the public repo
 brief/
+
+# client-supplied source images (originals, not served)
+handoff-extra/

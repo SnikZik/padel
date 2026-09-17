@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Desktop hero image (>= 768px): a composed crop of the real aerial photo, lightly graded.
+"""Former desktop hero (>= 768px): a composed crop of the real aerial photo, lightly graded.
+
+NOT the live hero anymore. Since 17.9.2026 the tablet/desktop hero is the image Snir supplied
+(handoff-extra/hero-desktop-source-2026-09-17.png, served as assets/img/hero_desktop.webp).
+This script now writes hero_desktop_aerial.webp so it can never overwrite that file.
 
 Source: handoff/03_venue_photos/originals/court_03.jpg (the wide shot of the whole venue).
 Crop keeps the pink courts as the visual hero with the deck and shade, drops the foreground planter,
 cones and the far right edge (so the basketball court does not dominate), then: +6% contrast,
 +10% colour, gentle unsharp mask, soft vignette. No retouching, no generated content.
-Output: assets/img/hero_desktop.webp 1920x1080.
+Output: assets/img/hero_desktop_aerial.webp 1920x1080.
 
 usage: python3 tools/build_hero_image.py
 """
@@ -15,7 +19,7 @@ from PIL import Image, ImageEnhance, ImageFilter, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "handoff/03_venue_photos/originals/court_03.jpg"
-OUT = ROOT / "assets/img/hero_desktop.webp"
+OUT = ROOT / "assets/img/hero_desktop_aerial.webp"
 BOX = (40, 40, 1516, 870)  # 1476 x 830 = 16:9
 
 im = Image.open(SRC).convert("RGB").crop(BOX).resize((1920, 1080), Image.LANCZOS)
