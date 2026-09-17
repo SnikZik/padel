@@ -130,6 +130,11 @@ button { font: inherit; }
 .site-header.is-open .menu-btn .icon-menu { display: none; }
 .site-header.is-open .menu-btn .icon-close { display: block; }
 .header-cta { display: none; }
+/* phones and tablets: the booking pill in our pink between the logo and the menu button (Snir, 17.9.2026) */
+@media (max-width: 1023px) {
+  .header-cta { display: inline-flex; min-height: 42px; padding: 0 18px; font-size: 14px; background: var(--mauve); color: var(--green); }
+  .header-cta:hover { background: var(--blush); }
+}
 
 /* mobile drawer */
 .site-nav {
