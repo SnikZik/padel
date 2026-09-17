@@ -381,12 +381,12 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .gallery-grid li:nth-child(3) { grid-column: 1 / -1; }
 .gallery-grid img { width: 100%; height: auto; aspect-ratio: 1.25; object-fit: cover; object-position: 50% 50%; border-radius: var(--r-img); }
-.gallery-grid li:nth-child(3) img { aspect-ratio: 2 / 1; }
+.gallery-grid li:nth-child(3) img { aspect-ratio: 2 / 1; object-position: 50% 12%; } /* wide phone crop: keep the heads in frame */
 @media (min-width: 768px) {
   .gallery { padding: 0 var(--pad-x) 72px; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .gallery-grid li:nth-child(3) { grid-column: auto; }
-  .gallery-grid img, .gallery-grid li:nth-child(3) img { aspect-ratio: 4 / 3; }
+  .gallery-grid img, .gallery-grid li:nth-child(3) img { aspect-ratio: 4 / 3; object-position: 50% 50%; }
 }
 
 /* ---------- shop: the retail zone (approved reference: neutral surfaces, product-first grid) ---------- */
