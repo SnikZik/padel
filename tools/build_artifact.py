@@ -38,7 +38,7 @@ page = head.strip() + '\n<div id="page" lang="he" dir="rtl">\n' + body.strip() +
 (out_dir / "index.html").write_text(page, encoding="utf-8")
 
 # supporting files, same relative paths as production (the /shop/ pages need the stylesheet and config as files)
-for rel in ["assets/js/main.js", "assets/js/shop.js", "assets/js/tournaments.js", "assets/js/products/repository.js", "assets/js/products/card.js",
+for rel in ["assets/js/main.js", "assets/js/shop.js", "assets/js/tournaments.js", "assets/js/products/repository.js", "assets/js/products/card.js", "assets/js/products/modal.js",
             "assets/css/style.css", "site.config.js", "shop/index.html", "shop/product.html"]:
     dst = out_dir / rel
     dst.parent.mkdir(parents=True, exist_ok=True)

@@ -69,11 +69,11 @@ def card(t):
             <img src="{img["src"]}" srcset="{img["small"]} 600w, {img["src"]} 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
                  width="1000" height="1000" alt="{html.escape(img["alt"])}" loading="lazy" decoding="async">
             <p class="tournament-date"><time datetime="{t["date"]}" dir="ltr"><b>{d:%d/%m}</b><span>{d:%Y}</span></time></p>
+            <p class="tournament-level"><span>רמה {latin(t["level"])}</span><span class="tournament-level-letter" aria-hidden="true">{html.escape(t["level"])}</span></p>
           </div>
           <div class="tournament-body">
             <div class="tournament-head">
               <h3 class="tournament-title" id="{title_id}">{rich(t["title"])}</h3>
-              <p class="tournament-level"><span>רמה {latin(t["level"])}</span><span class="tournament-level-letter" aria-hidden="true">{html.escape(t["level"])}</span></p>
             </div>
             <ul class="tournament-details">
 {details(t)}

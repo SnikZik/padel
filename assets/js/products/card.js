@@ -2,7 +2,7 @@
  * Product card: the one card component used on the homepage and on /shop/.
  * Retail structure from the approved reference: square neutral image tile (product large, centred,
  * never cropped), then Hebrew category, Latin product name isolated LTR, availability with a green dot,
- * and a quiet "לפרטים" link. The club store has no online purchase, so there is no cart control here.
+ * and a quiet "לפרטים" link that opens the product popup. The club store has no online purchase, so no cart control here.
  * Built with DOM APIs so catalogue text is never injected as HTML.
  * Classic script: adds renderProductCard to window.PadelShop.
  */
@@ -57,6 +57,13 @@
     const link = el("a", "product-link");
     link.href = productHref(product);
     if (product.url && /^https?:/.test(product.url)) { link.target = "_blank"; link.rel = "noopener"; }
+    // a plain click opens the product popup (products/modal.js); new-tab clicks and no-JS keep the real link
+    link.addEventListener("click", (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (typeof global.PadelShop.openProductModal !== "function") return;
+      e.preventDefault();
+      global.PadelShop.openProductModal(product, { showPrices });
+    });
 
     // image tile
     const media = el("div", `product-media is-${product.category}`);

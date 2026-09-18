@@ -63,6 +63,16 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## Product popup and tournaments header (Snir, 2026-09-18)
+
+- Products open in a popup over the page instead of the product page (`assets/js/products/modal.js`, native `<dialog>`):
+  photo, category, name, details, availability, the adidas page link. Phones get a sheet from the bottom, tablet and
+  desktop a centred card. Esc, the close button, a tap outside and the back button close it. The card keeps its real link
+  (`shop/product.html?id=…`) for new tabs and no-JS, so the product page still exists.
+- Tournaments: the level pill sits on the photo (bottom left, opposite the date). The heading and intro use the About
+  block's type (`.section-title` / `.body`), centred on every width, chips centred under them; the intro reads
+  "התעדכנו בטורנירים שלנו".
+
 ## Phone hero fixes (Snir, 2026-09-18)
 
 - Phones: the hero video fills the whole screen (`100svh`) and the booking card sits on its bottom edge, over the video.
