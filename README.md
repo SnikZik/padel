@@ -63,6 +63,14 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## "כל מה שצריך כדי לשחק" section (Snir's mock, 2026-09-18)
+
+Section `#play` between the tournaments and the footer: heading with a pink full stop, one line of intro, three cards
+(השכרת ציוד, אימונים קבוצתיים, אימונים פרטיים). Same type as the About and tournaments headers, centred. Phones: compact
+horizontal cards; from 768px three cards with the photo on top. The mock's "PLAY MORE" label is left out, like the other
+small English labels. Photos: equipment rental uses `assets/img/gallery_bench.webp` for now; the two training cards show a
+branded placeholder (`.play-media.is-placeholder`) until Snir sends the mock's images.
+
 ## Product popup and tournaments header (Snir, 2026-09-18)
 
 - Products open in a popup over the page instead of the product page (`assets/js/products/modal.js`, native `<dialog>`):
