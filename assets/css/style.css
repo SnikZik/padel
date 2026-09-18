@@ -32,7 +32,7 @@
   --gutter: 16px;
   --container: 1440px;
   --pad-x: max(var(--gutter), calc((100% - var(--container)) / 2)); /* centred content without wrappers */
-  --header-h: 72px;
+  --header-h: 88px;       /* phones too since 18.9: room above and below the larger logo */
 
   --font-he: "Heebo", Arial, sans-serif;
   --font-latin: "Inter", Arial, sans-serif;
@@ -119,7 +119,7 @@ button { font: inherit; }
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .brand { display: block; border-radius: 50%; }
-.brand img { width: 68px; height: 68px; }
+.brand img { width: 76px; height: 76px; }
 .menu-btn {
   width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
   background: transparent; color: inherit; cursor: pointer;
@@ -252,33 +252,28 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .book-card-rule { flex: 0 0 1px; align-self: center; width: 1px; height: 44px; margin-inline: 12px 10px; background: rgba(12, 72, 38, .14); }
 .book-card-cta { flex: 0 0 auto; min-height: 42px; height: 42px; padding: 0 18px; font-size: 13.5px; font-weight: 600; background: var(--green); color: var(--cream); }
 .book-card-cta:hover { background: var(--green-2); }
-/* phones: the headline takes the full width of the card on its own row, large; under it the venue line
-   (emphasised, two lines) sits beside the divider and the CTA, so the card reads full rather than squeezed */
+/* phones (Snir, 18.9.2026): the hero video fills the whole screen and the card sits on its bottom edge, over the video.
+   No button in the card (the hero has one): the headline and the venue line fill the card, centred. */
 @media (max-width: 767px) {
-  .book-card {
-    display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "title title title" "hl rule cta";
-    align-items: center; row-gap: 8px; padding: 14px 16px 14px 14px;
-  }
-  .book-card-text { display: contents; }
-  .book-card-title { grid-area: title; font-size: clamp(18px, 5.2vw, 21px); line-height: 1.2; white-space: normal; text-wrap: balance; text-align: right; }
-  .book-card-hl { grid-area: hl; margin: 0; font-size: clamp(12.5px, 3.45vw, 13.5px); font-weight: 500; line-height: 1.45; color: var(--green); text-align: right; }
-  .book-card-hl li + li::before { color: var(--green); opacity: .55; }
-  /* two deliberate lines, never a separator at the start of a line: courts / café · shop */
-  .book-card-hl li:first-child { flex-basis: 100%; }
-  .book-card-hl li:nth-child(2)::before { content: none; }
+  :root { --book-card-h: 86px; }
+  .hero { height: 100vh; height: 100svh; min-height: 560px; }
+  .hero-copy { padding-bottom: calc(var(--book-card-h) + 40px); }
+  .book-card-slot { margin-top: calc(-1 * (var(--book-card-h) + 12px)); }
+  .book-card { display: block; min-height: var(--book-card-h); padding: 15px 12px 14px; text-align: center; }
+  .book-card-text { text-align: center; }
+  .book-card-title { font-size: clamp(19px, 6vw, 24px); line-height: 1.2; text-align: center; }
+  .book-card-hl { flex-wrap: nowrap; justify-content: center; margin: 7px 0 0; font-size: clamp(11.5px, 3.3vw, 13.5px); font-weight: 500; line-height: 1.4; color: var(--green); }
   .book-card-hl li:last-child { flex-basis: auto; }
   .book-card-hl li:last-child::before { content: "·"; }
-  .book-card-rule { grid-area: rule; height: 40px; margin-inline: 10px 12px; }
-  .book-card-cta { grid-area: cta; min-height: 44px; height: 44px; padding: 0 18px; font-size: 14px; }
-}
-@media (max-width: 374px) {
-  .book-card-rule { margin-inline: 8px; }
-  .book-card-cta { padding: 0 14px; font-size: 13px; }
+  .book-card-hl li + li::before { margin-inline: 7px; color: var(--green); opacity: .55; }
+  .book-card-rule, .book-card-cta { display: none; }
 }
 @media (max-width: 339px) {
-  /* narrowest phones: one item per line, no separators */
-  .book-card-hl li { flex-basis: 100% !important; }
-  .book-card-hl li::before { content: none !important; }
+  /* narrowest phones: courts on one line, café and shop on the next, never a separator at a line start */
+  :root { --book-card-h: 104px; }
+  .book-card-hl { flex-wrap: wrap; }
+  .book-card-hl li:first-child { flex-basis: 100%; }
+  .book-card-hl li:nth-child(2)::before { content: none; }
 }
 
 /* docked: pinned to the bottom of the screen */
@@ -783,25 +778,29 @@ a.footer-contact:hover b { text-decoration: underline; text-underline-offset: 3p
   .footer-nav a { padding: 8px 0; font-size: 14px; }
 }
 
-/* ---------- booking strip: pink, fixed to the bottom of the screen on every page, always visible (Snir, 17.9.2026) ----------
+/* ---------- booking strip: pink, fixed to the bottom of the screen on every page (Snir, 17.9.2026) ----------
+   Since 18.9 it rises only once the booking card has been scrolled past, and it is thinner on phones.
    The page keeps the strip's height free at its end, so the footer's last line is never covered. */
-body { padding-bottom: calc(52px + env(safe-area-inset-bottom)); }
+body { padding-bottom: calc(42px + env(safe-area-inset-bottom)); }
 .book-strip {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: calc(52px + env(safe-area-inset-bottom)); padding: 0 16px env(safe-area-inset-bottom);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: calc(42px + env(safe-area-inset-bottom)); padding: 0 16px env(safe-area-inset-bottom);
   background: var(--mauve); color: var(--green); text-decoration: none;
-  font-size: 16px; font-weight: 700; line-height: 1; letter-spacing: .01em;
+  font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: .01em;
   box-shadow: 0 -12px 28px -20px rgba(12, 72, 38, .55);
-  transition: background-color .25s var(--ease);
+  transition: background-color .25s var(--ease), transform .35s var(--ease), visibility 0s;
 }
+/* until the booking card has been scrolled past (main.js), the strip waits below the screen; without JS it just shows */
+.book-strip.is-waiting { transform: translateY(110%); visibility: hidden; transition: background-color .25s var(--ease), transform .35s var(--ease), visibility 0s .35s; }
 .book-strip:hover { background: var(--blush); }
-.book-strip-icon { flex: 0 0 auto; width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.book-strip-icon { flex: 0 0 auto; width: 16px; height: 16px; transition: transform .25s var(--ease); }
 .book-strip:hover .book-strip-icon { transform: translateX(-3px); }
 .book-strip:focus-visible { outline: 3px solid var(--green); outline-offset: -7px; }
 @media (min-width: 768px) {
   body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
-  .book-strip { min-height: calc(56px + env(safe-area-inset-bottom)); font-size: 17px; }
+  .book-strip { gap: 10px; min-height: calc(56px + env(safe-area-inset-bottom)); font-size: 17px; }
+  .book-strip-icon { width: 18px; height: 18px; }
 }
 
 /* ---------- phones: centre the editorial blocks (Snir, 2026-09-16) ---------- */

@@ -63,6 +63,15 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## Phone hero fixes (Snir, 2026-09-18)
+
+- Phones: the hero video fills the whole screen (`100svh`) and the booking card sits on its bottom edge, over the video.
+  The card has no button on phones (the hero has one); headline and venue line are centred across the card.
+  `--book-card-h` (86px, 104px under 340px) sets both the card height and the overlap.
+- The pink strip waits below the screen until the booking card has been scrolled past, then rises (main.js);
+  on pages without the card it shows all the time. Phones: 42px tall, 15px text.
+- Header: 88px on phones too, logo 76px, so the logo has room above and below it.
+
 ## Community and Visit sections removed (Snir, 2026-09-17)
 
 The homepage is now hero, booking card, About, gallery, shop, tournaments, footer. "קהילה" left the menus and

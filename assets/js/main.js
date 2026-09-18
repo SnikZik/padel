@@ -80,6 +80,24 @@ if (slot && config.bookingDock === true) {
   sync();
 }
 
+/* ---------- booking strip: rises from the bottom only once the booking card has been scrolled past (Snir, 18.9.2026).
+   Pages without the card (the shop pages) show it all the time. ---------- */
+const strip = document.querySelector(".book-strip");
+const cardSlot = document.getElementById("book-slot");
+if (strip && cardSlot) {
+  strip.classList.add("is-waiting");
+  let stripQueued = false;
+  const syncStrip = () => {
+    stripQueued = false;
+    const passed = cardSlot.getBoundingClientRect().bottom < header.offsetHeight;
+    strip.classList.toggle("is-waiting", !passed);
+  };
+  const requestStrip = () => { if (!stripQueued) { stripQueued = true; requestAnimationFrame(syncStrip); } };
+  window.addEventListener("scroll", requestStrip, { passive: true });
+  window.addEventListener("resize", requestStrip);
+  syncStrip();
+}
+
 /* ---------- config-driven links ---------- */
 document.querySelectorAll("[data-booking]").forEach((a) => { if (config.bookingUrl) a.href = config.bookingUrl; });
 document.querySelectorAll("[data-waze]").forEach((a) => { if (config.wazeUrl) a.href = config.wazeUrl; });
