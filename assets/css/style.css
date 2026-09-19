@@ -356,13 +356,13 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
    Top banner (artwork cut from the approved mockups), intro with the filter chips, three cards, community banner.
    Brand palette only. Phones and tablets: horizontal cards, photo on the left; desktop: three cards in a row.
    Chips and cards come from data/tournaments.json (tools/sync_tournaments.py), filtering in assets/js/tournaments.js. */
-.tournaments-section { background: var(--cream); padding: 12px 12px 44px; scroll-margin-top: calc(var(--header-h) + 8px); } /* menu "אירועים" lands below the fixed header */
+.tournaments-section { background: var(--cream); padding: 28px 12px 48px; scroll-margin-top: calc(var(--header-h) + 8px); } /* menu "אירועים" lands below the fixed header */
 .tournaments-inner { max-width: 1400px; margin-inline: auto; }
 
 .tournaments-banner-top { display: block; overflow: hidden; border-radius: 14px; background: var(--mauve); }
 .tournaments-banner-top img { display: block; width: 100%; height: auto; }
 
-.tournaments-top { margin: 22px 0 16px; }
+.tournaments-top { margin: 30px 0 20px; }
 .tournaments-header { text-align: center; } /* type = the About block (.section-title / .body), centred (Snir, 18.9.2026) */
 .tournaments-intro { margin-inline: auto; }
 .tournaments-cta { display: none; margin-top: 16px; min-height: 46px; padding: 0 26px; font-size: 15px; } /* phones: hidden (Snir) */
@@ -418,7 +418,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 
 /* community banner: photo on the left cut on a diagonal, light pink panel with the copy on the right */
 .tournaments-banner-bottom {
-  position: relative; overflow: hidden; margin-top: 16px; min-height: 190px; border-radius: 14px; background: var(--blush);
+  position: relative; overflow: hidden; margin-top: 32px; min-height: 190px; border-radius: 14px; background: var(--blush);
   display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 12px;
   padding-block: 18px; padding-inline: 16px 47%;
 }
@@ -440,11 +440,11 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .tournaments-banner-cta:hover { background: var(--green); color: var(--cream); }
 
 @media (min-width: 768px) {
-  .tournaments-section { padding: 16px var(--pad-x) 56px; }
+  .tournaments-section { padding: 36px var(--pad-x) 64px; }
   .tournaments-cta { display: inline-flex; }
   .tournaments-filters { display: flex; }
   .tournaments-banner-top { border-radius: 16px; }
-  .tournaments-top { margin: 28px 0 20px; }
+  .tournaments-top { margin: 40px 0 24px; }
   .tournaments-filters { gap: 10px; }
   .tournaments-chip { flex: 0 0 auto; padding: 0 22px; font-size: 14px; }
   .tournaments-grid { gap: 16px; }
@@ -461,7 +461,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .tournament-icon { width: 20px; height: 20px; }
   .tournament-cta { min-height: 46px; height: 46px; font-size: 15px; }
 
-  .tournaments-banner-bottom { margin-top: 20px; min-height: 200px; border-radius: 16px; gap: 16px; padding-block: 24px; padding-inline: 32px 48%; }
+  .tournaments-banner-bottom { margin-top: 40px; min-height: 200px; border-radius: 16px; gap: 16px; padding-block: 24px; padding-inline: 32px 48%; }
   .tournaments-banner-media { width: 54%; clip-path: polygon(0 0, 82% 0, 100% 100%, 0 100%); }
   .tournaments-banner-media img { object-position: 50% 50%; }
   .tournaments-banner-tagline { top: 50%; bottom: auto; left: 28px; transform: translateY(-50%); font-size: 14px; }
@@ -470,9 +470,9 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .tournaments-banner-cta { min-height: 44px; height: 44px; padding: 0 26px; font-size: 14.5px; }
 }
 @media (min-width: 1024px) {
-  .tournaments-section { padding: 24px var(--pad-x) 8px; }
+  .tournaments-section { padding: 40px var(--pad-x) 16px; }
   /* intro on the right, chips on the left of the same band; content sits 24px inside the banners (desktop mockup) */
-  .tournaments-top { margin: 34px 24px 28px; }
+  .tournaments-top { margin: 48px 24px 32px; }
   .tournaments-title { font-weight: 700; margin-bottom: 18px; } /* as the About title on desktop */
   .tournaments-cta { margin-top: 22px; }
   .tournaments-filters { margin-top: 24px; }
@@ -489,7 +489,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 }
 @media (min-width: 1280px) {
   /* community banner in one thin row: copy on the right, button beside it */
-  .tournaments-banner-bottom { flex-direction: row; align-items: center; justify-content: flex-start; gap: 28px; min-height: 120px; padding-block: 18px; padding-inline: 40px 50%; }
+  .tournaments-banner-bottom { flex-direction: row; align-items: center; justify-content: flex-start; gap: 28px; margin-top: 48px; min-height: 120px; padding-block: 18px; padding-inline: 40px 50%; }
   .tournaments-banner-media { width: 48%; clip-path: polygon(0 0, 87% 0, 100% 100%, 0 100%); }
   .tournaments-banner-tagline { left: 48px; font-size: 17px; letter-spacing: .18em; }
   .tournaments-banner-title { font-size: clamp(22px, 1.8vw, 26px); }
