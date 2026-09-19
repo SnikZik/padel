@@ -43,7 +43,7 @@ for rel in ["assets/js/main.js", "assets/js/shop.js", "assets/js/tournaments.js"
     dst = out_dir / rel
     dst.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(ROOT / rel, dst)
-for folder in ["assets/img", "assets/video", "assets/brand", "assets/products", "assets/shop", "assets/tournaments", "assets/footer"]:
+for folder in ["assets/img", "assets/video", "assets/brand", "assets/products", "assets/shop", "assets/tournaments", "assets/footer", "assets/play"]:
     dst = out_dir / folder
     if dst.exists():
         shutil.rmtree(dst)

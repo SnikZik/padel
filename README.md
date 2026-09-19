@@ -68,8 +68,8 @@ three-bar proportions. Replace it with the official asset from the club's adidas
 Section `#play` between the tournaments and the footer: heading with a pink full stop, one line of intro, three cards
 (השכרת ציוד, אימונים קבוצתיים, אימונים פרטיים). Same type as the About and tournaments headers, centred. Phones: compact
 horizontal cards; from 768px three cards with the photo on top. The mock's "PLAY MORE" label is left out, like the other
-small English labels. Photos: equipment rental uses `assets/img/gallery_bench.webp` for now; the two training cards show a
-branded placeholder (`.play-media.is-placeholder`) until Snir sends the mock's images.
+small English labels. Photos: Snir's images of 19.9 in `assets/play/` (1000 and 600 px, originals in
+`handoff-extra/play-2026-09-19/`); his fourth, wide image is kept there too, unused.
 
 ## Product popup and tournaments header (Snir, 2026-09-18)
 
