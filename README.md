@@ -88,7 +88,7 @@ small English labels. Photos: Snir's images of 19.9 in `assets/play/` (1000 and 
   `--book-card-h` (86px, 104px under 340px) sets both the card height and the overlap.
 - The pink strip waits below the screen until the booking card has been scrolled past, then rises (main.js);
   on pages without the card it shows all the time. Phones: 42px tall, 15px text.
-- Header: 88px on phones too, logo 76px, so the logo has room above and below it.
+- Header: phones 104px with an 84px logo (10px of air above and below, Snir 19.9); 88px with a 76 / 78px logo from 768px.
 
 ## Community and Visit sections removed (Snir, 2026-09-17)
 

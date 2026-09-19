@@ -32,7 +32,7 @@
   --gutter: 16px;
   --container: 1440px;
   --pad-x: max(var(--gutter), calc((100% - var(--container)) / 2)); /* centred content without wrappers */
-  --header-h: 88px;       /* phones too since 18.9: room above and below the larger logo */
+  --header-h: 104px;      /* phones: 10px of air above and below the 84px logo (Snir, 19.9); 88px from 768px */
 
   --font-he: "Heebo", Arial, sans-serif;
   --font-latin: "Inter", Arial, sans-serif;
@@ -120,6 +120,7 @@ button { font: inherit; }
 }
 .brand { display: block; border-radius: 50%; }
 .brand img { width: 76px; height: 76px; }
+@media (max-width: 767px) { .brand img { width: 84px; height: 84px; } } /* phones: a little larger (Snir, 19.9) */
 .menu-btn {
   width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%;
   background: transparent; color: inherit; cursor: pointer;
