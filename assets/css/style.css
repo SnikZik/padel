@@ -855,6 +855,19 @@ a.footer-contact:hover b { text-decoration: underline; text-underline-offset: 3p
   .footer-nav a { padding: 8px 0; font-size: 14px; }
 }
 
+/* ---------- SNIR credit bar: the bar Snir uses on his client sites (dark, SNIR. mark, link to snirdote.co.il) ---------- */
+.snir-credit { background: #111114; padding: 18px 24px; direction: rtl; }
+.snir-credit__link { display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none; }
+.snir-credit__mark { color: #F4F4F5; font-family: var(--font-latin); font-size: 17px; font-weight: 800; letter-spacing: .06em; direction: ltr; unicode-bidi: isolate; }
+.snir-credit__dot { color: #6B6B73; }
+.snir-credit__text { color: #8A8A93; font-size: 13px; }
+.snir-credit__link:hover .snir-credit__text { color: #C8C8CF; }
+@media (max-width: 480px) {
+  .snir-credit { padding: 14px 16px; }
+  .snir-credit__mark { font-size: 15px; }
+  .snir-credit__text { font-size: 12px; }
+}
+
 /* ---------- booking strip: pink, fixed to the bottom of the screen on every page (Snir, 17.9.2026) ----------
    Since 18.9 it rises only once the booking card has been scrolled past, and it is thinner on phones.
    The page keeps the strip's height free at its end, so the footer's last line is never covered. */

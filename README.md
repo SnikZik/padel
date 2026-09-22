@@ -63,6 +63,12 @@ On phones (< 768px) the About copy, shop intro, Visit block and footer legal lin
 **adidas mark**: `assets/brand/adidas-mark.svg` (also inline in the shop intro) is a placeholder drawn to the standard
 three-bar proportions. Replace it with the official asset from the club's adidas dealer kit before launch.
 
+## SNIR credit bar (Snir, 2026-09-22)
+
+Under the footer on every page: the dark bar Snir uses on his client sites (`.snir-credit`, SNIR. mark), reading
+"נבנה באהבה ע״י SNIR." and linking to https://www.snirdote.co.il/ in a new tab. Rendered with the footer by
+`tools/sync_footer.py`.
+
 ## "כל מה שצריך כדי לשחק" section (Snir's mock, 2026-09-18)
 
 Section `#play` between the tournaments and the footer: heading with a pink full stop, one line of intro, three cards

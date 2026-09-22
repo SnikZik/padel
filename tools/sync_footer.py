@@ -83,6 +83,14 @@ def footer(p):
   </div>
 </footer>
 
+<!-- SNIR credit bar (the same bar as on Snir's other client sites), wording for this site: נבנה באהבה ע״י SNIR. -->
+<div class="snir-credit">
+  <a class="snir-credit__link" href="https://www.snirdote.co.il/" target="_blank" rel="noopener">
+    <span class="snir-credit__text">נבנה באהבה ע״י</span>
+    <span class="snir-credit__mark" lang="en">SNIR<span class="snir-credit__dot">.</span></span>
+  </a>
+</div>
+
 <!-- booking strip: pink, fixed to the bottom of the screen on every page, always visible (Snir, 17.9.2026) -->
 <a class="book-strip" href="{BOOKING}" target="_blank" rel="noopener" data-booking><span>הזמן מגרש עכשיו</span>{icon("chevron-left", "book-strip-icon")}</a>
 <!-- footer:end -->'''
