@@ -236,13 +236,17 @@ What the client asked for, and what was done:
    professional side (he is not the owner); Roy Best is the in-house coach; coach training runs with adidas Israel.
 6. Photos of the shop: waiting for material.
 7. Shop heading: "חנות הדגל של adidas Padel", with a line saying adidas only and that the website is the catalogue while
-   the sale happens at the club (homepage and /shop/).
-8. The pink tee photo is adidas' own product photo, straight from adidas' asset CDN; their CDN serves the same model shot
+   the sale happens at the club (homepage and /shop/). The client confirmed the wording on 4.10.
+8. A product-only frame of the same tee was pulled from the adidas product page for the client to look at
+   (handoff-extra/adidas-tshirt-no-model.jpg); the photo on the site is still adidas' own product photo, straight from adidas' asset CDN; their CDN serves the same model shot
    for every view code, so a product-only frame needs the product page itself. Swapping the product is a minute's work.
 9. Tournaments: a tournament whose date has passed shows "הסתיים" on the photo and its button reads "הטורניר הסתיים";
    a "הסתיימו" chip lists them. Photos from past tournaments can be added later.
-10. The training photos with black clothing: waiting for replacements in the brand colours.
+10. The training photos were re-coloured on Higgsfield (gpt_image_2_5 edit, 0.25 credits each): same people and
+    framing, clothing in the brand's pink and green. The black versions are in handoff-extra/play-2026-09-19/originals-black/.
 11. Photos of the café and the gym: waiting for material.
+
+Courts are described as shaded (מוצללים), the client's answer on 4.10.
 
 ## Hero media back to the client's own videos (Snir, 2026-10-04)
 
