@@ -248,14 +248,14 @@ What the client asked for, and what was done:
 
 Courts are described as shaded (מוצללים), the client's answer on 4.10.
 
-## Hero media back to the client's own videos (Snir, 2026-10-04)
+## Hero: the club's reel everywhere (Snir, 2026-10-04)
 
-Both hero videos are the client's files from the locked handoff, used as supplied: `handoff/04_video/hero_mobile.mp4`
-(1080x1920) on phones and `handoff/04_video/hero_desktop.mp4` (1920x1080) from 768px, re-muxed by
-`tools/build_hero_video.py`, with each video's first frame as its poster. They loop with a visible cut, which is how the
-client's files are. The media that was in their place is kept in `handoff-extra/`: the generated rooftop loop
-(`hero-desktop-2026-09-17b/`) and the WhatsApp walkthrough reel (`hero-mobile-whatsapp-reel-2026-09-17.mp4`).
-`tools/build_hero_video_mobile.py` is no longer in use.
+One video for every width: the club's walkthrough reel (`assets/video/hero.mp4`, 576x1024, source in
+`handoff-extra/hero-mobile-whatsapp-reel-2026-09-17.mp4`), with `assets/img/hero.webp` as its first frame.
+Phones play it full screen. From 768px the file is too narrow to fill a desktop screen, so it plays over the left
+58% (max 880px) of the hero and the rest is a blurred, darkened copy of its own first frame; the copy sits on the
+right. `tools/build_hero_video.py` rebuilds both files. The client's drone videos stay in `handoff/04_video`
+and the generated rooftop loop in `handoff-extra/hero-desktop-2026-09-17b/`.
 
 ## Visual polish pass (Snir, 2026-09-15)
 

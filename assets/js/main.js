@@ -34,20 +34,19 @@ document.addEventListener("keydown", (e) => {
 });
 window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => { if (e.matches) setDrawer(false); });
 
-/* ---------- hero video: the client's own files, portrait on phones, landscape from 768px ----------
-   Each poster is its own video's first frame, so the fade-in never jumps. */
+/* ---------- hero video: the club's walkthrough reel, the same file on every width ----------
+   The poster is the video's first frame, so the fade-in never jumps. */
 const video = document.getElementById("hero-video");
 if (video) {
   const saveData = navigator.connection && navigator.connection.saveData;
   if (!reducedMotion && !saveData) {
     const hero = video.closest(".hero");
-    const file = desktopMedia.matches ? "hero_desktop.mp4" : "hero_mobile.mp4";
     video.muted = true; // the IDL property, not only the attribute: required for autoplay in some browsers
     video.addEventListener("playing", () => hero.classList.add("is-playing"));
     video.addEventListener("pause", () => hero.classList.remove("is-playing"));
     video.preload = "auto";
-    // the version query only busts caches when a hero file is replaced (4.10.2026: both back to the client's own videos)
-    video.src = (window.PADEL_BASE || "") + "assets/video/" + file + "?v=4";
+    // the version query only busts caches when the hero file is replaced (4.10.2026: the club's reel everywhere)
+    video.src = (window.PADEL_BASE || "") + "assets/video/hero.mp4?v=5";
     video.play().catch(() => { /* poster stays; autoplay was declined by the browser */ });
   } else {
     video.remove(); // reduced motion or data saver: the poster alone

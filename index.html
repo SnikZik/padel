@@ -12,15 +12,14 @@
 <meta property="og:locale" content="he_IL">
 <meta property="og:title" content="The Padel Club Azor | פאדל קלאב אזור">
 <meta property="og:description" content="4 מגרשי פאדל מקצועיים, קהילה, קפיטריה, טיפולים וחנות adidas Padel במתחם The Padel Club Azor, ז׳בוטינסקי 28 אזור.">
-<meta property="og:image" content="assets/img/hero_desktop.webp">
+<meta property="og:image" content="assets/img/hero.webp">
 <link rel="icon" href="assets/brand/logo-160.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/brand/logo-320.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="preload" as="image" href="assets/img/hero_mobile.webp?v=4" media="(max-width: 767px)">
-<link rel="preload" as="image" href="assets/img/hero_desktop.webp?v=4" media="(min-width: 768px)">
-<link rel="stylesheet" href="assets/css/style.css?v=20261004-play">
+<link rel="preload" as="image" href="assets/img/hero.webp?v=5">
+<link rel="stylesheet" href="assets/css/style.css?v=20261004-reel">
 <script type="application/ld+json" id="schema-business">
 {
   "@context": "https://schema.org",
@@ -28,7 +27,7 @@
   "name": "The Padel Club Azor",
   "alternateName": "פאדל קלאב אזור",
   "description": "4 מגרשי פאדל מקצועיים, קהילה, קפיטריה, טיפולים וחנות adidas Padel במתחם The Padel Club Azor, ז׳בוטינסקי 28 אזור.",
-  "image": ["assets/img/hero_desktop.webp", "assets/img/about.webp"],
+  "image": ["assets/img/hero.webp", "assets/img/about.webp"],
   "logo": "assets/brand/logo-512.png",
   "address": {
     "@type": "PostalAddress",
@@ -73,14 +72,13 @@
 
 <main id="main">
 
-  <!-- 1. Hero: the client's own videos from the handoff, as supplied (Snir, 4.10.2026).
-          Phones get the portrait file, 768px and up the landscape one. Each poster is its own video's first frame. -->
+  <!-- 1. Hero: the club's walkthrough reel on every width (Snir, 4.10.2026). The poster is the video's first frame;
+          from 768px the portrait reel plays sharp in the middle over a blurred copy of that frame. -->
   <section class="hero on-dark" id="top" aria-label="The Padel Club Azor">
-    <picture class="hero-poster">
-      <source media="(min-width: 768px)" srcset="assets/img/hero_desktop.webp?v=4" width="1920" height="1080">
-      <img src="assets/img/hero_mobile.webp?v=4" width="1080" height="1920" fetchpriority="high" decoding="async"
+    <figure class="hero-poster">
+      <img src="assets/img/hero.webp?v=5" width="576" height="1024" fetchpriority="high" decoding="async"
            alt="מגרשי הפאדל הוורודים של The Padel Club Azor, המתחם והצללה">
-    </picture>
+    </figure>
     <video class="hero-media" id="hero-video" muted loop playsinline autoplay preload="none"
            aria-hidden="true" tabindex="-1"></video>
     <div class="hero-overlay" aria-hidden="true"></div>
@@ -470,7 +468,7 @@
 <script src="assets/js/products/repository.js" defer></script>
 <script src="assets/js/products/card.js?v=20260918-popup" defer></script>
 <script src="assets/js/products/modal.js?v=20260918-popup" defer></script>
-<script src="assets/js/main.js?v=20261004-notes" defer></script>
+<script src="assets/js/main.js?v=20261004-reel" defer></script>
 <script src="assets/js/shop.js" defer></script>
 <script src="assets/js/tournaments.js?v=20261004-notes" defer></script>
 </body>

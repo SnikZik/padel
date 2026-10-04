@@ -184,6 +184,7 @@ body.nav-open { overflow: hidden; }
 }
 .hero-poster, .hero-poster img, .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
 .hero-poster { margin: 0; }
+.hero-poster img { background: var(--green); }
 /* the hero never moves: no transform, no parallax, no scale. Only the poster to video opacity handoff */
 /* the real-photo poster is always painted; the video fades over it only once it is actually playing */
 .hero-media { opacity: 0; transition: opacity .6s var(--ease); }
@@ -194,8 +195,13 @@ body.nav-open { overflow: hidden; }
   background: linear-gradient(180deg, rgba(6, 30, 16, .22) 0%, rgba(6, 30, 16, .04) 32%, rgba(6, 30, 16, .34) 62%, rgba(6, 30, 16, .66) 100%);
 }
 @media (min-width: 768px) {
-  /* the copy sits on the right, so the gradient darkens the right side and the padel courts on the left stay clear */
-  .hero-poster img, .hero-media { object-position: 50% 50%; }
+  /* the reel is a 576px wide portrait file: from 768px it plays sharp at its own size on the left of the hero,
+     over a blurred, darkened copy of its first frame, instead of being stretched across the screen */
+  .hero-poster img { object-position: 50% 50%; filter: blur(26px) saturate(1.08) brightness(.74); transform: scale(1.12); }
+  .hero-media {
+    inset: 0 auto 0 0; width: min(58vw, 880px); height: 100%; object-fit: cover; object-position: 50% 45%;
+  }
+  /* the copy sits on the right, so the gradient darkens that side and the reel on the left stays clear */
   .hero-overlay {
     background:
       linear-gradient(270deg, rgba(6, 30, 16, .50) 0%, rgba(6, 30, 16, .22) 38%, rgba(6, 30, 16, .04) 70%),
