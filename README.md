@@ -223,17 +223,14 @@ To connect the inventory system: implement `InventoryApiSource.list()` and map i
 "לפרטים" on a product card opens the manufacturer page (`referenceUrl`, new tab) until `url` (the club's own product page) is set,
 same as `handoff/08_dev/reference.html`.
 
-## Hero media (Snir, 2026-09-17, fourth revision)
+## Hero media back to the client's own videos (Snir, 2026-10-04)
 
-- **Phones (< 768px): the club's walkthrough reel**, unchanged (`hero_mobile.mp4` 576x1024, poster `hero_mobile.webp`
-  = its first frame). Rebuild with `tools/build_hero_video_mobile.py "<path to WhatsApp Video 2026-09-10 at 11.23.59 (1).mp4>"`.
-- **Tablet and desktop (>= 768px): the rooftop padel and basketball loop Snir supplied on 17.9 (second version)**,
-  original in `handoff-extra/hero-desktop-2026-09-17b/` (1920x1080, 24 fps, 19.2 s, already seamless).
-  `tools/build_hero_video.py` re-muxes it to `assets/video/hero_desktop.mp4` (picture untouched) and writes
-  `hero_desktop.webp`, its exact first frame. It never touches the phone files. The earlier tripod shot stays in
-  `handoff-extra/hero-video-source-2026-09-17.mp4`.
-- No zoom, no pan, no CSS motion on either. Reduced motion or data saver: poster only.
-- The static desktop image from 17.9 morning is kept in `handoff-extra/hero-desktop-source-2026-09-17.png`.
+Both hero videos are the client's files from the locked handoff, used as supplied: `handoff/04_video/hero_mobile.mp4`
+(1080x1920) on phones and `handoff/04_video/hero_desktop.mp4` (1920x1080) from 768px, re-muxed by
+`tools/build_hero_video.py`, with each video's first frame as its poster. They loop with a visible cut, which is how the
+client's files are. The media that was in their place is kept in `handoff-extra/`: the generated rooftop loop
+(`hero-desktop-2026-09-17b/`) and the WhatsApp walkthrough reel (`hero-mobile-whatsapp-reel-2026-09-17.mp4`).
+`tools/build_hero_video_mobile.py` is no longer in use.
 
 ## Visual polish pass (Snir, 2026-09-15)
 

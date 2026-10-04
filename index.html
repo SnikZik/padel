@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="preload" as="image" href="assets/img/hero_mobile.webp" media="(max-width: 767px)">
-<link rel="preload" as="image" href="assets/img/hero_desktop.webp?v=2" media="(min-width: 768px)">
+<link rel="preload" as="image" href="assets/img/hero_mobile.webp?v=3" media="(max-width: 767px)">
+<link rel="preload" as="image" href="assets/img/hero_desktop.webp?v=3" media="(min-width: 768px)">
 <link rel="stylesheet" href="assets/css/style.css?v=20260922-credit">
 <script type="application/ld+json" id="schema-business">
 {
@@ -73,12 +73,12 @@
 
 <main id="main">
 
-  <!-- 1. Hero. Phones: the club's walkthrough reel. 768px and up: the locked-off tripod shot.
-          Each poster is its own video's first frame. -->
+  <!-- 1. Hero: the client's own videos from the handoff, as supplied (Snir, 4.10.2026).
+          Phones get the portrait file, 768px and up the landscape one. Each poster is its own video's first frame. -->
   <section class="hero on-dark" id="top" aria-label="The Padel Club Azor">
     <picture class="hero-poster">
-      <source media="(min-width: 768px)" srcset="assets/img/hero_desktop.webp?v=2" width="1920" height="1080">
-      <img src="assets/img/hero_mobile.webp" width="576" height="1024" fetchpriority="high" decoding="async"
+      <source media="(min-width: 768px)" srcset="assets/img/hero_desktop.webp?v=3" width="1920" height="1080">
+      <img src="assets/img/hero_mobile.webp?v=3" width="1080" height="1920" fetchpriority="high" decoding="async"
            alt="מגרשי הפאדל הוורודים של The Padel Club Azor, המתחם והצללה">
     </picture>
     <video class="hero-media" id="hero-video" muted loop playsinline autoplay preload="none"
@@ -469,7 +469,7 @@
 <script src="assets/js/products/repository.js" defer></script>
 <script src="assets/js/products/card.js?v=20260918-popup" defer></script>
 <script src="assets/js/products/modal.js?v=20260918-popup" defer></script>
-<script src="assets/js/main.js?v=20260918-strip" defer></script>
+<script src="assets/js/main.js?v=20261004-hero" defer></script>
 <script src="assets/js/shop.js" defer></script>
 <script src="assets/js/tournaments.js" defer></script>
 </body>

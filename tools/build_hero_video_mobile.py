@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Phone hero video (< 768px), cut from the club's real walkthrough reel
+"""NOT IN USE since 4.10.2026: the phones play the client's handoff video again (tools/build_hero_video.py).
+Kept for the WhatsApp walkthrough reel, whose built file is in handoff-extra/hero-mobile-whatsapp-reel-2026-09-17.mp4.
+
+Phone hero video (< 768px), cut from the club's real walkthrough reel
 ("WhatsApp Video 2026-09-10 at 11.23.59 (1).mp4", 576x1024, the client's own edit).
 
 Sequence: the pink court passage as it is in the reel (pink court box -> pink net -> bench -> court "3" -> turf),
