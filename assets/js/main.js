@@ -47,7 +47,7 @@ if (video) {
     video.addEventListener("pause", () => hero.classList.remove("is-playing"));
     video.preload = "auto";
     // the version query only busts caches when a hero file is replaced (4.10.2026: both back to the client's own videos)
-    video.src = (window.PADEL_BASE || "") + "assets/video/" + file + "?v=3";
+    video.src = (window.PADEL_BASE || "") + "assets/video/" + file + "?v=4";
     video.play().catch(() => { /* poster stays; autoplay was declined by the browser */ });
   } else {
     video.remove(); // reduced motion or data saver: the poster alone

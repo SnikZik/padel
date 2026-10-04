@@ -223,6 +223,27 @@ To connect the inventory system: implement `InventoryApiSource.list()` and map i
 "לפרטים" on a product card opens the manufacturer page (`referenceUrl`, new tab) until `url` (the club's own product page) is set,
 same as `handoff/08_dev/reference.html`.
 
+## Client's notes, first round (2026-10-04)
+
+What the client asked for, and what was done:
+
+1. Padel first, not the basketball court: both hero videos are cut to the pass over the padel courts (the tail where the
+   camera lands on the basketball court is gone), and the hero copy moved to the right so it never sits on the courts.
+2. The generated video with the running players is out; the hero plays the client's own footage again.
+3. Hero title is now `THE PADEL CLUB` with `פאדל קלאב` under it, as on their Instagram.
+4. Hero line: "מגרשים. כושר. אירועים, קהילה.".
+5. About: the club was founded by the Kahana family, who planned, built and accompanied every stage; Roy Savion runs the
+   professional side (he is not the owner); Roy Best is the in-house coach; coach training runs with adidas Israel.
+6. Photos of the shop: waiting for material.
+7. Shop heading: "חנות הדגל של adidas Padel", with a line saying adidas only and that the website is the catalogue while
+   the sale happens at the club (homepage and /shop/).
+8. The pink tee photo is adidas' own product photo, straight from adidas' asset CDN; their CDN serves the same model shot
+   for every view code, so a product-only frame needs the product page itself. Swapping the product is a minute's work.
+9. Tournaments: a tournament whose date has passed shows "הסתיים" on the photo and its button reads "הטורניר הסתיים";
+   a "הסתיימו" chip lists them. Photos from past tournaments can be added later.
+10. The training photos with black clothing: waiting for replacements in the brand colours.
+11. Photos of the café and the gym: waiting for material.
+
 ## Hero media back to the client's own videos (Snir, 2026-10-04)
 
 Both hero videos are the client's files from the locked handoff, used as supplied: `handoff/04_video/hero_mobile.mp4`

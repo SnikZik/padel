@@ -5,7 +5,8 @@ indexable) while the content stays data-driven. assets/js/tournaments.js only fi
 
 Card fields: id, date (ISO), title ({Latin} runs become isolated LTR spans), organizer {type, name}, level,
 participants, pairs, prizes, crowd, image {src, small, alt, position, positionPhone}, registrationUrl, status.
-Missing values are simply not shown. A null registrationUrl keeps "לפרטים והרשמה" as designed but inert.
+Missing values are simply not shown. A null registrationUrl keeps "לפרטים והרשמה" as designed but inert. A tournament whose date has passed is marked
+"הסתיים" by assets/js/tournaments.js (the date decides, not the file), and the "הסתיימו" chip lists those.
 
 usage: python3 tools/sync_tournaments.py
 """
@@ -113,7 +114,9 @@ data = json.loads((ROOT / "data/tournaments.json").read_text(encoding="utf-8"))
 items = sorted(data["tournaments"], key=lambda t: t["date"])
 levels = sorted({t["level"] for t in items})
 
-chips = [("all", "הכל", True), ("upcoming", "קרוב", False)] + [(f"level:{lv}", f"רמה {latin(lv)}", False) for lv in levels]
+chips = ([("all", "הכל", True), ("upcoming", "קרוב", False)]
+         + [(f"level:{lv}", f"רמה {latin(lv)}", False) for lv in levels]
+         + [("past", "הסתיימו", False)])
 filters = "<!-- tournaments-filters:start / generated from data/tournaments.json by tools/sync_tournaments.py -->\n"
 filters += '      <div class="tournaments-filters" role="group" aria-label="סינון טורנירים">\n'
 filters += "\n".join(f'        <button class="tournaments-chip" type="button" data-filter="{f}" aria-pressed="{str(on).lower()}">{label}</button>'
@@ -123,7 +126,7 @@ filters += "      </div>\n      <!-- tournaments-filters:end -->"
 cards = "<!-- tournaments-cards:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->\n"
 cards += '    <ul class="tournaments-grid" id="tournaments-grid">\n'
 cards += "\n".join(card(t) for t in items) + "\n"
-cards += '      <li class="tournaments-empty" hidden>אין כרגע טורניר קרוב.</li>\n'
+cards += '      <li class="tournaments-empty" hidden></li>\n'
 cards += "    </ul>\n"
 cards += '    <script type="application/ld+json" id="schema-tournaments">\n' + schema(items) + "\n    </script>\n"
 cards += "    <!-- tournaments-cards:end -->"
