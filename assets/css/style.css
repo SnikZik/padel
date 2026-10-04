@@ -100,7 +100,9 @@ button { font: inherit; }
 /* ---------- typography helpers ---------- */
 .section-title { font-size: 30px; line-height: 1.2; font-weight: 500; color: var(--green); margin: 0 0 18px; }
 .body { font-size: 17px; line-height: 1.7; color: var(--ink-soft); max-width: 36em; }
-.split-copy .body { margin-bottom: 28px; }
+.split-copy .body { margin-bottom: 0; }
+.split-copy .body + .body { margin-top: 14px; }
+.split-copy .body:last-of-type { margin-bottom: 28px; }
 .latin { font-family: var(--font-latin); direction: ltr; unicode-bidi: isolate; }
 .body .latin { white-space: nowrap; } /* brand names stay on one line inside Hebrew paragraphs */
 
@@ -195,18 +197,26 @@ body.nav-open { overflow: hidden; }
   background: linear-gradient(180deg, rgba(6, 30, 16, .22) 0%, rgba(6, 30, 16, .04) 32%, rgba(6, 30, 16, .34) 62%, rgba(6, 30, 16, .66) 100%);
 }
 @media (min-width: 768px) {
-  /* the reel is a 576px wide portrait file: from 768px it plays sharp at its own size on the left of the hero,
-     over a blurred, darkened copy of its first frame, instead of being stretched across the screen */
-  .hero-poster img { object-position: 50% 50%; filter: blur(26px) saturate(1.08) brightness(.74); transform: scale(1.12); }
-  .hero-media {
-    inset: 0 auto 0 0; width: min(58vw, 880px); height: 100%; object-fit: cover; object-position: 50% 45%;
-  }
-  /* the copy sits on the right, so the gradient darkens that side and the reel on the left stays clear */
+  /* tablets: the reel still fills the screen, the copy sits on the right over a soft gradient */
+  .hero-poster img, .hero-media { object-position: 50% 50%; }
   .hero-overlay {
     background:
       linear-gradient(270deg, rgba(6, 30, 16, .50) 0%, rgba(6, 30, 16, .22) 38%, rgba(6, 30, 16, .04) 70%),
       linear-gradient(180deg, rgba(6, 30, 16, .14) 0%, rgba(6, 30, 16, 0) 30%, rgba(6, 30, 16, .38) 100%);
   }
+}
+@media (min-width: 1024px) {
+  /* desktop: the 576px wide reel cannot fill the screen, so the hero splits. The reel keeps the left half at
+     almost its own size, the right half is the brand green with the copy on it (Snir, 4.10.2026). */
+  .hero { align-items: center; background: var(--green); }
+  .hero-poster { inset: 0 auto 0 0; width: 52%; }
+  .hero-poster img { width: 100%; height: 100%; object-position: 50% 50%; }
+  .hero-media { inset: 0 auto 0 0; width: 52%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+  .hero-overlay {
+    inset: 0 auto 0 0; width: 52%;
+    background: linear-gradient(180deg, rgba(6, 30, 16, .18) 0%, rgba(6, 30, 16, 0) 35%, rgba(6, 30, 16, .28) 100%);
+  }
+  .hero-copy { padding: 0 var(--pad-x) 0 54%; }
 }
 .hero-copy {
   position: relative; z-index: 1; width: 100%; color: var(--cream);
@@ -235,7 +245,7 @@ body.nav-open { overflow: hidden; }
   .hero-actions .btn { padding: 0 28px; }
 }
 @media (min-width: 1024px) {
-  /* the copy block sits bottom right, so it never covers the padel courts (client's note, 4.10.2026) */
+  /* the copy sits on the green half, centred in it (client's note, 4.10.2026) */
   .hero-copy-inner { max-width: 620px; margin-inline-end: auto; text-align: right; }
 }
 
@@ -333,7 +343,8 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .split > * { direction: rtl; }
   .split-media img { aspect-ratio: auto; }
   .split-copy { padding: 0; display: flex; flex-direction: column; justify-content: center; }
-  .split-copy .body { margin-bottom: 32px; }
+  .split-copy .body { margin-bottom: 0; }
+  .split-copy .body:last-of-type { margin-bottom: 32px; }
   .split-copy .btn { align-self: flex-start; }
 
   .split-about { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); padding: 36px var(--pad-x) 64px; align-items: center; }

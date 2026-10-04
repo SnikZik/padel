@@ -232,8 +232,8 @@ What the client asked for, and what was done:
 2. The generated video with the running players is out; the hero plays the client's own footage again.
 3. Hero title is now `THE PADEL CLUB` with `פאדל קלאב` under it, as on their Instagram.
 4. Hero line: "מגרשים. כושר. אירועים, קהילה.".
-5. About: the club was founded by the Kahana family, who planned, built and accompanied every stage; Roy Savion runs the
-   professional side (he is not the owner); Roy Best is the in-house coach; coach training runs with adidas Israel.
+5. About: three short paragraphs, Snir's final wording of 4.10 (founded by the Kahana family, Roy Savion and Roy Best
+   lead the professional side, coach training with adidas Israel, café, shaded seating and the adidas Padel shop).
 6. Photos of the shop: waiting for material.
 7. Shop heading: "חנות הדגל של adidas Padel", with a line saying adidas only and that the website is the catalogue while
    the sale happens at the club (homepage and /shop/). The client confirmed the wording on 4.10.
@@ -252,9 +252,8 @@ Courts are described as shaded (מוצללים), the client's answer on 4.10.
 
 One video for every width: the club's walkthrough reel (`assets/video/hero.mp4`, 576x1024, source in
 `handoff-extra/hero-mobile-whatsapp-reel-2026-09-17.mp4`), with `assets/img/hero.webp` as its first frame.
-Phones play it full screen. From 768px the file is too narrow to fill a desktop screen, so it plays over the left
-58% (max 880px) of the hero and the rest is a blurred, darkened copy of its own first frame; the copy sits on the
-right. `tools/build_hero_video.py` rebuilds both files. The client's drone videos stay in `handoff/04_video`
+Phones and tablets play it full screen. From 1024px the file is too narrow for a desktop screen, so the hero splits:
+the reel keeps the left 52% at close to its own size and the right half is the brand green with the copy on it. `tools/build_hero_video.py` rebuilds both files. The client's drone videos stay in `handoff/04_video`
 and the generated rooftop loop in `handoff-extra/hero-desktop-2026-09-17b/`.
 
 ## Visual polish pass (Snir, 2026-09-15)
