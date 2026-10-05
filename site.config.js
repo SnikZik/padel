@@ -13,7 +13,7 @@ window.PADEL_CONFIG = {
   // Navigation to ז׳בוטינסקי 28, אזור (address only, no coordinates were supplied).
   wazeUrl: "https://waze.com/ul?q=%D7%96%27%D7%91%D7%95%D7%98%D7%99%D7%A0%D7%A1%D7%A7%D7%99%2028%20%D7%90%D7%96%D7%95%D7%A8&navigate=yes",
 
-  phone: null,          // TODO main phone, e.g. "050-000-0000" → footer "טלפון" tile (tel: link) and schema.org
+  phone: "052-7016953", // the club's number (Snir, 5.10.2026) → footer "טלפון" tile (tel: link) and schema.org
   whatsappUrl: "https://wa.me/972527016953",  // 052-7016953, the club's WhatsApp (Snir, 5.10.2026) → footer "וואטסאפ" tile
   facebookUrl: null,    // TODO the club's Facebook page → footer "פייסבוק" tile
   // TikTok: the footer shows it as "בקרוב", display only, until the account exists
