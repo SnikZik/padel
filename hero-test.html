@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>בדיקת קצב לסרטון ההירו</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap">
+<style>
+  :root { --green: #0C4826; --cream: #FFFAF4; --blush: #FFDFE5; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 16px 48px; background: var(--green); color: var(--cream);
+         font-family: "Heebo", Arial, sans-serif; text-align: center; }
+  h1 { margin: 0 0 6px; font-size: 20px; font-weight: 700; }
+  p.lead { margin: 0 auto 24px; max-width: 640px; font-size: 14px; line-height: 1.6; opacity: .85; }
+  .grid { display: grid; gap: 20px; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(220px, 260px)); max-width: 900px; margin-inline: auto; }
+  figure { margin: 0; }
+  video { width: 100%; aspect-ratio: 480 / 854; border-radius: 16px; background: #061E10; display: block; }
+  figcaption { margin-top: 10px; font-size: 15px; font-weight: 700; }
+  figcaption span { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 400; opacity: .75; }
+  .note { margin: 28px auto 0; max-width: 640px; padding: 14px 16px; border-radius: 14px;
+          background: var(--blush); color: var(--green); font-size: 13.5px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<h1>סרטון ההירו, שלושה קצבי ניגון</h1>
+<p class="lead">אותו קובץ מיוצב בדיוק, רק מהירות הניגון משתנה. ככל שהניגון איטי יותר, התנועה שנשארת בסרטון נראית רגועה יותר. תגיד איזה מהשלושה הכי נעים לעין.</p>
+
+<div class="grid">
+  <figure>
+    <video src="assets/video/hero.mp4?v=7" data-rate="1" muted loop playsinline autoplay preload="auto"></video>
+    <figcaption>1. מהירות מקורית<span>10.3 שניות</span></figcaption>
+  </figure>
+  <figure>
+    <video src="assets/video/hero.mp4?v=7" data-rate="0.85" muted loop playsinline autoplay preload="auto"></video>
+    <figcaption>2. איטי ב-15%<span>12.1 שניות</span></figcaption>
+  </figure>
+  <figure>
+    <video src="assets/video/hero.mp4?v=7" data-rate="0.667" muted loop playsinline autoplay preload="auto"></video>
+    <figcaption>3. איטי בשליש<span>15.4 שניות</span></figcaption>
+  </figure>
+</div>
+
+<p class="note">הייצוב עצמו כבר עלה לאתר: רעידות המצלמה ירדו ביותר מחצי. מה שנשאר זה תנועה של צילום בהליכה, קרוב ורחוק זזים בקצב שונה, וזה לא משהו שייצוב יודע להוריד. ניגון איטי יותר מרכך בדיוק את זה, בלי לפגוע באיכות התמונה.</p>
+
+<script>
+  document.querySelectorAll("video").forEach((v) => {
+    const rate = parseFloat(v.dataset.rate);
+    const set = () => { v.playbackRate = rate; };
+    set();
+    v.addEventListener("loadedmetadata", set);
+    v.addEventListener("play", set);
+  });
+</script>
+</body>
+</html>
