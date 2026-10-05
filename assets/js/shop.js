@@ -131,11 +131,6 @@ if (page) {
     stock.appendChild(el("span", null, p.availabilityLabel));
     info.appendChild(stock);
     info.appendChild(el("p", "pp-note", "המוצר זמין לרכישה בחנות שבמתחם המועדון."));
-    if (p.referenceUrl) {
-      const ref = el("a", "pp-ref", "לעמוד המוצר באתר adidas");
-      ref.href = p.referenceUrl; ref.target = "_blank"; ref.rel = "noopener";
-      info.appendChild(ref);
-    }
     const back = el("a", "pp-back", "חזרה לחנות"); back.href = base() + "shop/";
     info.appendChild(back);
 

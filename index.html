@@ -17,9 +17,9 @@
 <link rel="apple-touch-icon" href="assets/brand/logo-320.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="preload" as="image" href="assets/img/hero.webp?v=5">
-<link rel="stylesheet" href="assets/css/style.css?v=20261004-split">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500..700&family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
+<link rel="preload" as="image" href="assets/img/hero.webp?v=6">
+<link rel="stylesheet" href="assets/css/style.css?v=20261005-logo">
 <script type="application/ld+json" id="schema-business">
 {
   "@context": "https://schema.org",
@@ -76,7 +76,7 @@
           from 768px the portrait reel plays sharp in the middle over a blurred copy of that frame. -->
   <section class="hero on-dark" id="top" aria-label="The Padel Club Azor">
     <figure class="hero-poster">
-      <img src="assets/img/hero.webp?v=5" width="576" height="1024" fetchpriority="high" decoding="async"
+      <img src="assets/img/hero.webp?v=6" width="576" height="1024" fetchpriority="high" decoding="async"
            alt="מגרשי הפאדל הוורודים של The Padel Club Azor, המתחם והצללה">
     </figure>
     <video class="hero-media" id="hero-video" muted loop playsinline autoplay preload="none"
@@ -84,7 +84,10 @@
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-copy">
       <div class="hero-copy-inner">
-        <h1 class="hero-title"><span class="hero-title-en" lang="en" dir="ltr">THE PADEL CLUB</span><span class="hero-title-he">פאדל קלאב</span></h1>
+        <h1 class="hero-title">
+          <img class="hero-logo" src="assets/brand/logo-512.png" width="512" height="512" alt="" aria-hidden="true" decoding="async">
+          <span class="hero-title-en" lang="en" dir="ltr">THE PADEL CLUB</span><span class="hero-title-he">פאדל קלאב</span>
+        </h1>
         <p class="hero-sub">מגרשים. כושר. אירועים, קהילה.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://www.lazuz.co.il/" target="_blank" rel="noopener" data-booking>הזמנת מגרש</a>
@@ -106,6 +109,22 @@
   </div>
   </div>
 
+  <!-- 2b. Events: the next event in the club, under the first section (Snir, 5.10.2026).
+          Generated from data/tournaments.json by tools/sync_tournaments.py -->
+  <!-- events-banner:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->
+  <aside class="events-banner" data-date="2026-10-09" aria-label="אירועים במועדון">
+    <a class="events-banner-link" href="#tournaments">
+      <span class="events-banner-icon" aria-hidden="true"><svg class="events-banner-glyph" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg></span>
+      <span class="events-banner-copy">
+        <span class="events-banner-label">האירוע הקרוב</span>
+        <span class="events-banner-title">טורניר <span class="latin" dir="ltr" lang="en">ILPA</span></span>
+      </span>
+      <time class="events-banner-time" datetime="2026-10-09">9 באוקטובר</time>
+      <span class="events-banner-cta">לכל האירועים</span>
+    </a>
+  </aside>
+  <!-- events-banner:end -->
+
   <!-- 3. About -->
   <section class="split split-about" id="about">
     <figure class="split-media">
@@ -117,6 +136,7 @@
       <p class="body"><span class="latin" dir="ltr" lang="en">The Padel Club Azor</span> הוא מועדון פאדל בלב אזור עם 4 מגרשים מקצועיים, כולל המגרש הוורוד שמזוהה עם המקום.</p>
       <p class="body">המועדון הוקם על ידי משפחת כהנא, ואת הפעילות המקצועית מובילים רוי סביון ורוי בסט. במקום מתקיימות גם הכשרות מאמנים בשיתוף <span class="latin" dir="ltr" lang="en">adidas</span> ישראל.</p>
       <p class="body">במתחם תמצאו קפיטריה, אזור ישיבה מוצל, חנות <span class="latin" dir="ltr" lang="en">adidas Padel</span> ואווירה טובה לאורך כל היום.</p>
+      <p class="body">לצד המגרשים פועלים חדר כושר וספורטרפיסטית, ומתקיימים חוגים של אימוני ספורט לבנות ופילאטיס מזרן.</p>
       <a class="btn btn-ghost-green" href="#courts">גלו את המועדון שלנו</a>
     </div>
   </section>
@@ -357,15 +377,17 @@
         <p class="body play-intro">בין אם אתם מתחילים או שחקנים פעילים, כאן תמצאו את כל מה שצריך כדי לעלות למגרש, עוד לפני הנקודה הראשונה.</p>
       </header>
       <ul class="play-grid">
-        <li class="play-card">
+        <li class="play-card is-linked">
           <div class="play-media">
             <img src="assets/play/group-training.webp?v=2" srcset="assets/play/group-training-600.webp?v=2 600w, assets/play/group-training.webp?v=2 1000w"
                  sizes="(min-width: 768px) 30vw, 45vw" width="1000" height="750" loading="lazy" decoding="async"
                  alt="מאמן ושלושה שחקנים עם מחבטים על המגרש הוורוד של המועדון">
+            <span class="play-badge" aria-hidden="true"><svg class="play-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.9 16.3A8.6 8.6 0 1 1 7.9 19.1L3.4 20.6z"/><path d="M9.3 8.1c-.4.4-.7 1-.5 1.9.6 2.3 2.4 4.1 4.7 4.8.9.2 1.5-.1 1.9-.5l.5-.6c.2-.3.2-.7-.1-.9l-1.3-.9c-.3-.2-.6-.2-.9.1l-.5.5c-.9-.4-1.6-1.1-2-2l.5-.5c.3-.3.3-.6.1-.9l-.9-1.3c-.2-.3-.6-.3-.9-.1z"/></svg></span>
           </div>
           <div class="play-body">
             <h3 class="play-card-title">אימונים קבוצתיים</h3>
             <p class="play-card-text">אימונים בקבוצה, באווירה חיה ומהנה.</p>
+            <a class="play-cta" href="https://wa.me/972527016953?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%90%D7%99%D7%9E%D7%95%D7%A0%D7%99%D7%9D%20%D7%A7%D7%91%D7%95%D7%A6%D7%AA%D7%99%D7%99%D7%9D" target="_blank" rel="noopener"><svg class="play-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.9 16.3A8.6 8.6 0 1 1 7.9 19.1L3.4 20.6z"/><path d="M9.3 8.1c-.4.4-.7 1-.5 1.9.6 2.3 2.4 4.1 4.7 4.8.9.2 1.5-.1 1.9-.5l.5-.6c.2-.3.2-.7-.1-.9l-1.3-.9c-.3-.2-.6-.2-.9.1l-.5.5c-.9-.4-1.6-1.1-2-2l.5-.5c.3-.3.3-.6.1-.9l-.9-1.3c-.2-.3-.6-.3-.9-.1z"/></svg><span>לתיאום בוואטסאפ</span></a>
           </div>
         </li>
         <li class="play-card">
@@ -379,15 +401,17 @@
             <p class="play-card-text">מחבטים, כדורים וציוד להשכרה במקום.</p>
           </div>
         </li>
-        <li class="play-card">
+        <li class="play-card is-linked">
           <div class="play-media">
             <img src="assets/play/private-training.webp?v=2" srcset="assets/play/private-training-600.webp?v=2 600w, assets/play/private-training.webp?v=2 1000w"
                  sizes="(min-width: 768px) 30vw, 45vw" width="1000" height="750" loading="lazy" decoding="async"
                  alt="מאמן מסביר לשחקנית עם מחבט על המגרש">
+            <span class="play-badge" aria-hidden="true"><svg class="play-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.9 16.3A8.6 8.6 0 1 1 7.9 19.1L3.4 20.6z"/><path d="M9.3 8.1c-.4.4-.7 1-.5 1.9.6 2.3 2.4 4.1 4.7 4.8.9.2 1.5-.1 1.9-.5l.5-.6c.2-.3.2-.7-.1-.9l-1.3-.9c-.3-.2-.6-.2-.9.1l-.5.5c-.9-.4-1.6-1.1-2-2l.5-.5c.3-.3.3-.6.1-.9l-.9-1.3c-.2-.3-.6-.3-.9-.1z"/></svg></span>
           </div>
           <div class="play-body">
             <h3 class="play-card-title">אימונים פרטיים</h3>
             <p class="play-card-text">אימונים אישיים וממוקדים לפי רמה.</p>
+            <a class="play-cta" href="https://wa.me/972527016953?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%90%D7%99%D7%9E%D7%95%D7%A0%D7%99%D7%9D%20%D7%90%D7%99%D7%A9%D7%99%D7%99%D7%9D" target="_blank" rel="noopener"><svg class="play-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.9 16.3A8.6 8.6 0 1 1 7.9 19.1L3.4 20.6z"/><path d="M9.3 8.1c-.4.4-.7 1-.5 1.9.6 2.3 2.4 4.1 4.7 4.8.9.2 1.5-.1 1.9-.5l.5-.6c.2-.3.2-.7-.1-.9l-1.3-.9c-.3-.2-.6-.2-.9.1l-.5.5c-.9-.4-1.6-1.1-2-2l.5-.5c.3-.3.3-.6.1-.9l-.9-1.3c-.2-.3-.6-.3-.9-.1z"/></svg><span>לתיאום בוואטסאפ</span></a>
           </div>
         </li>
       </ul>
@@ -463,15 +487,15 @@
 <!-- footer:end -->
 
 <!-- products:start / generated from data/products.json by tools/sync_products.py, do not edit by hand -->
-<script type="application/json" id="product-data">{"schema": "padel-azor.products.v2", "currency": "ILS", "source": "static", "note": "Catalogue of what the club's physical store carries. No online purchase at this stage: no price, no stock count, no cart. availability describes the shop floor. Every field maps 1:1 to the future inventory API, so this file can be replaced by it.", "products": [{"id": "metalbone-2026", "sku": "KL2612", "brand": "adidas", "name": "adidas Metalbone 2026 Ale Galán", "nameHe": "מחבט פאדל אדידס מטלבון 2026", "category": "racket", "images": [{"src": "assets/products/metalbone-2026.jpg", "webp": "assets/products/metalbone-2026.webp", "width": 900, "height": 900, "alt": "מחבט adidas Metalbone 2026 שחור עם לוגו לבן, מבט מלפנים"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"shape": "יהלום", "level": "מתקדם"}, "url": null, "referenceUrl": "https://www.adidas.com/bh/en/metalbone-2026-padel-racket/KL2612.html", "sourceImageUrl": "https://assets.adidas.com/images/w_1880%2Cf_auto%2Cq_auto/a0a343d4dc654a7297404d4edb67d0f9_9366/KL2612_01_00_standard.jpg"}, {"id": "cross-it-carbon-2026", "sku": "KL2617", "brand": "adidas", "name": "adidas Cross It Carbon 2026", "nameHe": "מחבט פאדל אדידס קרוס איט קרבון 2026", "category": "racket", "images": [{"src": "assets/products/cross-it-carbon-2026.jpg", "webp": "assets/products/cross-it-carbon-2026.webp", "width": 900, "height": 900, "alt": "מחבט adidas Cross It Carbon 2026 שחור עם פסים ירוקים בהירים, מבט מלפנים"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"shape": "טיפה", "level": "כל הרמות"}, "url": null, "referenceUrl": "https://www.adidas.com/qa/en/cross-it-carbon-2026-padel-racket/KL2617.html", "sourceImageUrl": "https://assets.adidas.com/images/w_1880%2Cf_auto%2Cq_auto/2b35674bc3c64e77a6b96cb503cb1abb_9366/KL2617_01_00_standard.jpg"}, {"id": "pink-padel-graphic-tshirt", "sku": "KR2324", "brand": "adidas", "name": "adidas Padel Graphic Tee", "nameHe": "חולצת אדידס פאדל גרפיק", "category": "apparel", "images": [{"src": "assets/products/pink-padel-graphic-tshirt.jpg", "webp": "assets/products/pink-padel-graphic-tshirt.webp", "width": 500, "height": 500, "alt": "דוגמן לובש חולצת adidas Padel Graphic ורודה עם הדפס Padel"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"color": "ורוד Pure Turbo"}, "url": null, "referenceUrl": "https://www.adidas.com/us/padel-graphic-t-shirt/KR2324.html", "sourceImageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/5b850bd0059b46ee897fe17a789ff0a8_9366/Padel_Graphic_T-Shirt_Pink_KR2324_21_model.jpg"}, {"id": "speed-rx-balls", "sku": "GC6333", "brand": "adidas", "name": "adidas Speed RX Balls", "nameHe": "כדורי פאדל אדידס ספיד RX, מארז שלושה", "category": "balls", "images": [{"src": "assets/products/speed-rx-balls.jpg", "webp": "assets/products/speed-rx-balls.webp", "width": 500, "height": 500, "alt": "מארז שלושה כדורי adidas Speed RX, גליל אדום ושחור"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"pack": "מארז שלושה"}, "url": null, "referenceUrl": "https://www.adidas.co.uk/speed-rx-balls/GC6333.html", "sourceImageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/d2b7589aba08468b9f50afac00a47f91_9366/Speed_Rx_Balls_Yellow_GC6333_01_standard.jpg"}]}</script>
+<script type="application/json" id="product-data">{"schema": "padel-azor.products.v2", "currency": "ILS", "source": "static", "note": "Catalogue of what the club's physical store carries. No online purchase at this stage: no price, no stock count, no cart. availability describes the shop floor. Every field maps 1:1 to the future inventory API, so this file can be replaced by it.", "products": [{"id": "metalbone-2026", "sku": "KL2612", "brand": "adidas", "name": "adidas Metalbone 2026 Ale Galán", "nameHe": "מחבט פאדל אדידס מטלבון 2026", "category": "racket", "images": [{"src": "assets/products/metalbone-2026.jpg", "webp": "assets/products/metalbone-2026.webp", "width": 900, "height": 900, "alt": "מחבט adidas Metalbone 2026 שחור עם לוגו לבן, מבט מלפנים"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"shape": "יהלום", "level": "מתקדם"}, "url": null, "referenceUrl": "https://www.adidas.com/bh/en/metalbone-2026-padel-racket/KL2612.html", "sourceImageUrl": "https://assets.adidas.com/images/w_1880%2Cf_auto%2Cq_auto/a0a343d4dc654a7297404d4edb67d0f9_9366/KL2612_01_00_standard.jpg"}, {"id": "cross-it-carbon-2026", "sku": "KL2617", "brand": "adidas", "name": "adidas Cross It Carbon 2026", "nameHe": "מחבט פאדל אדידס קרוס איט קרבון 2026", "category": "racket", "images": [{"src": "assets/products/cross-it-carbon-2026.jpg", "webp": "assets/products/cross-it-carbon-2026.webp", "width": 900, "height": 900, "alt": "מחבט adidas Cross It Carbon 2026 שחור עם פסים ירוקים בהירים, מבט מלפנים"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"shape": "טיפה", "level": "כל הרמות"}, "url": null, "referenceUrl": "https://www.adidas.com/qa/en/cross-it-carbon-2026-padel-racket/KL2617.html", "sourceImageUrl": "https://assets.adidas.com/images/w_1880%2Cf_auto%2Cq_auto/2b35674bc3c64e77a6b96cb503cb1abb_9366/KL2617_01_00_standard.jpg"}, {"id": "pink-padel-graphic-tshirt", "sku": "KR2324", "brand": "adidas", "name": "adidas Padel Graphic Tee", "nameHe": "חולצת אדידס פאדל גרפיק", "category": "apparel", "images": [{"src": "assets/products/pink-padel-graphic-tshirt-laydown.jpg", "webp": "assets/products/pink-padel-graphic-tshirt-laydown.webp", "width": 900, "height": 900, "alt": "חולצת adidas Padel Graphic ורודה עם הדפס Padel, תצלום מוצר ללא דוגמן"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"color": "ורוד Pure Turbo"}, "url": null, "referenceUrl": "https://www.adidas.com/us/padel-graphic-t-shirt/KR2324.html", "sourceImageUrl": null}, {"id": "speed-rx-balls", "sku": "GC6333", "brand": "adidas", "name": "adidas Speed RX Balls", "nameHe": "כדורי פאדל אדידס ספיד RX, מארז שלושה", "category": "balls", "images": [{"src": "assets/products/speed-rx-balls.jpg", "webp": "assets/products/speed-rx-balls.webp", "width": 500, "height": 500, "alt": "מארז שלושה כדורי adidas Speed RX, גליל אדום ושחור"}], "price": null, "compareAtPrice": null, "availability": "in_store", "badge": null, "description": null, "attributes": {"pack": "מארז שלושה"}, "url": null, "referenceUrl": "https://www.adidas.co.uk/speed-rx-balls/GC6333.html", "sourceImageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/d2b7589aba08468b9f50afac00a47f91_9366/Speed_Rx_Balls_Yellow_GC6333_01_standard.jpg"}]}</script>
 <!-- products:end -->
 <script>window.PADEL_BASE = "";</script>
 <script src="site.config.js"></script>
 <script src="assets/js/products/repository.js" defer></script>
-<script src="assets/js/products/card.js?v=20260918-popup" defer></script>
-<script src="assets/js/products/modal.js?v=20260918-popup" defer></script>
-<script src="assets/js/main.js?v=20261004-reel" defer></script>
+<script src="assets/js/products/card.js?v=20261005-noref" defer></script>
+<script src="assets/js/products/modal.js?v=20261005-noref" defer></script>
+<script src="assets/js/main.js?v=20261005-stab" defer></script>
 <script src="assets/js/shop.js" defer></script>
-<script src="assets/js/tournaments.js?v=20261004-notes" defer></script>
+<script src="assets/js/tournaments.js?v=20261005-banner" defer></script>
 </body>
 </html>

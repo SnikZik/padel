@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Render the tournaments filter chips, cards and schema.org events from data/tournaments.json into index.html,
-between the tournaments-filters and tournaments-cards markers, so the section is plain HTML (readable without JS,
-indexable) while the content stays data-driven. assets/js/tournaments.js only filters the rendered cards.
+"""Render the events banner, the tournaments filter chips, the cards and the schema.org events from
+data/tournaments.json into index.html, between the events-banner, tournaments-filters and tournaments-cards markers,
+so the section is plain HTML (readable without JS, indexable) while the content stays data-driven.
+assets/js/tournaments.js only filters the rendered cards and re-checks the banner's date on load.
 
 Card fields: id, date (ISO), title ({Latin} runs become isolated LTR spans), organizer {type, name}, level,
 participants, pairs, prizes, crowd, image {src, small, alt, position, positionPhone}, registrationUrl, status.
@@ -131,8 +132,35 @@ cards += "    </ul>\n"
 cards += '    <script type="application/ld+json" id="schema-tournaments">\n' + schema(items) + "\n    </script>\n"
 cards += "    <!-- tournaments-cards:end -->"
 
+# the banner under the hero (Snir, 5.10.2026): the next event from today on, or the section itself when none is left
+MONTHS = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
+nxt = next((t for t in items if date.fromisoformat(t["date"]) >= date.today()), None)
+trophy = icon("trophy").replace('class="tournament-icon"', 'class="events-banner-glyph"')
+if nxt:
+    d = date.fromisoformat(nxt["date"])
+    label, title = "האירוע הקרוב", rich(nxt["title"])
+    when = f'<time class="events-banner-time" datetime="{nxt["date"]}">{d.day} ב{MONTHS[d.month - 1]}</time>'
+    stamp = nxt["date"]
+else:
+    label, title, when, stamp = "אירועים במועדון", "טורנירים במועדון", "", ""
+
+banner = "<!-- events-banner:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->\n"
+banner += f'''  <aside class="events-banner" data-date="{stamp}" aria-label="אירועים במועדון">
+    <a class="events-banner-link" href="#tournaments">
+      <span class="events-banner-icon" aria-hidden="true">{trophy}</span>
+      <span class="events-banner-copy">
+        <span class="events-banner-label">{label}</span>
+        <span class="events-banner-title">{title}</span>
+      </span>
+      {when}
+      <span class="events-banner-cta">לכל האירועים</span>
+    </a>
+  </aside>''' + "\n"
+banner += "  <!-- events-banner:end -->"
+
 page = PAGE.read_text(encoding="utf-8")
+page = replace_block(page, "events-banner", banner)
 page = replace_block(page, "tournaments-filters", filters)
 page = replace_block(page, "tournaments-cards", cards)
 PAGE.write_text(page, encoding="utf-8")
-print(f"rendered {len(items)} tournaments, {len(chips)} filter chips into index.html")
+print(f"rendered {len(items)} tournaments, {len(chips)} filter chips and the events banner ({label}) into index.html")

@@ -36,6 +36,7 @@
 
   --font-he: "Heebo", Arial, sans-serif;
   --font-latin: "Inter", Arial, sans-serif;
+  --font-display: "Bodoni Moda", "Times New Roman", serif; /* the closest match to the logo wordmark, hero only */
 
   --ease: cubic-bezier(.2, .7, .2, 1);
   color-scheme: light;
@@ -209,24 +210,26 @@ body.nav-open { overflow: hidden; }
   /* desktop: the 576px wide reel cannot fill the screen, so the hero splits. The reel keeps the left half at
      almost its own size, the right half is the brand green with the copy on it (Snir, 4.10.2026). */
   .hero { align-items: center; background: var(--green); }
-  .hero-poster { inset: 0 auto 0 0; width: 52%; }
+  .hero-poster { inset: 0 0 0 auto; width: 52%; }
   .hero-poster img { width: 100%; height: 100%; object-position: 50% 50%; }
-  .hero-media { inset: 0 auto 0 0; width: 52%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+  .hero-media { inset: 0 0 0 auto; width: 52%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .hero-overlay {
-    inset: 0 auto 0 0; width: 52%;
+    inset: 0 0 0 auto; width: 52%;
     background: linear-gradient(180deg, rgba(6, 30, 16, .18) 0%, rgba(6, 30, 16, 0) 35%, rgba(6, 30, 16, .28) 100%);
   }
-  .hero-copy { padding: 0 var(--pad-x) 0 54%; }
 }
 .hero-copy {
   position: relative; z-index: 1; width: 100%; color: var(--cream);
   padding: 0 var(--pad-x) 40px;
 }
 .hero-title { margin: 0 0 14px; text-align: right; }
+/* phones and tablets: the English line is set in the logo's own serif (Snir, 5.10.2026), the Hebrew stays Heebo */
 .hero-title-en {
-  display: block; font-family: var(--font-latin); font-weight: 800;
-  font-size: clamp(34px, 9.5vw, 52px); line-height: 1; letter-spacing: .01em;
+  display: block; font-family: var(--font-display); font-optical-sizing: auto; font-weight: 600;
+  font-size: clamp(38px, 10.5vw, 56px); line-height: 1.04; letter-spacing: .005em;
+  text-shadow: 0 1px 18px rgba(6, 30, 16, .35);
 }
+.hero-logo { display: none; }
 .hero-title-he { display: block; margin-top: 8px; font-size: clamp(20px, 5.4vw, 28px); font-weight: 500; line-height: 1.1; }
 .hero-sub { font-size: 17px; line-height: 1.45; font-weight: 400; margin: 0 0 20px; text-align: right; }
 /* phones: the two buttons share one row, so the copy covers as little of the courts as possible */
@@ -238,15 +241,60 @@ body.nav-open { overflow: hidden; }
   .hero { height: 720px; }
   .hero-copy { padding-bottom: 64px; }
   .hero-title { margin-bottom: 18px; }
-  .hero-title-en { font-size: clamp(48px, 5.6vw, 84px); }
+  .hero-title-en { font-size: clamp(52px, 6vw, 88px); }
   .hero-title-he { margin-top: 10px; font-size: clamp(24px, 2.4vw, 34px); }
   .hero-sub { font-size: 21px; margin-bottom: 30px; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
   .hero-actions .btn { padding: 0 28px; }
 }
 @media (min-width: 1024px) {
-  /* the copy sits on the green half, centred in it (client's note, 4.10.2026) */
-  .hero-copy-inner { max-width: 620px; margin-inline-end: auto; text-align: right; }
+  /* the copy sits on the green half, centred in it, and the club's logo stands in for the written title
+     (Snir, 5.10.2026). The title text stays in the DOM for search engines and screen readers. */
+  .hero-copy { padding: 0 54% 0 var(--pad-x); } /* the copy keeps the green half, the reel keeps the other */
+  .hero-copy-inner { max-width: 620px; margin-inline: auto; text-align: center; }
+  .hero-title { margin-bottom: 22px; text-align: center; }
+  .hero-logo { display: block; width: clamp(210px, 20vw, 300px); height: auto; margin: 0 auto; }
+  .hero-title-en, .hero-title-he {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .hero-sub { text-align: center; }
+  .hero-actions { justify-content: center; }
+}
+
+/* ---------- events banner (Snir, 5.10.2026) ----------
+   Sits right under the first section. Rendered with the tournaments section from data/tournaments.json;
+   assets/js/tournaments.js re-reads the date on load, so an old build never announces a finished tournament. */
+.events-banner { margin: 14px 12px 0; }
+.events-banner-link {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px;
+  padding: 14px; border-radius: 16px; background: var(--blush); color: var(--green); text-decoration: none;
+  transition: background-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.events-banner-link:hover { background: var(--mauve); }
+.events-banner-icon { flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--white); }
+.events-banner-glyph { width: 21px; height: 21px; }
+.events-banner-copy { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; text-align: right; }
+.events-banner-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--green-2); }
+.events-banner-title { font-size: 16px; font-weight: 700; line-height: 1.2; }
+.events-banner-time { flex: 0 0 auto; font-size: 13.5px; font-weight: 600; color: var(--green-2); white-space: nowrap; }
+.events-banner-cta {
+  flex: 1 0 100%; display: inline-flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 0 18px; border-radius: var(--r-btn);
+  background: var(--green); color: var(--cream); font-size: 13.5px; font-weight: 600; white-space: nowrap;
+}
+.events-banner-link:hover .events-banner-cta { background: var(--green-2); }
+@media (min-width: 768px) {
+  .events-banner { margin: 22px var(--pad-x) 0; }
+  .events-banner-link { gap: 16px; padding: 16px 18px; border-radius: 18px; }
+  .events-banner-copy { flex: 0 1 auto; }
+  .events-banner-title { font-size: 18px; }
+  .events-banner-time { margin-inline-start: auto; font-size: 15px; }
+  .events-banner-cta { flex: 0 0 auto; min-height: 44px; font-size: 14.5px; }
+}
+@media (min-width: 1024px) {
+  .events-banner { max-width: 1400px; margin-inline: auto; padding-inline: calc(var(--pad-x) + 24px); }
+  .events-banner-title { font-size: 20px; }
 }
 
 /* ---------- booking card (Snir's mock, 17.9.2026) ----------
@@ -538,6 +586,7 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .play-dot { color: var(--mauve); }
 .play-grid { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .play-card {
+  position: relative;
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); grid-template-areas: "body media";
   overflow: hidden; background: var(--white); border: 1px solid var(--hairline); border-radius: 16px;
   box-shadow: 0 14px 32px -28px rgba(12, 72, 38, .5);
@@ -547,6 +596,21 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .play-body { grid-area: body; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 16px; text-align: right; }
 .play-card-title { margin: 0; font-size: 18px; line-height: 1.25; font-weight: 700; color: var(--green); }
 .play-card-text { margin: 0; font-size: 14px; line-height: 1.5; color: var(--green-2); }
+/* the training cards lead to WhatsApp (Snir, 5.10.2026): the link covers the whole card, the icon says where to */
+.play-cta {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+  font-size: 13.5px; font-weight: 600; color: var(--green); text-decoration: none;
+}
+.play-cta::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+.play-cta-icon { width: 17px; height: 17px; flex: 0 0 auto; color: #25D366; }
+.play-card.is-linked:hover { box-shadow: 0 18px 34px -24px rgba(12, 72, 38, .55); }
+.play-card:focus-within { outline: 2px solid var(--mauve); outline-offset: 3px; }
+.play-badge {
+  position: absolute; inset-inline-end: 10px; inset-block-start: 10px; z-index: 1;
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--blush); color: var(--green); box-shadow: 0 6px 14px -8px rgba(6, 30, 16, .6);
+}
+.play-badge-icon { width: 17px; height: 17px; }
 @media (min-width: 768px) {
   .play-section { padding: 24px var(--pad-x) 64px; }
   .play-header { margin-bottom: 28px; }
@@ -554,6 +618,9 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .play-card { grid-template-columns: minmax(0, 1fr); grid-template-areas: "media" "body"; }
   .play-media { min-height: 0; aspect-ratio: 4 / 3; }
   .play-body { padding: 18px 16px 20px; text-align: center; }
+  .play-cta { justify-content: center; }
+  .play-badge { width: 36px; height: 36px; inset-inline-end: 12px; inset-block-start: 12px; }
+  .play-badge-icon { width: 19px; height: 19px; }
   .play-card-title { font-size: 20px; }
   .play-card-text { font-size: 15px; }
 }
@@ -735,7 +802,6 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .pp-stock { display: flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 14px; font-weight: 500; color: var(--shop-ink); }
 .pp-stock .product-dot { width: 8px; height: 8px; }
 .pp-note { font-size: 13px; color: var(--shop-muted); margin: 8px 0 0; }
-.pp-ref { display: inline-block; margin-top: 20px; font-size: 13px; font-weight: 500; color: var(--green); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(12, 72, 38, .3); }
 .pp-back { display: block; margin-top: 24px; font-size: 13px; color: var(--muted); }
 .pp-missing { font-size: 15px; color: var(--ink-soft); }
 @media (min-width: 1024px) {
@@ -779,7 +845,6 @@ html.modal-open { overflow: hidden; }
 .pm-stock { display: flex; align-items: center; gap: 8px; margin: 18px 0 0; font-size: 14px; font-weight: 600; color: var(--green); }
 .pm-stock .product-dot { width: 8px; height: 8px; }
 .pm-note { margin: 6px 0 0; font-size: 13px; color: var(--green-2); }
-.pm-ref { display: inline-block; margin-top: 16px; padding: 6px 0; font-size: 13.5px; font-weight: 600; color: var(--green); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(12, 72, 38, .3); }
 @media (min-width: 768px) {
   .product-modal { width: min(880px, calc(100% - 48px)); max-height: min(640px, 90vh); margin: auto; border-radius: 22px; box-shadow: 0 30px 70px -30px rgba(12, 72, 38, .6); }
   .pm-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); direction: ltr; } /* photo on the left */

@@ -32,6 +32,30 @@
     }
   });
 
+  // the banner under the hero names the next tournament from today on, even when the page was built long ago
+  const MONTHS = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
+  const banner = document.querySelector(".events-banner");
+  if (banner && (banner.dataset.date || "") < today) {
+    const label = banner.querySelector(".events-banner-label");
+    const title = banner.querySelector(".events-banner-title");
+    const time = banner.querySelector(".events-banner-time");
+    const card = next ? cards.find((c) => c.dataset.date === next) : null;
+    if (card) {
+      banner.dataset.date = next;
+      if (title) title.innerHTML = card.querySelector(".tournament-title").innerHTML;
+      if (time) {
+        const d = new Date(`${next}T00:00:00`);
+        time.dateTime = next;
+        time.textContent = `${d.getDate()} ב${MONTHS[d.getMonth()]}`;
+      }
+    } else {
+      banner.dataset.date = "";
+      if (label) label.textContent = "אירועים במועדון";
+      if (title) title.textContent = "טורנירים במועדון";
+      if (time) time.remove();
+    }
+  }
+
   const matches = (card, filter) => {
     if (filter === "all") return true;
     if (filter === "upcoming") return Boolean(next) && card.dataset.date === next;

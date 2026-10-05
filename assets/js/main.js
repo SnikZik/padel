@@ -46,7 +46,7 @@ if (video) {
     video.addEventListener("pause", () => hero.classList.remove("is-playing"));
     video.preload = "auto";
     // the version query only busts caches when the hero file is replaced (4.10.2026: the club's reel everywhere)
-    video.src = (window.PADEL_BASE || "") + "assets/video/hero.mp4?v=5";
+    video.src = (window.PADEL_BASE || "") + "assets/video/hero.mp4?v=6";
     video.play().catch(() => { /* poster stays; autoplay was declined by the browser */ });
   } else {
     video.remove(); // reduced motion or data saver: the poster alone

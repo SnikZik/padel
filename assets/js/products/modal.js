@@ -79,11 +79,6 @@
     stock.appendChild(el("span", null, p.availabilityLabel));
     info.appendChild(stock);
     info.appendChild(el("p", "pm-note", "המוצר זמין לרכישה בחנות שבמתחם המועדון."));
-    if (p.referenceUrl) {
-      const ref = el("a", "pm-ref", "לעמוד המוצר באתר adidas");
-      ref.href = p.referenceUrl; ref.target = "_blank"; ref.rel = "noopener";
-      info.appendChild(ref);
-    }
 
     grid.appendChild(media);
     grid.appendChild(info);

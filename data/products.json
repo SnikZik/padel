@@ -25,7 +25,10 @@
       "availability": "in_store",
       "badge": null,
       "description": null,
-      "attributes": { "shape": "יהלום", "level": "מתקדם" },
+      "attributes": {
+        "shape": "יהלום",
+        "level": "מתקדם"
+      },
       "url": null,
       "referenceUrl": "https://www.adidas.com/bh/en/metalbone-2026-padel-racket/KL2612.html",
       "sourceImageUrl": "https://assets.adidas.com/images/w_1880%2Cf_auto%2Cq_auto/a0a343d4dc654a7297404d4edb67d0f9_9366/KL2612_01_00_standard.jpg"
@@ -51,7 +54,10 @@
       "availability": "in_store",
       "badge": null,
       "description": null,
-      "attributes": { "shape": "טיפה", "level": "כל הרמות" },
+      "attributes": {
+        "shape": "טיפה",
+        "level": "כל הרמות"
+      },
       "url": null,
       "referenceUrl": "https://www.adidas.com/qa/en/cross-it-carbon-2026-padel-racket/KL2617.html",
       "sourceImageUrl": "https://assets.adidas.com/images/w_1880%2Cf_auto%2Cq_auto/2b35674bc3c64e77a6b96cb503cb1abb_9366/KL2617_01_00_standard.jpg"
@@ -65,11 +71,11 @@
       "category": "apparel",
       "images": [
         {
-          "src": "assets/products/pink-padel-graphic-tshirt.jpg",
-          "webp": "assets/products/pink-padel-graphic-tshirt.webp",
-          "width": 500,
-          "height": 500,
-          "alt": "דוגמן לובש חולצת adidas Padel Graphic ורודה עם הדפס Padel"
+          "src": "assets/products/pink-padel-graphic-tshirt-laydown.jpg",
+          "webp": "assets/products/pink-padel-graphic-tshirt-laydown.webp",
+          "width": 900,
+          "height": 900,
+          "alt": "חולצת adidas Padel Graphic ורודה עם הדפס Padel, תצלום מוצר ללא דוגמן"
         }
       ],
       "price": null,
@@ -77,10 +83,12 @@
       "availability": "in_store",
       "badge": null,
       "description": null,
-      "attributes": { "color": "ורוד Pure Turbo" },
+      "attributes": {
+        "color": "ורוד Pure Turbo"
+      },
       "url": null,
       "referenceUrl": "https://www.adidas.com/us/padel-graphic-t-shirt/KR2324.html",
-      "sourceImageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/5b850bd0059b46ee897fe17a789ff0a8_9366/Padel_Graphic_T-Shirt_Pink_KR2324_21_model.jpg"
+      "sourceImageUrl": null
     },
     {
       "id": "speed-rx-balls",
@@ -103,7 +111,9 @@
       "availability": "in_store",
       "badge": null,
       "description": null,
-      "attributes": { "pack": "מארז שלושה" },
+      "attributes": {
+        "pack": "מארז שלושה"
+      },
       "url": null,
       "referenceUrl": "https://www.adidas.co.uk/speed-rx-balls/GC6333.html",
       "sourceImageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/d2b7589aba08468b9f50afac00a47f91_9366/Speed_Rx_Balls_Yellow_GC6333_01_standard.jpg"
