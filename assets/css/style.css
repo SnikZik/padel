@@ -316,34 +316,32 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   font-size: 11px; font-weight: 400; line-height: 1.5; color: var(--green-2); }
 .book-card-hl li { white-space: nowrap; }
 .book-card-hl li + li::before { content: "·"; margin-inline: 6px; color: rgba(12, 72, 38, .4); font-weight: 700; }
-/* phones: the venue line breaks on purpose, shop on its own line, so a separator never starts a line */
-.book-card-hl li:last-child { flex-basis: 100%; }
-.book-card-hl li:last-child::before { content: none; }
+/* the four highlights break two and two: an empty item takes the line break, so a separator never starts a line */
+.book-card-hl-break { flex-basis: 100%; height: 0; }
+.book-card-hl .book-card-hl-break::before, .book-card-hl .book-card-hl-break + li::before { content: none; }
 .book-card-rule { flex: 0 0 1px; align-self: center; width: 1px; height: 44px; margin-inline: 12px 10px; background: rgba(12, 72, 38, .14); }
 .book-card-cta { flex: 0 0 auto; min-height: 42px; height: 42px; padding: 0 18px; font-size: 13.5px; font-weight: 600; background: var(--green); color: var(--cream); }
 .book-card-cta:hover { background: var(--green-2); }
 /* phones (Snir, 18.9.2026): the hero video fills the whole screen and the card sits on its bottom edge, over the video.
    No button in the card (the hero has one): the headline and the venue line fill the card, centred. */
 @media (max-width: 767px) {
-  :root { --book-card-h: 86px; }
+  :root { --book-card-h: 104px; }  /* two lines of highlights */
   .hero { height: 100vh; height: 100svh; min-height: 560px; }
   .hero-copy { padding-bottom: calc(var(--book-card-h) + 40px); }
   .book-card-slot { margin-top: calc(-1 * (var(--book-card-h) + 12px)); }
   .book-card { display: block; min-height: var(--book-card-h); padding: 15px 12px 14px; text-align: center; }
   .book-card-text { text-align: center; }
   .book-card-title { font-size: clamp(19px, 6vw, 24px); line-height: 1.2; text-align: center; }
-  .book-card-hl { flex-wrap: nowrap; justify-content: center; margin: 7px 0 0; font-size: clamp(11.5px, 3.3vw, 13.5px); font-weight: 500; line-height: 1.4; color: var(--green); }
-  .book-card-hl li:last-child { flex-basis: auto; }
-  .book-card-hl li:last-child::before { content: "·"; }
+  .book-card-hl { justify-content: center; margin: 7px 0 0; font-size: clamp(11.5px, 3.3vw, 13.5px); font-weight: 500; line-height: 1.5; color: var(--green); }
   .book-card-hl li + li::before { margin-inline: 7px; color: var(--green); opacity: .55; }
   .book-card-rule, .book-card-cta { display: none; }
 }
 @media (max-width: 339px) {
-  /* narrowest phones: courts on one line, café and shop on the next, never a separator at a line start */
-  :root { --book-card-h: 104px; }
-  .book-card-hl { flex-wrap: wrap; }
-  .book-card-hl li:first-child { flex-basis: 100%; }
-  .book-card-hl li:nth-child(2)::before { content: none; }
+  /* narrowest phones: one highlight to a line, never a separator at a line start */
+  :root { --book-card-h: 150px; }
+  .book-card-hl li { flex-basis: 100%; }
+  .book-card-hl li + li::before { content: none; }
+  .book-card-hl-break { display: none; }
 }
 
 /* docked: pinned to the bottom of the screen */
@@ -360,10 +358,11 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
   .book-card-slot { width: min(740px, calc(100% - 64px)); margin: -52px auto 0; }
   .book-card { min-height: 112px; padding: 16px 36px 16px 30px; border-radius: 24px; }
   .book-card-title { font-size: 22px; line-height: 1.2; }
+  /* from here the four fit on one line, so the break comes out and every separator comes back */
   .book-card-hl { font-size: 13.5px; margin-top: 6px; flex-wrap: nowrap; }
   .book-card-hl li + li::before { margin-inline: 10px; }
-  .book-card-hl li:last-child { flex-basis: auto; }
-  .book-card-hl li:last-child::before { content: "·"; }
+  .book-card-hl-break { display: none; }
+  .book-card-hl .book-card-hl-break + li::before { content: "·"; }
   .book-card-rule { height: 52px; margin-inline: 24px 20px; }
   .book-card-cta { min-height: 50px; height: 50px; padding: 0 32px; font-size: 17px; }
   .book-card-slot.is-docked .book-card { inset-inline: auto; width: min(740px, calc(100vw - 64px)); left: 50%; transform: translateX(-50%); bottom: 20px; }
