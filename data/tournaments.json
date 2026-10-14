@@ -6,7 +6,10 @@
       "id": "tom-ceah-2026-09-29",
       "date": "2026-09-29",
       "title": "טורניר של {Tom Ceah}",
-      "organizer": { "type": "Person", "name": "Tom Ceah" },
+      "organizer": {
+        "type": "Person",
+        "name": "Tom Ceah"
+      },
       "level": "A",
       "participants": 32,
       "pairs": 16,
@@ -26,7 +29,10 @@
       "id": "the-padel-club-azor-2026-10-02",
       "date": "2026-10-02",
       "title": "{The Padel Club Azor}",
-      "organizer": { "type": "Organization", "name": "The Padel Club Azor" },
+      "organizer": {
+        "type": "Organization",
+        "name": "The Padel Club Azor"
+      },
       "level": "C",
       "participants": 32,
       "pairs": 16,
@@ -40,13 +46,137 @@
         "positionPhone": "62% 50%"
       },
       "registrationUrl": null,
-      "status": "scheduled"
+      "status": "scheduled",
+      "gallery": [
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-01.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-01.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן פאדל חובט בקפיצה בטורניר במועדון פאדל קלאב אזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-02.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-02.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן בחולצה כתומה ממתין לכדור במשחק פאדל באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-03.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-03.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "חבטת יד אחורית נמוכה במשחק פאדל בטורניר במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-04.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-04.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן מזנק לכדור על המגרש הוורוד של פאדל קלאב אזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-05.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-05.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן פאדל בעמידת מוכנות על המגרש הכחול במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-06.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-06.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "חבטת יד קדמית בטורניר הפאדל במועדון פאדל קלאב אזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-07.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-07.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן פאדל עם מחבט על המגרש הכחול במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-08.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-08.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "הגשה גבוהה במשחק פאדל בשעות הערב במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-09.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-09.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "וולה ליד הרשת במשחק פאדל במועדון פאדל קלאב אזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-10.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-10.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "סמאש בקפיצה בטורניר הפאדל במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-11.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-11.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "חבטה מעל הראש ליד קיר הזכוכית במגרש הפאדל באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-12.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-12.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן ממתין להגשה על המגרש הוורוד במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-13.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-13.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן פאדל במשחק זוגות בטורניר במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-14.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-14.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "חבטה נמוכה במשחק פאדל בטורניר במועדון פאדל קלאב אזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-15.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-15.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "חבטת יד אחורית על המגרש הכחול במועדון הפאדל באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-16.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-16.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "הגשה במשחק פאדל בטורניר במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-17.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-17.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "שחקן פאדל מוכן לקבל הגשה בטורניר במועדון באזור"
+        }
+      ]
     },
     {
       "id": "ilpa-2026-10-09",
       "date": "2026-10-09",
       "title": "טורניר {ILPA}",
-      "organizer": { "type": "Organization", "name": "ILPA" },
+      "organizer": {
+        "type": "Organization",
+        "name": "ILPA"
+      },
       "level": "D",
       "participants": null,
       "pairs": null,

@@ -56,6 +56,13 @@ def details(t):
         rows.append((icon("users"), f'<bdi dir="ltr">{html.escape(t["crowd"])}</bdi> קהל'))
     return "\n".join(f'              <li>{svg}<span>{text}</span></li>' for svg, text in rows)
 
+def gallery_data(t):
+    """The club's own photos of a finished tournament, read by assets/js/gallery.js when the card is clicked."""
+    if not t.get("gallery"):
+        return ""
+    payload = json.dumps(t["gallery"], ensure_ascii=False).replace("<", "\\u003c")
+    return f'          <script type="application/json" class="tournament-gallery">{payload}</script>\n'
+
 def card(t):
     d = date.fromisoformat(t["date"])
     img = t["image"]
@@ -65,7 +72,7 @@ def card(t):
     else:
         cta = '<a class="btn tournament-cta" aria-disabled="true">לפרטים והרשמה</a>'
     style = f'--pos: {img.get("position", "50% 50%")}; --pos-phone: {img.get("positionPhone", img.get("position", "50% 50%"))}'
-    return f'''      <li class="tournament-card" data-level="{html.escape(t["level"])}" data-date="{t["date"]}">
+    return f'''      <li class="tournament-card" data-level="{html.escape(t["level"])}" data-date="{t["date"]}"{' data-gallery="' + str(len(t["gallery"])) + '"' if t.get("gallery") else ""}>
         <article aria-labelledby="{title_id}">
           <div class="tournament-media" style="{style}">
             <img src="{img["src"]}" srcset="{img["small"]} 600w, {img["src"]} 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
@@ -82,7 +89,7 @@ def card(t):
             </ul>
             {cta}
           </div>
-        </article>
+{gallery_data(t)}        </article>
       </li>'''
 
 def schema(items):
@@ -135,12 +142,14 @@ cards += "    <!-- tournaments-cards:end -->"
 # the banner under the hero (Snir, 5.10.2026): the next event from today on, or the section itself when none is left
 MONTHS = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"]
 nxt = next((t for t in items if date.fromisoformat(t["date"]) >= date.today()), None)
+last = next((t for t in reversed(items) if date.fromisoformat(t["date"]) < date.today()), None)
 trophy = icon("trophy").replace('class="tournament-icon"', 'class="events-banner-glyph"')
-if nxt:
-    d = date.fromisoformat(nxt["date"])
-    label, title = "האירוע הקרוב", rich(nxt["title"])
-    when = f'<time class="events-banner-time" datetime="{nxt["date"]}">{d.day} ב{MONTHS[d.month - 1]}</time>'
-    stamp = nxt["date"]
+shown = nxt or last
+if shown:
+    d = date.fromisoformat(shown["date"])
+    label, title = ("האירוע הקרוב" if nxt else "הטורניר האחרון"), rich(shown["title"])
+    when = f'<time class="events-banner-time" datetime="{shown["date"]}">{d.day} ב{MONTHS[d.month - 1]}</time>'
+    stamp = shown["date"] if nxt else ""
 else:
     label, title, when, stamp = "אירועים במועדון", "טורנירים במועדון", "", ""
 

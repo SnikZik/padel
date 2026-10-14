@@ -474,6 +474,9 @@ main { background: var(--cream); } /* the strip beside the card matches About, s
 .tournament-card.is-past .tournament-media img { filter: saturate(.75); }
 .tournament-card.is-past .tournament-cta { background: rgba(12, 72, 38, .45); }
 .tournament-card.is-past .tournament-cta:hover { background: rgba(12, 72, 38, .45); }
+/* the one finished tournament that has photos keeps a live button (Snir, 14.10.2026) */
+.tournament-card.is-past .tournament-cta-photos { background: var(--green); cursor: pointer; }
+.tournament-card.is-past .tournament-cta-photos:hover { background: var(--green-2); }
 .tournament-body { grid-area: body; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding: 12px; text-align: right; }
 /* the level pill sits on the photo, bottom left, opposite the date badge (Snir, 18.9.2026) */
 .tournament-head { display: block; }
@@ -852,6 +855,68 @@ html.modal-open { overflow: hidden; }
   .pm-info { align-self: center; padding: 40px 34px 34px; }
   .pm-title { font-size: 28px; }
   .pm-close { top: 14px; left: 14px; }
+}
+
+/* ---------- tournament photo gallery (Snir, 14.10.2026) ----------
+   A finished tournament opens the club's photos over the page. Dark green chrome, because here the photos are
+   the content: one big picture, a caption, a counter and a strip of thumbnails. */
+.gallery-modal {
+  width: 100%; max-width: none; max-height: 94svh; margin: auto 0 0; padding: 0; border: 0; border-radius: 20px 20px 0 0;
+  background: var(--green); color: var(--cream); overflow: hidden; overscroll-behavior: contain;
+  box-shadow: 0 -20px 50px -24px rgba(6, 30, 16, .7);
+}
+.gallery-modal::backdrop { background: rgba(6, 30, 16, .66); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+.gallery-modal[open] { display: flex; flex-direction: column; animation: pm-in .3s var(--ease); }
+.gallery-close {
+  position: absolute; top: 10px; left: 10px; z-index: 3; display: grid; place-items: center; width: 42px; height: 42px;
+  padding: 0; border: 0; border-radius: 50%; background: rgba(255, 250, 244, .94); color: var(--green); cursor: pointer;
+}
+.gallery-close svg { width: 19px; height: 19px; }
+.gallery-close:hover { background: var(--blush); }
+.gallery-head { padding: 16px 16px 10px; padding-inline-end: 62px; text-align: right; }
+.gallery-title { margin: 0; font-size: 17px; line-height: 1.25; font-weight: 700; color: var(--cream); }
+.gallery-counter { margin: 3px 0 0; font-size: 12.5px; color: rgba(255, 250, 244, .7); }
+.gallery-stage { position: relative; flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; background: #061E10; }
+.gallery-figure { margin: 0; width: 100%; height: 56svh; display: flex; align-items: center; justify-content: center; }
+.gallery-figure picture { display: contents; }
+.gallery-figure img { width: 100%; height: 100%; object-fit: contain; }
+.gallery-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  display: grid; place-items: center; width: 42px; height: 42px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(255, 250, 244, .9); color: var(--green); cursor: pointer;
+}
+.gallery-nav svg { width: 20px; height: 20px; }
+.gallery-nav:hover { background: var(--blush); }
+.gallery-prev { inset-inline-start: 10px; }
+.gallery-next { inset-inline-end: 10px; }
+.gallery-caption { margin: 0; padding: 10px 16px 0; font-size: 13px; line-height: 1.5; color: rgba(255, 250, 244, .82); text-align: right; }
+.gallery-strip {
+  display: flex; gap: 8px; padding: 10px 16px calc(14px + env(safe-area-inset-bottom));
+  overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
+}
+.gallery-strip::-webkit-scrollbar { display: none; }
+.gallery-thumb {
+  flex: 0 0 auto; width: 44px; height: 60px; padding: 0; border: 0; border-radius: 8px; overflow: hidden;
+  background: #061E10; cursor: pointer; opacity: .55; transition: opacity .2s var(--ease), box-shadow .2s var(--ease);
+}
+.gallery-thumb picture { display: contents; }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-thumb:hover { opacity: .85; }
+.gallery-thumb[aria-current="true"] { opacity: 1; box-shadow: 0 0 0 2px var(--mauve); }
+/* the photo on a finished card opens the same popup */
+.tournament-media.is-clickable { cursor: pointer; }
+@media (min-width: 768px) {
+  /* portrait photos: the panel is only as wide as it needs to be, so the picture is not lost in a dark field */
+  .gallery-modal { width: min(660px, calc(100% - 48px)); max-height: 92vh; margin: auto; border-radius: 22px; }
+  .gallery-head { padding: 20px 20px 12px; padding-inline-end: 70px; }
+  .gallery-title { font-size: 20px; }
+  .gallery-figure { height: min(62vh, 620px); }
+  .gallery-nav { width: 48px; height: 48px; }
+  .gallery-prev { inset-inline-start: 16px; }
+  .gallery-next { inset-inline-end: 16px; }
+  .gallery-caption { padding: 12px 20px 0; font-size: 14px; }
+  .gallery-strip { gap: 10px; padding: 12px 20px 18px; }
+  .gallery-thumb { width: 54px; height: 74px; }
 }
 
 /* ---------- footer (Snir's footer DEV package, 17.9.2026: assets/footer-reference-desktop.png) ----------

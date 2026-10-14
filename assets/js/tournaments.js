@@ -12,7 +12,14 @@
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
   const next = cards.map((c) => c.dataset.date).filter((d) => d >= today).sort()[0];
 
-  // a tournament whose date has passed reads "הסתיים" and loses its registration button
+  const photosOf = (card) => {
+    const tag = card.querySelector(".tournament-gallery");
+    if (!tag) return null;
+    try { return JSON.parse(tag.textContent); } catch (e) { return null; }
+  };
+
+  // a tournament whose date has passed reads "הסתיים", loses its registration button, and opens its photos
+  // in a popup if the club sent any (Snir, 14.10.2026)
   cards.forEach((card) => {
     if (card.dataset.date >= today) return;
     card.classList.add("is-past");
@@ -24,8 +31,23 @@
       media.appendChild(flag);
     }
     const cta = card.querySelector(".tournament-cta");
-    if (cta) {
-      cta.textContent = "הטורניר הסתיים";
+    if (!cta) return;
+    const photos = photosOf(card);
+    if (photos && photos.length && window.PadelGallery) {
+      const name = (card.querySelector(".tournament-title") || {}).textContent || "";
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = cta.className + " tournament-cta-photos";
+      button.textContent = "טורניר שהסתיים, לתמונות";
+      const open = () => window.PadelGallery.openGallery(photos, { title: `תמונות מהטורניר, ${name}`.trim() });
+      button.addEventListener("click", open);
+      cta.replaceWith(button);
+      if (media) {
+        media.classList.add("is-clickable");
+        media.addEventListener("click", open);
+      }
+    } else {
+      cta.textContent = "טורניר שהסתיים";
       cta.removeAttribute("href");
       cta.removeAttribute("target");
       cta.setAttribute("aria-disabled", "true");
@@ -49,10 +71,24 @@
         time.textContent = `${d.getDate()} ב${MONTHS[d.getMonth()]}`;
       }
     } else {
+      // nothing upcoming: the banner names the last tournament that was played
+      const last = cards.map((c) => c.dataset.date).filter((d) => d < today).sort().pop();
+      const played = last ? cards.find((c) => c.dataset.date === last) : null;
       banner.dataset.date = "";
-      if (label) label.textContent = "אירועים במועדון";
-      if (title) title.textContent = "טורנירים במועדון";
-      if (time) time.remove();
+      if (label) label.textContent = played ? "הטורניר האחרון" : "אירועים במועדון";
+      if (title) {
+        if (played) title.innerHTML = played.querySelector(".tournament-title").innerHTML;
+        else title.textContent = "טורנירים במועדון";
+      }
+      if (time) {
+        if (played) {
+          const d = new Date(`${last}T00:00:00`);
+          time.dateTime = last;
+          time.textContent = `${d.getDate()} ב${MONTHS[d.getMonth()]}`;
+        } else {
+          time.remove();
+        }
+      }
     }
   }
 
