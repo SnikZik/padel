@@ -122,7 +122,7 @@ if (page) {
     if (p.sku) meta.appendChild(row("דגם", p.sku));
     meta.appendChild(row("קטגוריה", p.categoryLabel));
     Object.entries(p.attributes || {}).forEach(([k, v]) => meta.appendChild(row(
-      { shape: "צורה", level: "רמה", color: "צבע", pack: "אריזה" }[k] || k, String(v))));
+      { shape: "צורה", level: "רמה", color: "צבע", pack: "אריזה", material: "חומר" }[k] || k, String(v))));
     info.appendChild(meta);
 
     // no online purchase at this stage: the club store sells on the floor

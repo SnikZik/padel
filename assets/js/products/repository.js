@@ -34,6 +34,7 @@
   ];
   const CATEGORY_BY_ID = Object.fromEntries(CATEGORIES.map((c) => [c.id, c]));
   const BADGES = ["LIMITED", "EXCLUSIVE", "NEW"];
+  const HEBREW = /[\u0590-\u05FF]/;
   /** Shop-floor availability. No online purchase at this stage, so no stock counts. */
   const AVAILABILITY = {
     in_store: "זמין בחנות במתחם",
@@ -121,8 +122,13 @@
         alt: img.alt || raw.name || raw.name_he || ""
       }));
     const limited = Boolean(raw.limitedEdition ?? raw.limited_edition);
-    let badge = raw.badge ? String(raw.badge).toUpperCase() : (limited ? "LIMITED" : null);
-    if (badge && !BADGES.includes(badge)) badge = null;
+    let badge = raw.badge ? String(raw.badge).trim() : (limited ? "LIMITED" : null);
+    if (badge && HEBREW.test(badge)) {
+      badge = badge.slice(0, 24);                       // a Hebrew badge reads as written, no uppercasing
+    } else if (badge) {
+      badge = badge.toUpperCase();
+      if (!BADGES.includes(badge)) badge = null;
+    }
     const availability = raw.availability || (raw.stock === 0 ? "out" : "in_store");
 
     return {
@@ -143,6 +149,7 @@
       inStore: availability !== "out",
       attributes: raw.attributes || {},
       limitedEdition: limited,
+      featured: Boolean(raw.featured),   // the one product the club wants seen first
       url: raw.url || null,
       referenceUrl: raw.referenceUrl || raw.source_product_url || null,
       description: raw.description || null

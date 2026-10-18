@@ -51,7 +51,7 @@
    * @returns {HTMLLIElement}
    */
   function renderProductCard(product, { showPrices = false } = {}) {
-    const li = el("li", "product-card");
+    const li = el("li", `product-card${product.featured ? " is-featured" : ""}`);
     li.dataset.category = product.category;
 
     const link = el("a", "product-link");
@@ -68,7 +68,7 @@
     // image tile
     const media = el("div", `product-media is-${product.category}`);
     if (product.images[0]) media.appendChild(productPicture(product.images[0], "(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 45vw"));
-    if (product.badge) media.appendChild(el("span", "product-badge", product.badge));
+    if (product.badge) media.appendChild(el("span", `product-badge${/[\u0590-\u05FF]/.test(product.badge) ? " is-he" : ""}`, product.badge));
     link.appendChild(media);
 
     // text

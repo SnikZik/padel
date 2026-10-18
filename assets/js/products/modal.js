@@ -8,7 +8,7 @@
 (function (global) {
   "use strict";
 
-  const ATTRIBUTE_LABELS = { shape: "צורה", level: "רמה", color: "צבע", pack: "אריזה" };
+  const ATTRIBUTE_LABELS = { shape: "צורה", level: "רמה", color: "צבע", pack: "אריזה", material: "חומר" };
   let dialog = null;
   let pushed = false;
   let lastFocus = null;
@@ -51,7 +51,7 @@
       if (img) img.loading = "eager";
       media.appendChild(picture);
     }
-    if (p.badge) media.appendChild(el("span", "product-badge", p.badge));
+    if (p.badge) media.appendChild(el("span", `product-badge${/[\u0590-\u05FF]/.test(p.badge) ? " is-he" : ""}`, p.badge));
 
     const info = el("div", "pm-info");
     info.appendChild(el("p", "pm-cat", p.categoryLabel));
