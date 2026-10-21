@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "index.html"
-EVENT_PAGE = ROOT / "tournament/index.html"   # the landing page shows the same photos, one level down
+EVENT_PAGES = [ROOT / "tournament/index.html", ROOT / "tournament-v2/index.html"]   # the landing pages show the same photos, one level down
 ADDRESS = {"@type": "PostalAddress", "streetAddress": "ז׳בוטינסקי 28", "addressLocality": "אזור", "addressCountry": "IL"}
 
 def latin(text):
@@ -176,7 +176,7 @@ banner += "  <!-- events-banner:end -->"
 
 # the landing page's photo strip: the newest tournament that has photos, six thumbs and the whole set as JSON
 shots = next((t for t in reversed(items) if t.get("gallery")), None)
-if EVENT_PAGE.exists() and shots:
+if shots and any(p.exists() for p in EVENT_PAGES):
     photos = shots["gallery"]
     thumbs = "\n".join(
         f'''        <li><button class="ev-shot" type="button" data-index="{i}" aria-label="פתיחת גלריית התמונות">
@@ -192,9 +192,11 @@ if EVENT_PAGE.exists() and shots:
       <script type="application/json">{payload}</script>
     </div>''' + "\n"
     strip += "    <!-- event-gallery:end -->"
-    event_page = replace_block(EVENT_PAGE.read_text(encoding="utf-8"), "event-gallery", strip)
-    EVENT_PAGE.write_text(event_page, encoding="utf-8")
-    print(f"tournament/index.html: {len(photos)} photos in the strip")
+    for page in EVENT_PAGES:
+        if not page.exists():
+            continue
+        page.write_text(replace_block(page.read_text(encoding="utf-8"), "event-gallery", strip), encoding="utf-8")
+        print(f"{page.relative_to(ROOT)}: {len(photos)} photos in the strip")
 
 page = PAGE.read_text(encoding="utf-8")
 page = replace_block(page, "events-banner", banner)

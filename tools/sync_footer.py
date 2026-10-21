@@ -21,6 +21,7 @@ PAGES = {
     "shop/index.html": {"base": "../", "home": "../", "home_label": "לעמוד הבית", "anchor": "../#", "shop": "./"},
     "shop/product.html": {"base": "../", "home": "../", "home_label": "לעמוד הבית", "anchor": "../#", "shop": "./"},
     "tournament/index.html": {"base": "../", "home": "../", "home_label": "לעמוד הבית", "anchor": "../#", "shop": "../shop/"},
+    "tournament-v2/index.html": {"base": "../", "home": "../", "home_label": "לעמוד הבית", "anchor": "../#", "shop": "../shop/"},
 }
 
 def icon(name, cls="footer-icon"):

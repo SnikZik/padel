@@ -1053,6 +1053,83 @@ html.modal-open { overflow: hidden; }
   .ev-cta { padding: 60px var(--pad-x); }
 }
 
+/* ---------- tournament landing page, poster version (the club's own artwork, 21.10.2026) ----------
+   The court texture, the giant serif word and the cut-out players come from the poster the client designed.
+   Everything here is live text on that background, so it reflows and stays readable on a phone. */
+.page-poster { background: #3F8C67 url("../img/court-texture.webp") repeat; background-size: 360px auto; color: var(--cream); }
+.page-poster .book-strip { display: none; }
+.page-poster main { background: transparent; } /* the club pages paint main cream; here the court shows through */
+.pv-main { padding-top: var(--header-h); }
+.pv-wrap { max-width: 1100px; margin-inline: auto; padding-inline: var(--pad-x); }
+
+.pv-hero { position: relative; padding: 26px 0 36px; text-align: center; overflow: hidden; }
+.pv-mark { width: 96px; height: 96px; margin: 0 auto; display: block; }
+.pv-word { position: relative; margin: 42px 0 0; display: flex; align-items: center; justify-content: center; gap: .04em;
+  font-family: var(--font-display); font-optical-sizing: auto; font-weight: 500; line-height: .9;
+  font-size: clamp(62px, 21vw, 180px); direction: ltr; }
+.pv-word span { display: block; }
+.pv-word span:nth-child(2) { transform: translateY(.07em); }
+.pv-word span:nth-child(3) { transform: translateY(.14em); }
+.pv-word span:nth-child(4) { transform: translateY(.07em); }
+.pv-figure { position: absolute; pointer-events: none; }
+.pv-figure img { width: 100%; height: auto; display: block; }
+.pv-f1 { width: 46px; top: -42%; inset-inline-start: 4%; }
+.pv-f2 { width: 52px; top: -46%; inset-inline-end: 6%; }
+.pv-f3 { width: 44px; bottom: -34%; inset-inline-start: 26%; }
+.pv-f4 { width: 48px; bottom: -40%; inset-inline-end: 24%; }
+.pv-date { margin: 30px 0 0; font-family: var(--font-display); font-size: clamp(22px, 6.4vw, 38px); font-weight: 500;
+  letter-spacing: .1em; direction: ltr; }
+.pv-name { margin: 10px auto 0; max-width: 520px; font-family: var(--font-display); font-size: clamp(20px, 5.4vw, 30px);
+  font-weight: 500; line-height: 1.15; letter-spacing: .06em; direction: ltr; }
+
+.pv-facts { margin: 26px auto 0; max-width: 560px; font-size: 16.5px; font-weight: 700; line-height: 1.9; }
+.pv-facts p { margin: 0; }
+.pv-facts .pv-soft { font-weight: 500; color: rgba(255, 250, 244, .86); }
+.pv-actions { display: grid; gap: 10px; margin: 24px auto 0; max-width: 460px; }
+.pv-actions .btn { width: 100%; }
+.pv-wa { background: #1F8A4C; color: #fff; gap: 9px; }
+.pv-wa:hover { background: #18703E; }
+.pv-wa svg { width: 19px; height: 19px; }
+
+.pv-rule { height: 1px; margin: 34px 0 0; background: rgba(255, 250, 244, .26); }
+.pv-section { padding: 34px 0 0; text-align: center; }
+.pv-h2 { margin: 0 0 16px; font-family: var(--font-display); font-size: clamp(26px, 7vw, 40px); font-weight: 500; letter-spacing: .04em; direction: ltr; }
+.pv-h2-he { font-family: var(--font-he); font-weight: 700; letter-spacing: 0; direction: rtl; }
+.pv-list { margin: 0; padding: 0; list-style: none; font-size: 16.5px; line-height: 1.75; }
+.pv-list li + li { margin-top: 14px; }
+.pv-list b { display: block; font-weight: 700; }
+.pv-list span { color: rgba(255, 250, 244, .86); }
+.pv-prize-1 { padding: 18px 16px; border: 1px solid rgba(255, 250, 244, .34); border-radius: 16px; }
+.pv-prize-1 b { font-size: 19px; }
+.pv-note { margin: 22px auto 0; max-width: 560px; padding: 16px; border-radius: 16px; background: rgba(255, 250, 244, .12);
+  font-size: 16px; font-weight: 600; line-height: 1.6; }
+
+.page-poster .ev-shots-more { border: 1px solid rgba(255, 250, 244, .5); color: var(--cream); background: transparent; }
+.page-poster .ev-shots-more:hover { background: rgba(255, 250, 244, .14); }
+.pv-partners { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 26px; margin: 30px 0 0; padding: 0 0 40px; list-style: none; }
+.pv-partners img { height: 36px; width: auto; object-fit: contain; }
+.pv-partners li:last-child img { height: 56px; }   /* the round club mark reads smaller at the same height */
+.pv-partners .pv-mono { filter: brightness(0) invert(1); }
+.pv-tagline { margin: 26px 0 0; font-family: var(--font-latin); font-size: 11px; font-weight: 500; letter-spacing: .3em;
+  color: rgba(255, 250, 244, .66); direction: ltr; }
+
+@media (min-width: 768px) {
+  .pv-hero { padding: 40px 0 48px; }
+  .pv-mark { width: 118px; height: 118px; }
+  .pv-f1 { width: 78px; top: -40%; } .pv-f2 { width: 86px; top: -44%; }
+  .pv-f3 { width: 72px; bottom: -32%; } .pv-f4 { width: 80px; bottom: -38%; }
+  .pv-facts { font-size: 18px; }
+  .pv-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pv-section { padding-top: 48px; }
+  .pv-list { font-size: 17.5px; }
+  .pv-shots { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+  .pv-partners img { height: 44px; }
+  .pv-partners li:last-child img { height: 68px; }
+}
+@media (min-width: 1024px) {
+  .pv-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: start; }
+}
+
 /* ---------- footer (Snir's footer DEV package, 17.9.2026: assets/footer-reference-desktop.png) ----------
    One deep green section. The club photo sits at its top and dissolves into the green (never a standalone image block);
    invitation and CTAs over the fade, logo line, one row of contact and social tiles, a thin bottom bar.
