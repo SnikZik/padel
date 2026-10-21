@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500..700&family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
 <link rel="preload" as="image" href="../assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-01.jpg">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261021-event">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261021-event2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,9 +50,9 @@
     <nav class="site-nav" id="site-nav" aria-label="ניווט ראשי">
       <a class="btn btn-primary nav-cta" href="#register">להרשמה</a>
       <ul>
-        <li><a href="#details">פרטי הטורניר</a></li>
-        <li><a href="#prizes">פרסים</a></li>
-        <li><a href="#day">מה יש ביום הזה</a></li>
+        <li><a href="#prizes">הפרסים</a></li>
+        <li><a href="#day">מה קורה ביום עצמו</a></li>
+        <li><a href="#register">הרשמה</a></li>
         <li><a href="../">לאתר המועדון</a></li>
       </ul>
     </nav>
@@ -66,7 +66,7 @@
 
 <main id="main" class="ev-main">
 
-  <!-- 1. the event itself -->
+  <!-- 1. the event -->
   <section class="ev-hero" aria-labelledby="ev-title">
     <div class="ev-hero-media">
       <img src="../assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-01.jpg" width="720" height="1280" fetchpriority="high" decoding="async"
@@ -75,12 +75,7 @@
     <div class="ev-hero-inner">
       <p class="ev-kicker">30 באוקטובר · פתיחה ב-09:00</p>
       <h1 class="ev-title" id="ev-title" lang="en" dir="ltr">PADEL TOURNAMENT</h1>
-      <p class="ev-sub">4 מגרשים, 4 בתים, פרסים ואווירה של יום שלם על המגרש.</p>
-      <ul class="ev-facts">
-        <li>רמה <bdi dir="ltr">3.0</bdi> עד <bdi dir="ltr">3.5</bdi></li>
-        <li>4 מגרשים</li>
-        <li>250 ₪ למשתתף</li>
-      </ul>
+      <p class="ev-sub">יום שלם של פאדל אצלנו באזור, על ארבעה מגרשים.</p>
       <div class="ev-actions">
         <a class="btn ev-wa" href="https://wa.me/972543208068?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%98%D7%95%D7%A8%D7%A0%D7%99%D7%A8%20%D7%A9%D7%9C%2030.10" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.9 16.3A8.6 8.6 0 1 1 7.9 19.1L3.4 20.6z"/><path d="M9.3 8.1c-.4.4-.7 1-.5 1.9.6 2.3 2.4 4.1 4.7 4.8.9.2 1.5-.1 1.9-.5l.5-.6c.2-.3.2-.7-.1-.9l-1.3-.9c-.3-.2-.6-.2-.9.1l-.5.5c-.9-.4-1.6-1.1-2-2l.5-.5c.3-.3.3-.6.1-.9l-.9-1.3c-.2-.3-.6-.3-.9-.1z"/></svg>הרשמה בוואטסאפ</a>
         <a class="btn btn-light" href="tel:0543208068">חייגו לרוי</a>
@@ -88,91 +83,52 @@
     </div>
   </section>
 
-  <!-- 2. the facts -->
-  <section class="ev-section" id="details" aria-labelledby="details-title">
-    <header class="ev-head">
-      <h2 class="section-title" id="details-title">פרטי הטורניר</h2>
-      <p>כל מה שצריך לדעת לפני שנרשמים.</p>
-    </header>
-    <ul class="ev-info">
-      <li><b>תאריך</b><span>30 באוקטובר</span></li>
-      <li><b>שעת פתיחה</b><span><bdi dir="ltr">09:00</bdi></span></li>
-      <li><b>רמה</b><span><bdi dir="ltr">3.0</bdi> עד <bdi dir="ltr">3.5</bdi></span></li>
-      <li><b>פורמט</b><span>4 מגרשים, 4 בתים</span></li>
-      <li><b>עלות השתתפות</b><span>250 ₪ למשתתף</span></li>
-      <li><b>מיקום</b><span>ז׳בוטינסקי 28, אזור</span></li>
-    </ul>
-  </section>
+  <!-- 2. the facts, in the same card the home page uses under its hero -->
+  <div class="book-card-slot">
+  <div class="book-card">
+    <div class="book-card-text">
+      <p class="book-card-title">30 באוקטובר, 09:00</p>
+      <ul class="book-card-hl"><li>רמה <bdi dir="ltr">3.0</bdi> עד <bdi dir="ltr">3.5</bdi></li><li>4 מגרשים, 4 בתים</li><li class="book-card-hl-break" aria-hidden="true"></li><li>250 ₪ למשתתף</li><li>ז׳בוטינסקי 28, אזור</li></ul>
+    </div>
+    <span class="book-card-rule" aria-hidden="true"></span>
+    <a class="btn book-card-cta" href="#register">להרשמה</a>
+  </div>
+  </div>
 
-  <!-- 3. prizes -->
+  <!-- 3. prizes: the first one gets room to breathe, the other two a line each -->
   <section class="ev-section" id="prizes" aria-labelledby="prizes-title">
-    <header class="ev-head">
-      <h2 class="section-title" id="prizes-title">הפרסים</h2>
-      <p>שלושת המקומות הראשונים לוקחים הביתה.</p>
-    </header>
-    <ul class="ev-prizes">
-      <li class="ev-prize is-first">
-        <span class="ev-place" aria-hidden="true">1</span>
-        <div>
-          <h3>לילה במלון חמישה כוכבים</h3>
-          <p><span class="latin" dir="ltr" lang="en">The Yacht Hotel Herzliya</span>, הרצליה.</p>
-        </div>
-      </li>
-      <li class="ev-prize">
-        <span class="ev-place" aria-hidden="true">2</span>
-        <div>
-          <h3>שעת אימון פאדל</h3>
-          <p>אימון אישי עם מאמן המועדון.</p>
-        </div>
-      </li>
-      <li class="ev-prize">
-        <span class="ev-place" aria-hidden="true">3</span>
-        <div>
-          <h3>אביזרי פאדל</h3>
-          <p>חבילת גריפים, גרבי <span class="latin" dir="ltr" lang="en">adidas</span> לפאדל ומגיני זיעה.</p>
-        </div>
-      </li>
-    </ul>
+    <h2 class="section-title ev-section-title" id="prizes-title">הפרסים</h2>
+    <div class="ev-first">
+      <p class="ev-label">המקום הראשון</p>
+      <h3>לילה במלון חמישה כוכבים</h3>
+      <p class="body"><span class="latin" dir="ltr" lang="en">The Yacht Hotel Herzliya</span>, הרצליה.</p>
+    </div>
+    <dl class="ev-rest">
+      <div>
+        <dt>מקום שני</dt>
+        <dd>שעת אימון פאדל עם מאמן המועדון.</dd>
+      </div>
+      <div>
+        <dt>מקום שלישי</dt>
+        <dd>אביזרי פאדל: חבילת גריפים, גרבי <span class="latin" dir="ltr" lang="en">adidas</span> ומגיני זיעה.</dd>
+      </div>
+    </dl>
   </section>
 
-  <!-- 4. the day itself -->
-  <section class="ev-section" id="day" aria-labelledby="day-title">
-    <header class="ev-head">
-      <h2 class="section-title" id="day-title">מה יש ביום הזה</h2>
-      <p>גם מי שלא על המגרש בא ליהנות.</p>
-    </header>
-    <ul class="ev-vibe">
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <span><b><span class="latin" dir="ltr" lang="en">DJ</span></b> לאורך כל האירוע</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9h13a3 3 0 0 1 0 6h-.5"/><path d="M4 9v5a5 5 0 0 0 5 5h3a5 5 0 0 0 5-5"/><path d="M6 5.5c.8-.8.8-1.6 0-2.4M10 5.5c.8-.8.8-1.6 0-2.4M14 5.5c.8-.8.8-1.6 0-2.4"/></svg>
-        <span><b>עמדת אסאי</b> מפנקת</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v6M9 6h6"/><path d="M5 11h14v3a7 7 0 0 1-14 0z"/></svg>
-        <span><b>ספורטרפיסטית</b> מקצועית במקום</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z"/></svg>
-        <span><b>שידור חי ביוטיוב</b> של המשחקים, בחסות לזוז</span>
-      </li>
-    </ul>
+  <!-- 4. the day itself, over a photo of the club -->
+  <section class="ev-band" id="day" aria-labelledby="day-title">
+    <img src="../assets/img/gallery_bar.webp" width="1448" height="1086" loading="lazy" decoding="async"
+         alt="שחקנים ליד עמדת השתייה של המועדון, שחקנית עם מחבט על הגב מסתכלת בטלפון">
+    <div class="ev-band-copy">
+      <h2 id="day-title">מה קורה ביום עצמו</h2>
+      <p><span class="latin" dir="ltr" lang="en">DJ</span> לאורך כל האירוע, עמדת אסאי, ספורטרפיסטית מקצועית במקום, ושידור חי של המשחקים ביוטיוב בחסות לזוז.</p>
+      <p class="ev-band-note">יש גם הגרלת מחבט פאדל בין כל האורחים, פתוחה גם למי שלא משתתף בטורניר.</p>
+    </div>
   </section>
 
-  <!-- 5. the raffle, open to everyone in the house -->
-  <section class="ev-raffle" aria-labelledby="raffle-title">
-    <h2 id="raffle-title">הגרלת מחבט פאדל בין כל האורחים</h2>
-    <p>ההגרלה פתוחה גם למי שלא משתתף בטורניר. מספיק להיות כאן.</p>
-  </section>
-
-  <!-- 6. photos from the last tournament. Generated from data/tournaments.json by tools/sync_tournaments.py -->
+  <!-- 5. photos from the last tournament. Generated from data/tournaments.json by tools/sync_tournaments.py -->
   <section class="ev-section" aria-labelledby="shots-title">
-    <header class="ev-head">
-      <h2 class="section-title" id="shots-title">ככה זה נראה אצלנו</h2>
-      <p>תמונות מהטורניר האחרון במועדון.</p>
-    </header>
+    <h2 class="section-title ev-section-title" id="shots-title">מהטורניר האחרון אצלנו</h2>
     <!-- event-gallery:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->
     <div data-event-gallery>
       <ul class="ev-shots">
@@ -201,18 +157,15 @@
     <!-- event-gallery:end -->
   </section>
 
-  <!-- 7. registration -->
+  <!-- 6. registration -->
   <section class="ev-cta" id="register" aria-labelledby="register-title">
     <h2 id="register-title">מקומות נתפסים לפי סדר הרשמה</h2>
-    <p>ההרשמה אצל רוי, בוואטסאפ או בטלפון. ספרו לנו עם מי אתם משחקים ונסדר אתכם בבית המתאים.</p>
+    <p>ההרשמה אצל רוי. ספרו לנו עם מי אתם משחקים ונסדר אתכם בבית המתאים.</p>
     <div class="ev-actions">
       <a class="btn ev-wa" href="https://wa.me/972543208068?text=%D7%94%D7%99%D7%99%20%D7%A8%D7%95%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%99%D7%A8%D7%A9%D7%9D%20%D7%9C%D7%98%D7%95%D7%A8%D7%A0%D7%99%D7%A8%20%D7%A9%D7%9C%2030.10" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.9 16.3A8.6 8.6 0 1 1 7.9 19.1L3.4 20.6z"/><path d="M9.3 8.1c-.4.4-.7 1-.5 1.9.6 2.3 2.4 4.1 4.7 4.8.9.2 1.5-.1 1.9-.5l.5-.6c.2-.3.2-.7-.1-.9l-1.3-.9c-.3-.2-.6-.2-.9.1l-.5.5c-.9-.4-1.6-1.1-2-2l.5-.5c.3-.3.3-.6.1-.9l-.9-1.3c-.2-.3-.6-.3-.9-.1z"/></svg>הרשמה בוואטסאפ</a>
       <a class="btn btn-light" href="tel:0543208068">רוי, <bdi dir="ltr">054-320-8068</bdi></a>
     </div>
-    <ul class="ev-slogans">
-      <li>Play. Connect. Enjoy.</li>
-      <li>More than a game.</li>
-    </ul>
+    <p class="ev-tagline" lang="en" dir="ltr">Play. Connect. Enjoy.</p>
   </section>
 
 </main>
@@ -285,7 +238,7 @@
 
 <script>window.PADEL_BASE = "../";</script>
 <script src="../site.config.js"></script>
-<script src="../assets/js/main.js?v=20261021-event" defer></script>
+<script src="../assets/js/main.js?v=20261021-event"></script>
 <script src="../assets/js/gallery.js?v=20261021-event" defer></script>
 <script src="../assets/js/event.js?v=20261021-event" defer></script>
 </body>

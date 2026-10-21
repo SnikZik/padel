@@ -929,8 +929,8 @@ html.modal-open { overflow: hidden; }
 }
 
 /* ---------- tournament landing page (client brief, 21.10.2026) ----------
-   One page for one event: the facts first, then prizes, the day itself, the raffle, photos from the last
-   tournament, and the registration block. Same tokens as the rest of the site, own layout. */
+   Built out of the pieces the rest of the site already uses: the photo hero, the cream card under it,
+   a photo band and the green closing block. No icon grids, no numbered badges (Snir, 21.10.2026). */
 .page-event { background: var(--cream); }
 .page-event .book-strip { display: none; } /* one call to action on this page: registration */
 .ev-main { padding-top: var(--header-h); }
@@ -949,72 +949,62 @@ html.modal-open { overflow: hidden; }
   font-size: clamp(38px, 9.6vw, 68px); line-height: 1.04; letter-spacing: -.005em; direction: ltr; unicode-bidi: isolate; text-align: right;
   text-shadow: 0 1px 18px rgba(6, 30, 16, .4); }
 .ev-sub { margin: 10px 0 0; font-size: 17px; line-height: 1.5; color: rgba(255, 250, 244, .92); }
-.ev-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
-.ev-facts li { padding: 8px 14px; border-radius: 999px; font-size: 13.5px; font-weight: 600;
-  background: rgba(255, 250, 244, .14); border: 1px solid rgba(255, 250, 244, .26); }
 .ev-actions { display: grid; gap: 10px; margin-top: 22px; }
 .ev-actions .btn { width: 100%; }
 .ev-wa { background: #1F8A4C; color: #fff; gap: 9px; }
 .ev-wa:hover { background: #18703E; }
 .ev-wa svg { width: 19px; height: 19px; }
 
-.ev-section { padding: 34px var(--pad-x); }
-.ev-section + .ev-section { padding-top: 0; }
-.ev-head { text-align: center; margin-bottom: 18px; }
-.ev-head .section-title { margin: 0; }
-.ev-head p { margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: var(--green-2); }
+.ev-section { padding: 36px var(--pad-x); }
+.ev-section-title { margin: 0 0 18px; text-align: right; }
 
-.ev-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
-.ev-info li { background: var(--white); border: 1px solid var(--hairline); border-radius: 14px; padding: 14px; text-align: right; }
-.ev-info b { display: block; font-size: 11.5px; font-weight: 600; color: var(--green-2); letter-spacing: .04em; }
-.ev-info span { display: block; margin-top: 5px; font-size: 17px; font-weight: 700; color: var(--green); line-height: 1.25; }
+/* the prizes read as copy, not as a row of boxes */
+.ev-first { padding-top: 18px; border-top: 2px solid var(--mauve); }
+.ev-label { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--mauve); }
+.ev-first h3 { margin: 8px 0 0; font-size: clamp(26px, 7vw, 36px); line-height: 1.15; font-weight: 700; color: var(--green); }
+.ev-first .body { margin: 8px 0 0; }
+.ev-rest { margin: 26px 0 0; padding: 0; display: grid; gap: 18px; }
+.ev-rest > div { padding-top: 16px; border-top: 1px solid var(--hairline); }
+.ev-rest dt { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--green-2); }
+.ev-rest dd { margin: 7px 0 0; font-size: 16px; line-height: 1.55; color: var(--green); }
 
-.ev-prizes { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
-.ev-prize { position: relative; display: flex; gap: 14px; align-items: flex-start;
-  background: var(--white); border: 1px solid var(--hairline); border-radius: 16px; padding: 16px; }
-.ev-prize.is-first { border-color: var(--mauve); box-shadow: 0 0 0 1px var(--mauve); }
-.ev-place { flex: 0 0 auto; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
-  background: var(--tint); color: var(--green); font-family: var(--font-latin); font-size: 19px; font-weight: 800; }
-.ev-prize.is-first .ev-place { background: var(--mauve); }
-.ev-prize h3 { margin: 0; font-size: 17px; font-weight: 700; color: var(--green); line-height: 1.25; }
-.ev-prize p { margin: 5px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--green-2); }
-
-.ev-vibe { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.ev-vibe li { display: flex; align-items: center; gap: 12px; background: var(--white); border: 1px solid var(--hairline);
-  border-radius: 14px; padding: 13px 14px; font-size: 15.5px; font-weight: 600; color: var(--green); }
-.ev-vibe svg { flex: 0 0 auto; width: 22px; height: 22px; color: var(--green-2); }
-.ev-vibe span { font-weight: 400; color: var(--green-2); font-size: 14px; }
-
-.ev-raffle { margin: 0 var(--pad-x); padding: 20px; border-radius: 18px; background: var(--blush); color: var(--green); text-align: center; }
-.ev-raffle h2 { margin: 0; font-size: 21px; line-height: 1.25; font-weight: 700; }
-.ev-raffle p { margin: 8px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--green-2); }
+/* the day itself, written over a photo of the club */
+.ev-band { position: relative; overflow: hidden; min-height: 420px; display: flex; align-items: flex-end; color: var(--cream); background: var(--green); }
+.ev-band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.ev-band::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6, 30, 16, .35) 0%, rgba(6, 30, 16, .55) 45%, rgba(6, 30, 16, .92) 100%); }
+.ev-band-copy { position: relative; z-index: 1; padding: 0 var(--pad-x) 34px; max-width: 640px; }
+.ev-band-copy h2 { margin: 0 0 12px; font-size: clamp(24px, 6.4vw, 34px); line-height: 1.2; font-weight: 700; }
+.ev-band-copy p { margin: 0; font-size: 16.5px; line-height: 1.65; color: rgba(255, 250, 244, .92); }
+.ev-band-note { margin-top: 14px !important; padding-top: 14px; border-top: 1px solid rgba(255, 250, 244, .25); color: var(--mauve) !important; font-weight: 600; }
 
 .ev-shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
 .ev-shot { position: relative; margin: 0; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; background: var(--green); border: 0; padding: 0; cursor: pointer; }
 .ev-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.ev-shots-more { display: block; margin: 12px auto 0; }
+.ev-shots-more { display: block; margin: 14px auto 0; }
 
-.ev-cta { margin: 34px 0 0; padding: 34px var(--pad-x) calc(34px + env(safe-area-inset-bottom)); background: var(--green); color: var(--cream); text-align: center; }
+.ev-cta { margin: 36px 0 0; padding: 36px var(--pad-x) calc(36px + env(safe-area-inset-bottom)); background: var(--green); color: var(--cream); text-align: center; }
 .ev-cta h2 { margin: 0; font-size: 25px; line-height: 1.2; font-weight: 700; }
 .ev-cta p { margin: 10px auto 0; max-width: 520px; font-size: 15.5px; line-height: 1.6; color: rgba(255, 250, 244, .88); }
 .ev-cta .ev-actions { max-width: 520px; margin-inline: auto; }
-.ev-slogans { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; margin: 22px 0 0; padding: 0; list-style: none;
-  font-family: var(--font-latin); font-size: 11.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(255, 250, 244, .62); direction: ltr; }
+.ev-tagline { margin: 22px 0 0 !important; font-family: var(--font-latin); font-size: 11px; font-weight: 500; letter-spacing: .3em;
+  color: rgba(255, 250, 244, .6) !important; direction: ltr; }
 
+@media (max-width: 767px) {
+  /* the cream card sits on the hero's bottom edge, as it does on the home page */
+  .page-event .ev-hero-inner { padding-bottom: calc(var(--book-card-h) + 30px); }
+}
 @media (min-width: 768px) {
   .ev-hero { min-height: 620px; }
   .ev-hero-inner { padding: 60px var(--pad-x) 48px; }
   .ev-sub { font-size: 19px; }
   .ev-actions { grid-template-columns: repeat(2, minmax(0, 260px)); }
-  .ev-section { padding: 48px var(--pad-x); }
-  .ev-head { margin-bottom: 24px; }
-  .ev-info { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-  .ev-prizes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .ev-prize { flex-direction: column; }
-  .ev-vibe { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ev-raffle { margin-inline: var(--pad-x); padding: 26px; }
-  .ev-raffle h2 { font-size: 25px; }
+  .ev-section { padding: 56px var(--pad-x); max-width: 1400px; margin-inline: auto; }
+  .ev-section-title { margin-bottom: 24px; }
+  .ev-rest { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
+  .ev-band { min-height: 520px; }
+  .ev-band-copy { padding: 0 var(--pad-x) 48px; margin-inline: auto; max-width: 1400px; width: 100%; }
+  .ev-band-copy p { max-width: 640px; }
   .ev-shots { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
   .ev-cta h2 { font-size: 30px; }
 }
@@ -1025,9 +1015,9 @@ html.modal-open { overflow: hidden; }
   .ev-hero-media::after { background: linear-gradient(270deg, rgba(6, 30, 16, .25) 0%, rgba(6, 30, 16, .1) 60%, rgba(6, 30, 16, .5) 100%); }
   .ev-hero-inner { padding: 0 50% 0 var(--pad-x); max-width: 1400px; margin-inline: auto; }
   .ev-title { font-size: clamp(54px, 4.6vw, 76px); }
-  .ev-section { max-width: 1400px; margin-inline: auto; }
-  .ev-raffle { max-width: 1400px; margin-inline: auto; }
-  .ev-cta { padding: 54px var(--pad-x); }
+  .ev-first { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; align-items: start; }
+  .ev-first .ev-label { padding-top: 10px; }
+  .ev-cta { padding: 60px var(--pad-x); }
 }
 
 /* ---------- footer (Snir's footer DEV package, 17.9.2026: assets/footer-reference-desktop.png) ----------
