@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500..700&family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
 <link rel="preload" as="image" href="assets/img/hero.webp?v=7">
-<link rel="stylesheet" href="assets/css/style.css?v=20261018-zz">
+<link rel="stylesheet" href="assets/css/style.css?v=20261021-event">
 <script type="application/ld+json" id="schema-business">
 {
   "@context": "https://schema.org",
@@ -112,15 +112,15 @@
   <!-- 2b. Events: the next event in the club, under the first section (Snir, 5.10.2026).
           Generated from data/tournaments.json by tools/sync_tournaments.py -->
   <!-- events-banner:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->
-  <aside class="events-banner" data-date="" aria-label="אירועים במועדון">
-    <a class="events-banner-link" href="#tournaments">
+  <aside class="events-banner" data-date="2026-10-30" aria-label="אירועים במועדון">
+    <a class="events-banner-link" href="tournament/">
       <span class="events-banner-icon" aria-hidden="true"><svg class="events-banner-glyph" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg></span>
       <span class="events-banner-copy">
-        <span class="events-banner-label">הטורניר האחרון</span>
-        <span class="events-banner-title">טורניר <span class="latin" dir="ltr" lang="en">ILPA</span></span>
+        <span class="events-banner-label">האירוע הקרוב</span>
+        <span class="events-banner-title"><span class="latin" dir="ltr" lang="en">PADEL TOURNAMENT</span></span>
       </span>
-      <time class="events-banner-time" datetime="2026-10-09">9 באוקטובר</time>
-      <span class="events-banner-cta">לכל האירועים</span>
+      <time class="events-banner-time" datetime="2026-10-30">30 באוקטובר</time>
+      <span class="events-banner-cta">לפרטים והרשמה</span>
     </a>
   </aside>
   <!-- events-banner:end -->
@@ -197,6 +197,7 @@
       <div class="tournaments-filters" role="group" aria-label="סינון טורנירים">
         <button class="tournaments-chip" type="button" data-filter="all" aria-pressed="true">הכל</button>
         <button class="tournaments-chip" type="button" data-filter="upcoming" aria-pressed="false">קרוב</button>
+        <button class="tournaments-chip" type="button" data-filter="level:3.0 עד 3.5" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">3.0 עד 3.5</span></button>
         <button class="tournaments-chip" type="button" data-filter="level:A" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">A</span></button>
         <button class="tournaments-chip" type="button" data-filter="level:C" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">C</span></button>
         <button class="tournaments-chip" type="button" data-filter="level:D" aria-pressed="false">רמה <span class="latin" dir="ltr" lang="en">D</span></button>
@@ -265,6 +266,25 @@
               <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg><span>פרסים למשתתפים</span></li>
             </ul>
             <a class="btn tournament-cta" aria-disabled="true">לפרטים והרשמה</a>
+          </div>
+        </article>
+      </li>
+      <li class="tournament-card" data-level="3.0 עד 3.5" data-date="2026-10-30">
+        <article aria-labelledby="t-padel-tournament-2026-10-30">
+          <div class="tournament-media" style="--pos: 50% 40%; --pos-phone: 50% 40%">
+            <img src="assets/tournaments/card-2026-10-30.webp" srcset="assets/tournaments/card-2026-10-30-600.webp 600w, assets/tournaments/card-2026-10-30.webp 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
+                 width="1000" height="1000" alt="שחקן פאדל חובט בקפיצה בטורניר במועדון פאדל קלאב אזור" loading="lazy" decoding="async">
+            <p class="tournament-date"><time datetime="2026-10-30" dir="ltr"><b>30/10</b><span>2026</span></time></p>
+            <p class="tournament-level"><span>רמה <span class="latin" dir="ltr" lang="en">3.0 עד 3.5</span></span><span class="tournament-level-letter" aria-hidden="true">3.0 עד 3.5</span></p>
+          </div>
+          <div class="tournament-body">
+            <div class="tournament-head">
+              <h3 class="tournament-title" id="t-padel-tournament-2026-10-30"><span class="latin" dir="ltr" lang="en">PADEL TOURNAMENT</span></h3>
+            </div>
+            <ul class="tournament-details">
+              <li><svg class="tournament-icon" aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9h22v15a11 11 0 0 1-22 0V9z"/><path d="M21 14h-8v4a9 9 0 0 0 9 9M43 14h8v4a9 9 0 0 1-9 9"/><path d="M32 35v9M25 55c0-6 3-11 7-11s7 5 7 11M22 55h20"/></svg><span>לילה במלון, אימון ואביזרי פאדל</span></li>
+            </ul>
+            <a class="btn tournament-cta" href="tournament/">לפרטים והרשמה</a>
           </div>
         </article>
       </li>
@@ -349,6 +369,33 @@
     "image": [
       "assets/tournaments/card-ilpa.webp"
     ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    "name": "PADEL TOURNAMENT",
+    "startDate": "2026-10-30",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "sport": "Padel",
+    "location": {
+      "@type": "Place",
+      "name": "The Padel Club Azor",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ז׳בוטינסקי 28",
+        "addressLocality": "אזור",
+        "addressCountry": "IL"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "The Padel Club Azor"
+    },
+    "image": [
+      "assets/tournaments/card-2026-10-30.webp"
+    ],
+    "url": "tournament/"
   }
 ]
     </script>
@@ -495,7 +542,7 @@
 <script src="assets/js/products/repository.js?v=20261018-zz" defer></script>
 <script src="assets/js/products/card.js?v=20261018-zz" defer></script>
 <script src="assets/js/products/modal.js?v=20261018-zz" defer></script>
-<script src="assets/js/main.js?v=20261005-steady" defer></script>
+<script src="assets/js/main.js?v=20261021-event" defer></script>
 <script src="assets/js/shop.js?v=20261018-zz" defer></script>
 <script src="assets/js/gallery.js?v=20261014-gallery" defer></script>
 <script src="assets/js/tournaments.js?v=20261014-gallery" defer></script>

@@ -1,9 +1,11 @@
 /* Site behaviour. Classic script (runs from disk and from a server alike); loads after
-   site.config.js, products/repository.js and products/card.js. */
+   site.config.js, and after products/repository.js and products/card.js on the pages that show products.
+   A page without a product grid (the tournament landing page) does not load those, so the shop pieces
+   are read defensively: the block that uses them only runs when the grid is there. */
 (function () {
 "use strict";
 
-const { ProductRepository, InlineJsonSource, FetchJsonSource, InventoryApiSource, renderProductCard } = window.PadelShop;
+const { ProductRepository, InlineJsonSource, FetchJsonSource, InventoryApiSource, renderProductCard } = window.PadelShop || {};
 const config = window.PADEL_CONFIG || {};
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const desktopMedia = window.matchMedia("(min-width: 768px)");

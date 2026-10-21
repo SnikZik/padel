@@ -19,6 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "index.html"
+EVENT_PAGE = ROOT / "tournament/index.html"   # the landing page shows the same photos, one level down
 ADDRESS = {"@type": "PostalAddress", "streetAddress": "ז׳בוטינסקי 28", "addressLocality": "אזור", "addressCountry": "IL"}
 
 def latin(text):
@@ -68,7 +69,10 @@ def card(t):
     img = t["image"]
     title_id = f't-{t["id"]}'
     if t.get("registrationUrl"):
-        cta = f'<a class="btn tournament-cta" href="{html.escape(t["registrationUrl"])}" target="_blank" rel="noopener">לפרטים והרשמה</a>'
+        url = t["registrationUrl"]
+        # a page of our own opens in the same tab; anything on another site opens in a new one
+        away = ' target="_blank" rel="noopener"' if url.startswith("http") else ""
+        cta = f'<a class="btn tournament-cta" href="{html.escape(url)}"{away}>לפרטים והרשמה</a>'
     else:
         cta = '<a class="btn tournament-cta" aria-disabled="true">לפרטים והרשמה</a>'
     style = f'--pos: {img.get("position", "50% 50%")}; --pos-phone: {img.get("positionPhone", img.get("position", "50% 50%"))}'
@@ -76,7 +80,7 @@ def card(t):
         <article aria-labelledby="{title_id}">
           <div class="tournament-media" style="{style}">
             <img src="{img["src"]}" srcset="{img["small"]} 600w, {img["src"]} 1000w" sizes="(min-width: 1024px) 30vw, 50vw"
-                 width="1000" height="1000" alt="{html.escape(img["alt"])}" loading="lazy" decoding="async">
+                 width="{img.get("width", 1000)}" height="{img.get("height", 1000)}" alt="{html.escape(img["alt"])}" loading="lazy" decoding="async">
             <p class="tournament-date"><time datetime="{t["date"]}" dir="ltr"><b>{d:%d/%m}</b><span>{d:%Y}</span></time></p>
             <p class="tournament-level"><span>רמה {latin(t["level"])}</span><span class="tournament-level-letter" aria-hidden="true">{html.escape(t["level"])}</span></p>
           </div>
@@ -154,18 +158,43 @@ else:
     label, title, when, stamp = "אירועים במועדון", "טורנירים במועדון", "", ""
 
 banner = "<!-- events-banner:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->\n"
+# an upcoming event with a page of its own gets the click; otherwise the banner leads to the section
+target = shown.get("registrationUrl") if (nxt and shown and shown.get("registrationUrl")) else "#tournaments"
+banner_cta = "לפרטים והרשמה" if target != "#tournaments" else "לכל האירועים"
 banner += f'''  <aside class="events-banner" data-date="{stamp}" aria-label="אירועים במועדון">
-    <a class="events-banner-link" href="#tournaments">
+    <a class="events-banner-link" href="{target}">
       <span class="events-banner-icon" aria-hidden="true">{trophy}</span>
       <span class="events-banner-copy">
         <span class="events-banner-label">{label}</span>
         <span class="events-banner-title">{title}</span>
       </span>
       {when}
-      <span class="events-banner-cta">לכל האירועים</span>
+      <span class="events-banner-cta">{banner_cta}</span>
     </a>
   </aside>''' + "\n"
 banner += "  <!-- events-banner:end -->"
+
+# the landing page's photo strip: the newest tournament that has photos, six thumbs and the whole set as JSON
+shots = next((t for t in reversed(items) if t.get("gallery")), None)
+if EVENT_PAGE.exists() and shots:
+    photos = shots["gallery"]
+    thumbs = "\n".join(
+        f'''        <li><button class="ev-shot" type="button" data-index="{i}" aria-label="פתיחת גלריית התמונות">
+          <picture><source type="image/webp" srcset="../{g["webp"]}"><img src="../{g["src"]}" width="{g["width"]}" height="{g["height"]}" alt="{html.escape(g["alt"])}" loading="lazy" decoding="async"></picture>
+        </button></li>''' for i, g in enumerate(photos[:6]))
+    payload = json.dumps(photos, ensure_ascii=False).replace("<", "\\u003c")
+    strip = "<!-- event-gallery:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->\n"
+    strip += f'''    <div data-event-gallery>
+      <ul class="ev-shots">
+{thumbs}
+      </ul>
+      <button class="btn btn-ghost-green ev-shots-more" type="button">לכל התמונות</button>
+      <script type="application/json">{payload}</script>
+    </div>''' + "\n"
+    strip += "    <!-- event-gallery:end -->"
+    event_page = replace_block(EVENT_PAGE.read_text(encoding="utf-8"), "event-gallery", strip)
+    EVENT_PAGE.write_text(event_page, encoding="utf-8")
+    print(f"tournament/index.html: {len(photos)} photos in the strip")
 
 page = PAGE.read_text(encoding="utf-8")
 page = replace_block(page, "events-banner", banner)

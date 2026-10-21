@@ -191,6 +191,29 @@
       },
       "registrationUrl": null,
       "status": "scheduled"
+    },
+    {
+      "id": "padel-tournament-2026-10-30",
+      "date": "2026-10-30",
+      "title": "{PADEL TOURNAMENT}",
+      "organizer": {
+        "type": "Organization",
+        "name": "The Padel Club Azor"
+      },
+      "level": "3.0 עד 3.5",
+      "participants": null,
+      "pairs": null,
+      "prizes": "לילה במלון, אימון ואביזרי פאדל",
+      "crowd": null,
+      "image": {
+        "src": "assets/tournaments/card-2026-10-30.webp",
+        "small": "assets/tournaments/card-2026-10-30-600.webp",
+        "alt": "שחקן פאדל חובט בקפיצה בטורניר במועדון פאדל קלאב אזור",
+        "position": "50% 40%",
+        "positionPhone": "50% 40%"
+      },
+      "registrationUrl": "tournament/",
+      "status": "scheduled"
     }
   ]
 }
