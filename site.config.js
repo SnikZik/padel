@@ -2,7 +2,7 @@
 // Everything marked TODO was not supplied in the handoff. Leave it null: the UI hides
 // what it cannot show instead of guessing. Fill a value and the page picks it up on reload.
 window.PADEL_CONFIG = {
-  siteUrl: null, // TODO production URL (used for canonical, og:image and schema once the domain exists)
+  siteUrl: "https://padel-plus.co.il",
 
   // Booking. 07_copy/content-he.json gives the Lazuz homepage; replace with the club's direct link when supplied.
   bookingUrl: "https://www.lazuz.co.il/",
