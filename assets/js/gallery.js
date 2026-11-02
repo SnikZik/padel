@@ -161,6 +161,8 @@
     show(Math.min(Math.max(opts.index || 0, 0), items.length - 1));
     history.pushState({ padelGallery: true }, "");
     pushed = true;
+    // measurement listens for this (assets/js/track.js)
+    global.dispatchEvent(new CustomEvent("padel:gallery-open", { detail: { title: opts.title || "" } }));
   }
 
   global.PadelGallery = Object.assign(global.PadelGallery || {}, { openGallery });

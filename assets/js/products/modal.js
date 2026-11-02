@@ -96,6 +96,8 @@
     document.documentElement.classList.add("modal-open");
     history.pushState({ padelProduct: product.id }, "");
     pushed = true;
+    // measurement listens for this (assets/js/track.js)
+    global.dispatchEvent(new CustomEvent("padel:product-view", { detail: { id: product.id, name: product.name } }));
   }
 
   global.PadelShop = Object.assign(global.PadelShop || {}, { openProductModal });
