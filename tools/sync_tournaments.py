@@ -159,8 +159,13 @@ else:
 
 banner = "<!-- events-banner:start / generated from data/tournaments.json by tools/sync_tournaments.py, do not edit by hand -->\n"
 # an upcoming event with a page of its own gets the click; otherwise the banner leads to the section
-target = shown.get("registrationUrl") if (nxt and shown and shown.get("registrationUrl")) else "#tournaments"
-banner_cta = "לפרטים והרשמה" if target != "#tournaments" else "לכל האירועים"
+target = shown.get("registrationUrl") if (shown and shown.get("registrationUrl")) else "#tournaments"
+if target == "#tournaments":
+    banner_cta = "לכל האירועים"
+elif nxt:
+    banner_cta = "לפרטים והרשמה"
+else:
+    banner_cta = "לסיכום ולתמונות"      # the event has been played, the page is its recap
 banner += f'''  <aside class="events-banner" data-date="{stamp}" aria-label="אירועים במועדון">
     <a class="events-banner-link" href="{target}">
       <span class="events-banner-icon" aria-hidden="true">{trophy}</span>

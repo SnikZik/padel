@@ -14,7 +14,7 @@ window.PADEL_CONFIG = {
   // the container and nothing else is injected, so nothing is counted twice. Without it, the two IDs below
   // load on their own.
   gtmId: null,          // TODO "GTM-XXXXXXX"
-  ga4Id: null,          // TODO "G-XXXXXXXXXX", only used when there is no container
+  ga4Id: "G-PZTPXF8FW8",   // GA4 property padel-plus.co.il (3.11.2026), stream 16259485193
   metaPixelId: "1153509947174610",   // the club's Meta pixel (Snir, 3.11.2026), loads directly while there is no container
 
   // Navigation to ז׳בוטינסקי 28, אזור (address only, no coordinates were supplied).

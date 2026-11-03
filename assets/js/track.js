@@ -105,19 +105,30 @@
       cta_url: link.getAttribute("href") || ""
     });
 
-    // when the pixel runs on its own, give it the standard names it expects
+    // when the tags run on their own, give each one the names it expects
     if (!config.gtmId && global.fbq) {
       if (kind === "registration") global.fbq("track", "Lead");
       else if (kind === "whatsapp" || kind === "phone") global.fbq("track", "Contact");
       else if (kind === "booking") global.fbq("track", "Schedule");
     }
+    if (!config.gtmId && global.gtag) {
+      var GA4 = { registration: "generate_lead", whatsapp: "contact", phone: "contact",
+                  booking: "booking_click", waze: "directions_click", social: "social_click" };
+      global.gtag("event", GA4[kind] || "cta_click", {
+        cta: kind, cta_location: location, link_url: link.getAttribute("href") || ""
+      });
+    }
   }, true);
 
   /* ---------- two softer signals, useful for remarketing ---------- */
   global.addEventListener("padel:product-view", function (e) {
-    push({ event: "product_view", product_id: (e.detail && e.detail.id) || "", product_name: (e.detail && e.detail.name) || "" });
+    var detail = { product_id: (e.detail && e.detail.id) || "", product_name: (e.detail && e.detail.name) || "" };
+    push(Object.assign({ event: "product_view" }, detail));
+    if (!config.gtmId && global.gtag) global.gtag("event", "product_view", detail);
   });
   global.addEventListener("padel:gallery-open", function (e) {
-    push({ event: "gallery_open", gallery: (e.detail && e.detail.title) || "" });
+    var gallery = { gallery: (e.detail && e.detail.title) || "" };
+    push(Object.assign({ event: "gallery_open" }, gallery));
+    if (!config.gtmId && global.gtag) global.gtag("event", "gallery_open", gallery);
   });
 })(window, document);

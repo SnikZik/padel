@@ -75,6 +75,8 @@
       const last = cards.map((c) => c.dataset.date).filter((d) => d < today).sort().pop();
       const played = last ? cards.find((c) => c.dataset.date === last) : null;
       banner.dataset.date = "";
+      const cta = banner.querySelector(".events-banner-cta");
+      if (cta && played) cta.textContent = "לסיכום ולתמונות";
       if (label) label.textContent = played ? "הטורניר האחרון" : "אירועים במועדון";
       if (title) {
         if (played) title.innerHTML = played.querySelector(".tournament-title").innerHTML;
