@@ -22,6 +22,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 LONG_SIDE = 1280
 NAME = "משחק-פאדל-אזור"        # the file name itself says what the picture is (Snir, 14.10.2026)
+NAMES = {"2026-10-30": "טורניר-פאדל-אזור"}   # a set can carry its own name
 DEFAULT_ALT = "משחק פאדל בטורניר במועדון פאדל קלאב אזור"
 
 def dhash(path, size=8):
@@ -62,7 +63,7 @@ def main(date):
         scale = LONG_SIDE / max(w, h)
         if scale < 1:
             im = im.resize((round(w * scale), round(h * scale)), Image.LANCZOS)
-        stem = f"{NAME}-{i:02d}"
+        stem = f"{NAMES.get(date, NAME)}-{i:02d}"
         im.save(out / f"{stem}.jpg", quality=84, optimize=True, progressive=True)
         im.save(out / f"{stem}.webp", quality=80, method=6)
         rel = f"assets/tournaments/gallery/{date}/{stem}"

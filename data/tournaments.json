@@ -208,12 +208,70 @@
       "image": {
         "src": "assets/tournaments/card-2026-10-30.webp",
         "small": "assets/tournaments/card-2026-10-30-600.webp",
-        "alt": "שחקן פאדל חובט בקפיצה בטורניר במועדון פאדל קלאב אזור",
+        "alt": "טקס הפרסים של טורניר 30 באוקטובר, זוכים עם גביעים ומחבטים מול קיר המיתוג של המועדון",
         "position": "50% 40%",
         "positionPhone": "50% 40%"
       },
       "registrationUrl": "tournament/",
-      "status": "scheduled"
+      "status": "scheduled",
+      "gallery": [
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-01.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-01.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "קבוצת משתתפים עם מחבטים מול קיר המיתוג בטורניר 30 באוקטובר במועדון פאדל קלאב אזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-02.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-02.webp",
+          "width": 1280,
+          "height": 720,
+          "alt": "טקס הפרסים של הטורניר, זוכים עם גביעים ומחבטים מול קיר המיתוג"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-03.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-03.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "מנחה הטורניר עם מיקרופון ומחבט הפרס למקום השני"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-04.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-04.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "מנחה הטורניר מכריז על הזוכים, מחבט הפרס בידו"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-05.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-05.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "זוכי הטורניר עם מחבטי הפרס בטקס הסיום במועדון באזור"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-06.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-06.webp",
+          "width": 720,
+          "height": 1280,
+          "alt": "הזוכים במקום הראשון עם מחבט הפרס בקופסה, בטקס של טורניר 30 באוקטובר"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-07.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-07.webp",
+          "width": 1280,
+          "height": 720,
+          "alt": "שלושת הזוכים עם הפרסים מול קיר המיתוג של המועדון"
+        },
+        {
+          "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-08.jpg",
+          "webp": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-08.webp",
+          "width": 1280,
+          "height": 720,
+          "alt": "משתתפי הגמר עם מחבטי הפרס בטקס הסיום של הטורניר במועדון פאדל קלאב אזור"
+        }
+      ]
     }
   ]
 }
