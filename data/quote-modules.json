@@ -1,0 +1,258 @@
+{
+  "schema": "padel-azor.quote-modules.v1",
+  "note": "The building blocks of a quote. Every line the client sees comes from here: a title, a sentence that says what they get, a unit and a price. Prices are null until the club sets them; the builder lets you type a price per quote and nothing is ever guessed. Titles and sentences are editable inside a quote too, so a module is a starting point and not a cage.",
+  "currency": "₪",
+  "vatPercent": 18,
+  "validityDays": 14,
+  "intro": "תודה על הפנייה. הנה ההצעה לאירוע שלכם במתחם The Padel Club Azor, ז׳בוטינסקי 28 אזור. כל סעיף בהצעה הוא מודולרי, אפשר להוסיף או להוריד ממנו לפני שסוגרים.",
+  "terms": [
+    "ההצעה בתוקף למשך {validity} יום מתאריך ההצעה.",
+    "התאריך משוריין לאחר אישור ההצעה.",
+    "המחירים אינם כוללים מע\"מ.",
+    "שינוי במספר המשתתפים עד 7 ימים לפני האירוע."
+  ],
+  "categories": [
+    {
+      "id": "courts",
+      "label": "מגרשים וזמן",
+      "modules": [
+        {
+          "id": "court-hour",
+          "title": "מגרש פאדל לשעה",
+          "desc": "מגרש מוצלל אחד לשעה, כולל כדורים.",
+          "unit": "שעת מגרש",
+          "qty": 4,
+          "price": null
+        },
+        {
+          "id": "venue-exclusive",
+          "title": "סגירת המתחם",
+          "desc": "כל ארבעת המגרשים ואזור הישיבה שמורים לקבוצה שלכם, בלי לקוחות אחרים במקום.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "extra-hour",
+          "title": "שעה נוספת",
+          "desc": "הארכת האירוע מעבר לשעות שנקבעו.",
+          "unit": "שעה",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "coaching",
+      "label": "הדרכה ומשחק",
+      "modules": [
+        {
+          "id": "coach",
+          "title": "מדריך פאדל",
+          "desc": "מאמן מהמועדון שמעביר את הכללים, מחלק לקבוצות ומלווה את המשחקים.",
+          "unit": "מדריך לשעה",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "tournament-format",
+          "title": "ניהול טורניר",
+          "desc": "חלוקה לבתים, לוח משחקים, שיפוט וניהול הזמנים לאורך האירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "ceremony",
+          "title": "טקס סיום",
+          "desc": "הכרזה על המנצחים וחלוקת הפרסים בסוף האירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "gear",
+      "label": "ציוד",
+      "modules": [
+        {
+          "id": "racket-rental",
+          "title": "השכרת מחבטים",
+          "desc": "מחבט adidas לכל משתתף לאורך האירוע.",
+          "unit": "משתתף",
+          "qty": 20,
+          "price": null
+        },
+        {
+          "id": "balls",
+          "title": "כדורים",
+          "desc": "כדורי משחק חדשים לכל המגרשים.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "prizes",
+          "title": "פרסים למנצחים",
+          "desc": "אביזרי פאדל מהחנות שבמתחם לזוכים.",
+          "unit": "סט פרסים",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "branding",
+      "label": "מיתוג",
+      "modules": [
+        {
+          "id": "brand-flags",
+          "title": "דגלים ממותגים",
+          "desc": "דגלים ממותגים מפוזרים לאורך כל המתחם, מהכניסה ועד המגרשים.",
+          "unit": "דגל",
+          "qty": 8,
+          "price": null
+        },
+        {
+          "id": "brand-posters",
+          "title": "פוסטרים של חסות",
+          "desc": "באנרים ממותגים לאורך גדרות המגרש, באותו מקום שבו תלויים פוסטרי החסות.",
+          "unit": "פוסטר",
+          "qty": 4,
+          "price": null
+        },
+        {
+          "id": "brand-wall",
+          "title": "קיר מיתוג לצילומים",
+          "desc": "קיר עם הלוגו שלכם לצילומי קבוצה וטקס.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "brand-net",
+          "title": "מיתוג על הרשתות",
+          "desc": "מדבקות או באנרים ממותגים על רשתות המגרש.",
+          "unit": "מגרש",
+          "qty": 4,
+          "price": null
+        },
+        {
+          "id": "brand-screen",
+          "title": "לוגו בשידור",
+          "desc": "הלוגו שלכם בשידור החי של המשחקים.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "brand-cups",
+          "title": "כוסות ממותגות",
+          "desc": "כוסות עם הלוגו שלכם בקפיטריה ובעמדות השתייה לאורך האירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "label": "אוכל ושתייה",
+      "modules": [
+        {
+          "id": "light-refreshments",
+          "title": "כיבוד קל",
+          "desc": "פינת כיבוד ושתייה קרה לאורך האירוע.",
+          "unit": "משתתף",
+          "qty": 20,
+          "price": null
+        },
+        {
+          "id": "acai",
+          "title": "עמדת אסאי",
+          "desc": "עמדת אסאי במתחם לאורך האירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "bar",
+          "title": "עמדת בר",
+          "desc": "בר שתייה לאירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "atmosphere",
+      "label": "אווירה ותיעוד",
+      "modules": [
+        {
+          "id": "dj",
+          "title": "DJ",
+          "desc": "מוזיקה לאורך כל האירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "sound",
+          "title": "הגברה",
+          "desc": "מערכת הגברה למגרשים ולטקס.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "photographer",
+          "title": "צלם",
+          "desc": "צילום סטילס של האירוע ומסירת התמונות אחריו.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "live-stream",
+          "title": "שידור חי",
+          "desc": "שידור המשחקים בשידור חי.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "label": "תוספות",
+      "modules": [
+        {
+          "id": "therapist",
+          "title": "ספורטרפיסטית",
+          "desc": "ספורטרפיסטית במקום לאורך האירוע.",
+          "unit": "אירוע",
+          "qty": 1,
+          "price": null
+        },
+        {
+          "id": "shirts",
+          "title": "חולצות לקבוצות",
+          "desc": "חולצות משחק לחלוקה למשתתפים.",
+          "unit": "חולצה",
+          "qty": 20,
+          "price": null
+        },
+        {
+          "id": "custom",
+          "title": "סעיף חופשי",
+          "desc": "",
+          "unit": "יחידה",
+          "qty": 1,
+          "price": null
+        }
+      ]
+    }
+  ]
+}

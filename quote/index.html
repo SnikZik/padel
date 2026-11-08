@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>בניית הצעת מחיר לאירוע | The Padel Club Azor</title>
+<meta name="theme-color" content="#0C4826">
+<link rel="icon" href="../assets/brand/logo-160.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261108-quote">
+</head>
+<body class="page-quote">
+
+<!-- the builder, screen only -->
+<div class="qb">
+  <header class="qb-top">
+    <img class="qb-logo" src="../assets/brand/logo-160.png" srcset="../assets/brand/logo-160.png 1x, ../assets/brand/logo-320.png 2x" width="54" height="54" alt="The Padel Club">
+    <div>
+      <h1>בניית הצעת מחיר לאירוע</h1>
+      <p>מסך פנימי. כל סעיף מודולרי, אפשר לשנות כותרת, תיאור, כמות ומחיר. ההצעה נשמרת בדפדפן הזה בלבד.</p>
+    </div>
+    <div class="qb-actions">
+      <button class="btn btn-primary" id="qb-print" type="button">הדפסה או PDF</button>
+      <button class="btn btn-light" id="qb-copy" type="button">העתקת טקסט</button>
+      <button class="btn btn-light" id="qb-whatsapp" type="button">שליחה בוואטסאפ</button>
+      <button class="btn btn-light qb-clear" id="qb-clear" type="button">הצעה חדשה</button>
+    </div>
+  </header>
+
+  <section class="qb-card">
+    <h2>פרטי ההצעה</h2>
+    <div class="qb-grid">
+      <label class="qb-field"><span>כותרת ההצעה</span><input id="qb-title" type="text" placeholder="הצעת מחיר ליום גיבוש"></label>
+      <label class="qb-field"><span>לכבוד</span><input id="qb-client" type="text" placeholder="שם החברה או האדם"></label>
+      <label class="qb-field"><span>תאריך האירוע</span><input id="qb-eventDate" type="date"></label>
+      <label class="qb-field"><span>שעות</span><input id="qb-hours" type="text" placeholder="17:00 עד 21:00"></label>
+      <label class="qb-field"><span>משתתפים</span><input id="qb-guests" type="number" min="0" placeholder="24"></label>
+      <label class="qb-field"><span>תאריך ההצעה</span><input id="qb-quoteDate" type="date"></label>
+      <label class="qb-field"><span>הנחה בשקלים</span><input id="qb-discount" type="number" min="0" placeholder="0"></label>
+      <label class="qb-field qb-check"><input id="qb-withVat" type="checkbox"><span>המחירים כוללים מע״מ</span></label>
+    </div>
+    <label class="qb-field qb-wide"><span>פתיח</span><textarea id="qb-intro" rows="3"></textarea></label>
+  </section>
+
+  <section class="qb-card">
+    <h2>רכיבים</h2>
+    <p class="qb-hint">לחיצה מוסיפה את הרכיב להצעה. אפשר להוסיף את אותו רכיב כמה פעמים.</p>
+    <div id="qb-catalogue"></div>
+  </section>
+
+  <section class="qb-card">
+    <h2>הסעיפים בהצעה</h2>
+    <div id="qb-lines"></div>
+    <p class="qb-warn" id="qb-warn" hidden></p>
+    <div class="qb-totals" id="qb-totals"></div>
+  </section>
+
+  <section class="qb-card">
+    <h2>תנאים</h2>
+    <label class="qb-field qb-wide"><span>שורה לכל תנאי</span><textarea id="qb-terms" rows="4"></textarea></label>
+  </section>
+
+  <p class="qb-note">התצוגה למטה היא מה שהלקוח מקבל. "הדפסה או PDF" מדפיסה רק אותה.</p>
+</div>
+
+<!-- what the client gets, this is what prints -->
+<article class="qp" id="qp">
+  <header class="qp-head">
+    <img class="qp-logo" src="../assets/brand/logo-320.png" width="92" height="92" alt="The Padel Club Azor">
+    <div class="qp-head-text">
+      <h1 id="qp-title">הצעת מחיר לאירוע</h1>
+      <p class="qp-venue">The Padel Club Azor · ז׳בוטינסקי 28, אזור · <bdi dir="ltr">052-7016953</bdi></p>
+    </div>
+  </header>
+
+  <div class="qp-meta">
+    <p id="qp-client"></p>
+    <p id="qp-facts"></p>
+    <p id="qp-date"></p>
+  </div>
+
+  <p class="qp-intro" id="qp-intro"></p>
+
+  <table class="qp-table">
+    <thead>
+      <tr><th>מה כלול</th><th>כמות</th><th>מחיר</th></tr>
+    </thead>
+    <tbody id="qp-lines"></tbody>
+  </table>
+
+  <div class="qp-sums" id="qp-sums"></div>
+
+  <footer class="qp-foot">
+    <ul id="qp-terms"></ul>
+    <p class="qp-validity" id="qp-validity"></p>
+    <p class="qp-sign">The Padel Club Azor · padel-plus.co.il</p>
+  </footer>
+</article>
+
+<script>window.PADEL_BASE = "../";</script>
+<script src="../assets/js/quote.js?v=20261108-quote" defer></script>
+</body>
+</html>
