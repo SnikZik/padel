@@ -334,6 +334,7 @@
     out.push("סך הכול " + money(t.total) + " " + c.currency + (m.withVat ? " כולל מע\"מ" : " לפני מע\"מ"));
     out.push("");
     (m.terms || []).forEach(function (line) { out.push(line); });
+    if (m.outro) { out.push(""); out.push(m.outro); }
     return out.join("\n");
   }
 
@@ -378,30 +379,46 @@
 
     var media = c.media || {};
     var base = global.PADEL_BASE || "";
-    var hero = doc.getElementById("qp-hero");
-    hero.hidden = !(m.showHero && media.hero);
-    if (!hero.hidden) {
-      var heroImg = doc.getElementById("qp-hero-img");
-      heroImg.src = base + media.hero;
-      heroImg.alt = "מתחם The Padel Club Azor";
+    var capOf = {};
+    (media.photos || []).forEach(function (ph) { capOf[ph.src] = ph.caption || ""; });
+
+    // page 1
+    var cover = doc.getElementById("qp-cover");
+    var coverSrc = m.coverSrc || media.cover;
+    cover.hidden = !(m.showCover && coverSrc);
+    if (!cover.hidden) {
+      var cimg = doc.getElementById("qp-cover-img");
+      cimg.src = base + coverSrc;
+      cimg.alt = capOf[coverSrc] || "מתחם The Padel Club Azor";
+      doc.getElementById("qp-cover-title").textContent = m.title || "הצעת מחיר לאירוע";
+      doc.getElementById("qp-cover-client").textContent = m.client ? "לכבוד " + m.client : "";
+      doc.getElementById("qp-cover-facts").textContent = facts.join(" · ");
+      doc.getElementById("qp-cover-intro").textContent = m.intro || "";
     }
-    var photos = doc.getElementById("qp-photos");
-    photos.replaceChildren();
-    photos.hidden = !(m.showPhotos && (media.photos || []).length);
-    if (!photos.hidden) {
-      media.photos.forEach(function (ph) {
-        var li = el("li");
+
+    // page 3
+    var closing = doc.getElementById("qp-closing");
+    var picks = (m.collage || []).filter(function (src) { return capOf[src] !== undefined; });
+    closing.hidden = !(m.showClosing && picks.length);
+    if (!closing.hidden) {
+      doc.getElementById("qp-closing-title").textContent = c.closingTitle || "ככה זה נראה אצלנו";
+      var grid = doc.getElementById("qp-collage");
+      grid.replaceChildren();
+      grid.dataset.count = String(picks.length);
+      picks.forEach(function (src, i) {
+        var fig = el("figure", "qp-tile" + (i === 0 ? " is-big" : ""));
         var img = doc.createElement("img");
-        img.src = base + ph.src;
-        img.alt = ph.caption || "";
-        li.appendChild(img);
-        if (ph.caption) li.appendChild(el("span", null, ph.caption));
-        photos.appendChild(li);
+        img.src = base + src; img.alt = capOf[src] || "";
+        fig.appendChild(img);
+        if (capOf[src]) fig.appendChild(el("figcaption", null, capOf[src]));
+        grid.appendChild(fig);
       });
+      doc.getElementById("qp-outro").textContent = m.outro || "";
     }
+
     var video = doc.getElementById("qp-video");
-    video.hidden = !(m.showVideo && media.videoUrl);
-    if (!video.hidden) video.textContent = "תמונות וסרטונים מאירועים אצלנו: " + media.videoUrl;
+    video.hidden = !(m.showVideo && media.videoUrl && !closing.hidden);
+    if (!video.hidden) video.textContent = "עוד תמונות וסרטונים מאירועים אצלנו: " + media.videoUrl;
 
     var terms = doc.getElementById("qp-terms");
     terms.replaceChildren();
@@ -422,7 +439,7 @@
 
   /* ---------- meta fields ---------- */
   function bindMeta() {
-    var fields = ["title", "client", "eventDate", "hours", "guests", "quoteDate", "discount", "intro"];
+    var fields = ["title", "client", "eventDate", "hours", "guests", "quoteDate", "discount", "intro", "outro"];
     fields.forEach(function (key) {
       var input = doc.getElementById("qb-" + key);
       if (!input) return;
@@ -433,7 +450,7 @@
         renderTotals(); renderPreview(); save();
       });
     });
-    ["showHero", "showPhotos", "showVideo"].forEach(function (key) {
+    ["showCover", "showClosing", "showVideo"].forEach(function (key) {
       var box = doc.getElementById("qb-" + key);
       if (!box) return;
       box.checked = Boolean(state.meta[key]);
@@ -453,6 +470,95 @@
     });
   }
 
+  /* ---------- picking photos ---------- */
+  function photoList() { return ((state.catalogue.media || {}).photos) || []; }
+
+  function renderPickers() {
+    var base = global.PADEL_BASE || "";
+
+    var cover = doc.getElementById("qb-cover-pick");
+    if (cover) {
+      cover.replaceChildren();
+      photoList().forEach(function (ph) {
+        var b = el("button", "qb-thumb");
+        b.type = "button";
+        b.title = ph.caption || "";
+        b.dataset.src = ph.src;
+        var img = doc.createElement("img");
+        img.src = base + ph.src; img.alt = ph.caption || ""; img.loading = "lazy";
+        b.appendChild(img);
+        b.appendChild(el("span", "qb-thumb-cap", ph.caption || ""));
+        b.addEventListener("click", function () {
+          state.meta.coverSrc = ph.src;
+          state.meta.showCover = true;
+          var box = doc.getElementById("qb-showCover");
+          if (box) box.checked = true;
+          markPickers(); renderPreview(); save();
+          toast("תמונת הפתיחה: " + (ph.caption || ""));
+        });
+        cover.appendChild(b);
+      });
+    }
+
+    var col = doc.getElementById("qb-collage-pick");
+    if (col) {
+      col.replaceChildren();
+      photoList().forEach(function (ph) {
+        var b = el("button", "qb-thumb");
+        b.type = "button";
+        b.title = ph.caption || "";
+        b.dataset.src = ph.src;
+        var img = doc.createElement("img");
+        img.src = base + ph.src; img.alt = ph.caption || ""; img.loading = "lazy";
+        b.appendChild(img);
+        b.appendChild(el("i", "qb-thumb-n"));
+        b.appendChild(el("span", "qb-thumb-cap", ph.caption || ""));
+        b.addEventListener("click", function () { toggleCollage(ph); });
+        col.appendChild(b);
+      });
+    }
+    markPickers();
+  }
+
+  function toggleCollage(ph) {
+    var list = state.meta.collage || (state.meta.collage = []);
+    var i = list.indexOf(ph.src);
+    if (i > -1) {
+      list.splice(i, 1);
+      markPickers(); renderPreview(); save();
+      toast("ירדה מהקולאז׳: " + (ph.caption || ""), "החזרה", function () {
+        list.splice(Math.min(i, list.length), 0, ph.src);
+        markPickers(); renderPreview(); save();
+      });
+      return;
+    }
+    if (list.length >= 5) { toast("בקולאז׳ אפשר עד 5 תמונות. תורידו אחת קודם."); return; }
+    list.push(ph.src);
+    state.meta.showClosing = true;
+    var box = doc.getElementById("qb-showClosing");
+    if (box) box.checked = true;
+    markPickers(); renderPreview(); save();
+    toast("נוספה לקולאז׳: " + (ph.caption || "") + (list.length === 1 ? ", והיא הגדולה" : ""), "ביטול", function () {
+      var at = list.indexOf(ph.src);
+      if (at > -1) list.splice(at, 1);
+      markPickers(); renderPreview(); save();
+    });
+  }
+
+  function markPickers() {
+    var list = state.meta.collage || [];
+    Array.prototype.forEach.call(doc.querySelectorAll("#qb-cover-pick .qb-thumb"), function (b) {
+      b.classList.toggle("is-on", b.dataset.src === state.meta.coverSrc);
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll("#qb-collage-pick .qb-thumb"), function (b) {
+      var at = list.indexOf(b.dataset.src);
+      b.classList.toggle("is-on", at > -1);
+      b.classList.toggle("is-big", at === 0);
+      var n = b.querySelector(".qb-thumb-n");
+      if (n) n.textContent = at > -1 ? (at === 0 ? "גדולה" : String(at + 1)) : "";
+    });
+  }
+
   function refreshTerms() {
     var terms = doc.getElementById("qb-terms");
     var filled = (state.catalogue.terms || []).map(function (line) {
@@ -464,6 +570,22 @@
       state.meta.terms = filled;
       terms.value = filled.join("\n");
     }
+  }
+
+  function freshMeta() {
+    var media = state.catalogue.media || {};
+    return {
+      quoteDate: today(),
+      withVat: false,
+      intro: state.catalogue.intro,
+      outro: state.catalogue.outro || "",
+      terms: [],
+      showCover: true,
+      showClosing: true,
+      showVideo: true,
+      coverSrc: media.cover || "",
+      collage: (media.collage || []).slice()
+    };
   }
 
   /* ---------- buttons ---------- */
@@ -490,7 +612,7 @@
       state.catalogue.categories.forEach(function (cat) {
         cat.modules.forEach(function (mod) { byId[mod.id] = { cat: cat, mod: mod }; });
       });
-      state.meta = Object.assign({ quoteDate: today(), terms: [], showHero: true, showPhotos: true, showVideo: true }, demo.meta);
+      state.meta = Object.assign(freshMeta(), demo.meta, { quoteDate: today() });
       state.meta.terms = [];
       refreshTerms();
       state.lines = demo.lines.map(function (l) {
@@ -505,16 +627,16 @@
           qty: l.qty, price: l.price
         };
       });
-      bindMeta(); renderLines(); save();
+      bindMeta(); renderPickers(); renderLines(); save();
       doc.getElementById("qp").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
     doc.getElementById("qb-clear").addEventListener("click", function () {
       if (!global.confirm("לנקות את ההצעה ולהתחיל מחדש?")) return;
       state.lines = [];
-      state.meta = { quoteDate: today(), withVat: false, intro: state.catalogue.intro, terms: [] };
+      state.meta = freshMeta();
       refreshTerms();
-      bindMeta(); renderLines(); save();
+      bindMeta(); renderPickers(); renderLines(); save();
     });
   }
 
@@ -524,13 +646,17 @@
     .then(function (data) {
       state.catalogue = data;
       var draft = load();
-      state.meta = (draft && draft.meta) || { quoteDate: today(), withVat: false, intro: data.intro, terms: [] };
+      state.meta = (draft && draft.meta) || freshMeta();
       state.lines = (draft && draft.lines) || [];
       if (!state.meta.quoteDate) state.meta.quoteDate = today();
       if (!state.meta.intro) state.meta.intro = data.intro;
+      if (!state.meta.outro) state.meta.outro = data.outro || "";
+      if (!state.meta.coverSrc) state.meta.coverSrc = (data.media || {}).cover || "";
+      if (!state.meta.collage) state.meta.collage = ((data.media || {}).collage || []).slice();
       refreshTerms();
       bindMeta();
       bindActions();
+      renderPickers();
       renderCatalogue();
       renderLines();
       doc.getElementById("qp-validity").textContent =

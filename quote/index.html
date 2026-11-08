@@ -9,8 +9,8 @@
 <link rel="icon" href="../assets/brand/logo-160.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261108-quote3">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261108-quote4">
 </head>
 <body class="page-quote">
 
@@ -43,12 +43,27 @@
       <label class="qb-field"><span>הנחה בשקלים</span><input id="qb-discount" type="number" min="0" placeholder="0"></label>
       <label class="qb-field qb-check"><input id="qb-withVat" type="checkbox"><span>המחירים כוללים מע״מ</span></label>
     </div>
-    <label class="qb-field qb-wide"><span>פתיח</span><textarea id="qb-intro" rows="3"></textarea></label>
+  </section>
+
+  <section class="qb-card">
+    <h2>עמוד פתיחה</h2>
     <div class="qb-media">
-      <label class="qb-check"><input id="qb-showHero" type="checkbox"><span>תמונה גדולה בראש ההצעה</span></label>
-      <label class="qb-check"><input id="qb-showPhotos" type="checkbox"><span>שורת תמונות מהמתחם</span></label>
-      <label class="qb-check"><input id="qb-showVideo" type="checkbox"><span>שורה עם קישור לסרטון ולגלריה</span></label>
+      <label class="qb-check"><input id="qb-showCover" type="checkbox"><span>לצרף עמוד פתיחה עם תמונה גדולה</span></label>
     </div>
+    <label class="qb-field qb-wide"><span>טקסט פתיחה</span><textarea id="qb-intro" rows="3"></textarea></label>
+    <p class="qb-hint">התמונה הגדולה של עמוד הפתיחה. לחיצה בוחרת.</p>
+    <div class="qb-picker qb-picker-one" id="qb-cover-pick"></div>
+  </section>
+
+  <section class="qb-card">
+    <h2>עמוד סיום</h2>
+    <div class="qb-media">
+      <label class="qb-check"><input id="qb-showClosing" type="checkbox"><span>לצרף עמוד סיום עם קולאז׳ תמונות</span></label>
+      <label class="qb-check"><input id="qb-showVideo" type="checkbox"><span>שורה עם קישור לגלריה ולסרטון</span></label>
+    </div>
+    <label class="qb-field qb-wide"><span>טקסט סיום</span><textarea id="qb-outro" rows="3"></textarea></label>
+    <p class="qb-hint">הראשונה שנבחרה היא התמונה הגדולה בקולאז׳. עד 5 תמונות.</p>
+    <div class="qb-picker" id="qb-collage-pick"></div>
   </section>
 
   <section class="qb-card">
@@ -74,44 +89,67 @@
 
 <!-- what the client gets, this is what prints -->
 <article class="qp" id="qp">
-  <header class="qp-head">
-    <img class="qp-logo" src="../assets/brand/logo-320.png" width="92" height="92" alt="The Padel Club Azor">
-    <div class="qp-head-text">
-      <h1 id="qp-title">הצעת מחיר לאירוע</h1>
-      <p class="qp-venue">The Padel Club Azor · ז׳בוטינסקי 28, אזור · <bdi dir="ltr">052-7016953</bdi></p>
+
+  <!-- page 1, the cover -->
+  <section class="qp-page qp-cover" id="qp-cover">
+    <figure class="qp-shot"><img id="qp-cover-img" src="" alt=""></figure>
+    <div class="qp-cover-in">
+      <img class="qp-cover-logo" src="../assets/brand/logo-320.png" width="92" height="92" alt="The Padel Club Azor">
+      <p class="qp-eyebrow">הצעת מחיר</p>
+      <h1 class="qp-display" id="qp-cover-title">הצעת מחיר לאירוע</h1>
+      <p class="qp-cover-client" id="qp-cover-client"></p>
+      <p class="qp-cover-facts" id="qp-cover-facts"></p>
+      <p class="qp-cover-intro" id="qp-cover-intro"></p>
+      <p class="qp-cover-foot">The Padel Club Azor · ז׳בוטינסקי 28, אזור · <bdi dir="ltr">052-7016953</bdi></p>
     </div>
-  </header>
+  </section>
 
-  <div class="qp-meta">
-    <p id="qp-client"></p>
-    <p id="qp-facts"></p>
-    <p id="qp-date"></p>
-  </div>
+  <!-- page 2, the offer itself -->
+  <section class="qp-page qp-main">
+    <header class="qp-head">
+      <img class="qp-logo" src="../assets/brand/logo-320.png" width="92" height="92" alt="The Padel Club Azor">
+      <div class="qp-head-text">
+        <h1 id="qp-title">הצעת מחיר לאירוע</h1>
+        <p class="qp-venue">The Padel Club Azor · ז׳בוטינסקי 28, אזור · <bdi dir="ltr">052-7016953</bdi></p>
+      </div>
+    </header>
 
-  <figure class="qp-hero" id="qp-hero" hidden><img id="qp-hero-img" src="" alt=""></figure>
+    <div class="qp-meta">
+      <p id="qp-client"></p>
+      <p id="qp-facts"></p>
+      <p id="qp-date"></p>
+    </div>
 
-  <p class="qp-intro" id="qp-intro"></p>
+    <p class="qp-intro" id="qp-intro"></p>
 
-  <table class="qp-table">
-    <thead>
-      <tr><th>מה כלול</th><th>כמות</th><th>מחיר</th></tr>
-    </thead>
-    <tbody id="qp-lines"></tbody>
-  </table>
+    <table class="qp-table">
+      <thead>
+        <tr><th>מה כלול</th><th>כמות</th><th>מחיר</th></tr>
+      </thead>
+      <tbody id="qp-lines"></tbody>
+    </table>
 
-  <div class="qp-sums" id="qp-sums"></div>
+    <div class="qp-sums" id="qp-sums"></div>
 
-  <ul class="qp-photos" id="qp-photos" hidden></ul>
-  <p class="qp-video" id="qp-video" hidden></p>
+    <footer class="qp-foot">
+      <ul id="qp-terms"></ul>
+      <p class="qp-validity" id="qp-validity"></p>
+    </footer>
+  </section>
 
-  <footer class="qp-foot">
-    <ul id="qp-terms"></ul>
-    <p class="qp-validity" id="qp-validity"></p>
-    <p class="qp-sign">The Padel Club Azor · padel-plus.co.il</p>
-  </footer>
+  <!-- page 3, the closing -->
+  <section class="qp-page qp-closing" id="qp-closing">
+    <p class="qp-eyebrow">מהמתחם</p>
+    <h2 class="qp-display qp-closing-title" id="qp-closing-title">ככה זה נראה אצלנו</h2>
+    <div class="qp-collage" id="qp-collage"></div>
+    <p class="qp-outro" id="qp-outro"></p>
+    <p class="qp-video" id="qp-video" hidden></p>
+    <p class="qp-sign">The Padel Club Azor · ז׳בוטינסקי 28, אזור · <bdi dir="ltr">052-7016953</bdi> · padel-plus.co.il</p>
+  </section>
+
 </article>
 
 <script>window.PADEL_BASE = "../";</script>
-<script src="../assets/js/quote.js?v=20261108-quote3" defer></script>
+<script src="../assets/js/quote.js?v=20261108-quote4" defer></script>
 </body>
 </html>

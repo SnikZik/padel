@@ -256,21 +256,68 @@
     }
   ],
   "media": {
-    "note": "Photos the quote can carry. All of them are the club's own, already on the site.",
-    "hero": "assets/img/about.webp",
+    "note": "The club's own photos from events at the venue. The cover page uses one of them big, the closing page arranges a few as a collage.",
+    "cover": "assets/quote/crowd-pink-court.webp",
+    "collage": [
+      "assets/quote/trophies-brand-wall.webp",
+      "assets/quote/branded-table.webp",
+      "assets/quote/branded-glasses.webp",
+      "assets/quote/acai-station.webp",
+      "assets/quote/branded-bar.webp"
+    ],
     "videoUrl": "https://padel-plus.co.il/tournament/",
     "photos": [
       {
-        "src": "assets/tournaments/gallery/2026-10-30/טורניר-פאדל-אזור-02.jpg",
-        "caption": "טקס פרסים מול קיר המיתוג"
+        "src": "assets/quote/crowd-pink-court.webp",
+        "caption": "קהל צופה במשחק על המגרש הוורוד"
       },
       {
-        "src": "assets/tournaments/gallery/2026-10-02/משחק-פאדל-אזור-01.jpg",
+        "src": "assets/quote/lounge-courtside.webp",
+        "caption": "אזור ישיבה צמוד למגרשים"
+      },
+      {
+        "src": "assets/quote/player-pink-court.webp",
         "caption": "משחק על המגרש הוורוד"
       },
       {
-        "src": "assets/img/gallery_bar.webp",
-        "caption": "אזור הישיבה והקפיטריה"
+        "src": "assets/quote/trophies-brand-wall.webp",
+        "caption": "טקס פרסים מול קיר המיתוג"
+      },
+      {
+        "src": "assets/quote/brand-wall.webp",
+        "caption": "קיר מיתוג במתחם"
+      },
+      {
+        "src": "assets/quote/branded-table.webp",
+        "caption": "שולחן כיבוד ממותג"
+      },
+      {
+        "src": "assets/quote/fruit-station.webp",
+        "caption": "עמדת פירות"
+      },
+      {
+        "src": "assets/quote/branded-bar.webp",
+        "caption": "הבר של המועדון"
+      },
+      {
+        "src": "assets/quote/branded-glasses.webp",
+        "caption": "כוסות ממותגות על קרח"
+      },
+      {
+        "src": "assets/quote/drinks-on-ice.webp",
+        "caption": "שתייה קרה על קרח"
+      },
+      {
+        "src": "assets/quote/drinks-station.webp",
+        "caption": "עמדת שתייה"
+      },
+      {
+        "src": "assets/quote/acai-station.webp",
+        "caption": "עמדת אסאי"
+      },
+      {
+        "src": "assets/quote/players-group.webp",
+        "caption": "קבוצת משתתפים על המגרש"
       }
     ]
   },
@@ -284,7 +331,19 @@
       "guests": "24",
       "discount": "500",
       "withVat": false,
-      "intro": "שמחנו לדבר אתכם. ריכזנו כאן אירוע של ארבע שעות במתחם שלנו באזור, לעשרים וארבעה משתתפים, עם מגרשים סגורים לקבוצה שלכם, מדריכים שמכניסים גם את מי שלא שיחק פאדל מימיו, ומיתוג שלכם לאורך כל המתחם. כל סעיף כאן עומד בפני עצמו, אפשר להוסיף או להוריד לפני שסוגרים."
+      "intro": "שמחנו לדבר אתכם. ריכזנו כאן אירוע של ארבע שעות במתחם שלנו באזור, לעשרים וארבעה משתתפים, עם מגרשים סגורים לקבוצה שלכם, מדריכים שמכניסים גם את מי שלא שיחק פאדל מימיו, ומיתוג שלכם לאורך כל המתחם. כל סעיף כאן עומד בפני עצמו, אפשר להוסיף או להוריד לפני שסוגרים.",
+      "outro": "חיכינו לאירוע כזה. סגרנו לכם את המתחם, שמנו את המיתוג שלכם מהכניסה ועד המגרשים, ודאגנו שגם מי שלא שיחק פאדל מימיו ייצא עם חיוך. נשמח לשריין את התאריך.",
+      "showCover": true,
+      "showClosing": true,
+      "showVideo": true,
+      "coverSrc": "assets/quote/crowd-pink-court.webp",
+      "collage": [
+        "assets/quote/trophies-brand-wall.webp",
+        "assets/quote/branded-table.webp",
+        "assets/quote/branded-glasses.webp",
+        "assets/quote/acai-station.webp",
+        "assets/quote/branded-bar.webp"
+      ]
     },
     "lines": [
       {
@@ -350,5 +409,7 @@
         "desc": "הכרזה על המנצחים, צילום קבוצתי מול קיר המיתוג וחלוקת פרסים. ללא עלות."
       }
     ]
-  }
+  },
+  "closingTitle": "ככה זה נראה אצלנו",
+  "outro": "נשמח לארח אתכם אצלנו. אם יש סעיף שחסר, או כזה שלא צריך, אומרים לנו ומעדכנים את ההצעה. סגירת תאריך נעשית בשיחה אחת ומשם אנחנו לוקחים את זה."
 }
