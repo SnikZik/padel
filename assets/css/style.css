@@ -1169,6 +1169,32 @@ html.modal-open { overflow: hidden; }
 .qb-chip { background: var(--tint); color: var(--green); border: 1px solid transparent; border-radius: 999px;
   padding: 8px 14px; font: 600 13.5px var(--font-he); cursor: pointer; }
 .qb-chip:hover { background: var(--blush); border-color: var(--mauve); }
+.qb-chip-wrap { display: flex; align-items: center; gap: 4px; }
+.qb-chip.is-in { background: var(--green); color: var(--cream); }
+.qb-chip.is-hit { animation: qb-pop .45s ease; }
+@keyframes qb-pop { 0% { transform: scale(1); } 40% { transform: scale(1.09); } 100% { transform: scale(1); } }
+.qb-chip-count { font-style: normal; font-size: 12px; font-weight: 800; }
+.qb-chip.is-in .qb-chip-count { margin-inline-start: 6px; }
+.qb-chip-minus { background: var(--white); color: #8A2B3B; border: 1px solid var(--hairline); border-radius: 999px;
+  padding: 7px 11px; font: 700 12px var(--font-he); cursor: pointer; }
+.qb-chip-minus:hover { background: #FBEFF1; border-color: #D9A7B0; }
+
+.qb-toasts { position: fixed; inset-block-end: 16px; inset-inline-start: 16px; z-index: 60;
+  display: flex; flex-direction: column; gap: 8px; max-width: min(92vw, 380px); }
+.qb-toast { position: relative; overflow: hidden; display: flex; align-items: center; gap: 10px;
+  background: var(--green); color: var(--cream); border-radius: 12px; padding: 11px 13px 13px;
+  box-shadow: 0 12px 28px rgba(12, 72, 38, .28); animation: qb-rise .18s ease; }
+@keyframes qb-rise { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.qb-toast-text { flex: 1; font-size: 14px; font-weight: 600; line-height: 1.4; }
+.qb-toast-undo { background: var(--cream); color: var(--green); border: 0; border-radius: 999px;
+  padding: 6px 13px; font: 800 13px var(--font-he); cursor: pointer; }
+.qb-toast-undo:hover { background: var(--blush); }
+.qb-toast-x { background: none; border: 0; color: var(--cream); opacity: .7; font-size: 13px; cursor: pointer; padding: 2px; }
+.qb-toast-x:hover { opacity: 1; }
+.qb-toast-bar { position: absolute; inset-block-end: 0; inset-inline-start: 0; height: 3px; width: 100%;
+  background: var(--cream); opacity: .55; transform-origin: right center;
+  animation: qb-drain linear forwards; }
+@keyframes qb-drain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 
 .qb-empty { margin: 0; padding: 18px; text-align: center; font-size: 14px; color: var(--green-2);
   border: 1px dashed var(--hairline); border-radius: 12px; }
@@ -1179,7 +1205,14 @@ html.modal-open { overflow: hidden; }
 .qb-icon { width: 32px; height: 32px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--cream);
   color: var(--green); font-size: 14px; line-height: 1; cursor: pointer; }
 .qb-icon:hover { background: var(--tint); }
-.qb-del { color: #8A2B3B; }
+.qb-del { width: auto; padding: 0 11px; font: 700 12.5px var(--font-he); color: #8A2B3B; }
+.qb-del:hover { background: #FBEFF1; border-color: #D9A7B0; }
+.qb-line.is-new { animation: qb-glow 2.2s ease; }
+@keyframes qb-glow {
+  0% { border-color: var(--green); box-shadow: 0 0 0 3px rgba(12, 72, 38, .14); background: var(--tint); }
+  70% { border-color: var(--green); box-shadow: 0 0 0 3px rgba(12, 72, 38, .07); background: var(--tint); }
+  100% { border-color: var(--hairline); box-shadow: none; background: transparent; }
+}
 .qb-line-desc { margin-top: 8px; resize: vertical; }
 .qb-line-nums { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; margin-top: 8px; }
 .qb-w-qty { width: 90px; } .qb-w-unit { width: 130px; } .qb-w-price { width: 130px; }
@@ -1225,9 +1258,13 @@ html.modal-open { overflow: hidden; }
 .qp-validity { margin: 10px 0 0; font-size: 13px; font-weight: 700; color: var(--green); }
 .qp-sign { margin: 4px 0 0; font-size: 12.5px; color: var(--green-2); }
 
+@media (prefers-reduced-motion: reduce) {
+  .qb-chip.is-hit, .qb-line.is-new, .qb-toast { animation: none; }
+}
+
 @media print {
   @page { size: A4; margin: 14mm; }
-  .qb { display: none; }
+  .qb, .qb-toasts { display: none; }
   .page-quote { background: #fff; }
   .qp { max-width: none; margin: 0; border: 0; border-radius: 0; padding: 0; }
   .qp-table tr, .qb-line { break-inside: avoid; }

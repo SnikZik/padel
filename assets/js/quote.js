@@ -37,6 +37,62 @@
     return d.getDate() + " ב" + months[d.getMonth()] + " " + d.getFullYear();
   }
 
+  /* ---------- feedback: a line about what just happened, with a few seconds to take it back ---------- */
+  var UNDO_MS = 7000;
+
+  function toastBox() {
+    var box = doc.getElementById("qb-toasts");
+    if (!box) {
+      box = el("div", "qb-toasts");
+      box.id = "qb-toasts";
+      box.setAttribute("role", "status");
+      box.setAttribute("aria-live", "polite");
+      doc.body.appendChild(box);
+    }
+    return box;
+  }
+
+  function toast(text, undoLabel, undoFn) {
+    var box = toastBox();
+    var node = el("div", "qb-toast");
+    node.appendChild(el("span", "qb-toast-text", text));
+    var timer;
+    function close() { clearTimeout(timer); node.remove(); }
+    if (undoFn) {
+      var b = el("button", "qb-toast-undo", undoLabel || "ביטול");
+      b.type = "button";
+      b.addEventListener("click", function () { close(); undoFn(); });
+      node.appendChild(b);
+    }
+    var x = el("button", "qb-toast-x", "✕");
+    x.type = "button"; x.title = "סגירה"; x.setAttribute("aria-label", "סגירה");
+    x.addEventListener("click", close);
+    node.appendChild(x);
+    var bar = el("i", "qb-toast-bar");
+    bar.style.animationDuration = UNDO_MS + "ms";
+    node.appendChild(bar);
+    box.appendChild(node);
+    while (box.children.length > 3) box.firstElementChild.remove();
+    timer = setTimeout(close, UNDO_MS);
+    return node;
+  }
+
+  function flashLine(uid) {
+    var row = doc.querySelector('.qb-line[data-uid="' + uid + '"]');
+    if (!row) return;
+    row.classList.add("is-new");
+    setTimeout(function () { row.classList.remove("is-new"); }, 2200);
+    var box = row.getBoundingClientRect();
+    if (box.top < 0 || box.bottom > global.innerHeight) row.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function flashChip(modId) {
+    var chip = doc.querySelector('.qb-chip[data-mod="' + modId + '"]');
+    if (!chip) return;
+    chip.classList.add("is-hit");
+    setTimeout(function () { chip.classList.remove("is-hit"); }, 700);
+  }
+
   /* ---------- totals ---------- */
   function totals() {
     var sub = state.lines.reduce(function (sum, l) {
@@ -60,10 +116,23 @@
       group.appendChild(el("h3", null, cat.label));
       var list = el("div", "qb-chips");
       cat.modules.forEach(function (mod) {
-        var b = el("button", "qb-chip", mod.title);
+        var wrap = el("div", "qb-chip-wrap");
+        var b = el("button", "qb-chip");
         b.type = "button";
+        b.dataset.mod = mod.id;
+        b.appendChild(el("span", null, mod.title));
+        b.appendChild(el("i", "qb-chip-count"));
+        b.title = "הוספה להצעה";
         b.addEventListener("click", function () { addLine(cat, mod); });
-        list.appendChild(b);
+        wrap.appendChild(b);
+        var minus = el("button", "qb-chip-minus", "הסרה");
+        minus.type = "button";
+        minus.dataset.mod = mod.id;
+        minus.title = "הסרת הסעיף הזה מההצעה";
+        minus.hidden = true;
+        minus.addEventListener("click", function () { removeLast(mod); });
+        wrap.appendChild(minus);
+        list.appendChild(wrap);
       });
       group.appendChild(list);
       box.appendChild(group);
@@ -71,17 +140,67 @@
   }
 
   function addLine(cat, mod) {
-    state.lines.push({
+    var line = {
       uid: "l" + Date.now() + Math.random().toString(36).slice(2, 6),
+      modId: mod.id,
       category: cat.label,
       title: mod.title,
       desc: mod.desc || "",
       unit: mod.unit || "",
       qty: mod.qty === null || mod.qty === undefined ? 1 : mod.qty,
       price: mod.price === null || mod.price === undefined ? "" : mod.price
-    });
+    };
+    state.lines.push(line);
     renderLines();
     save();
+    flashChip(mod.id);
+    flashLine(line.uid);
+    toast("נוסף להצעה: " + mod.title, "ביטול", function () { dropLine(line.uid, mod.title); });
+  }
+
+  // remove a line by its id, no undo offer: this is itself the undo
+  function dropLine(uid, title) {
+    var i = state.lines.findIndex(function (l) { return l.uid === uid; });
+    if (i === -1) return;
+    state.lines.splice(i, 1);
+    renderLines();
+    save();
+    if (title) toast("הוסר: " + title);
+  }
+
+  // remove a line, and let it come back to the same place
+  function removeLine(i) {
+    var line = state.lines[i];
+    if (!line) return;
+    state.lines.splice(i, 1);
+    renderLines();
+    save();
+    toast("הוסר: " + line.title, "החזרה", function () {
+      state.lines.splice(Math.min(i, state.lines.length), 0, line);
+      renderLines();
+      save();
+      flashLine(line.uid);
+    });
+  }
+
+  function removeLast(mod) {
+    for (var i = state.lines.length - 1; i >= 0; i--) {
+      if (state.lines[i].modId === mod.id) { removeLine(i); return; }
+    }
+  }
+
+  function refreshChips() {
+    var counts = {};
+    state.lines.forEach(function (l) { if (l.modId) counts[l.modId] = (counts[l.modId] || 0) + 1; });
+    Array.prototype.forEach.call(doc.querySelectorAll(".qb-chip"), function (chip) {
+      var n = counts[chip.dataset.mod] || 0;
+      chip.classList.toggle("is-in", n > 0);
+      var badge = chip.querySelector(".qb-chip-count");
+      if (badge) badge.textContent = n > 1 ? String(n) : n === 1 ? "✓" : "";
+    });
+    Array.prototype.forEach.call(doc.querySelectorAll(".qb-chip-minus"), function (minus) {
+      minus.hidden = !counts[minus.dataset.mod];
+    });
   }
 
   /* ---------- the quote's own lines ---------- */
@@ -114,9 +233,9 @@
         });
         tools.appendChild(b);
       });
-      var del = el("button", "qb-icon qb-del", "✕");
-      del.type = "button"; del.title = "מחיקת הסעיף"; del.setAttribute("aria-label", "מחיקת הסעיף");
-      del.addEventListener("click", function () { state.lines.splice(i, 1); renderLines(); save(); });
+      var del = el("button", "qb-icon qb-del", "הסרה");
+      del.type = "button"; del.title = "הסרת הסעיף מההצעה"; del.setAttribute("aria-label", "הסרת הסעיף מההצעה");
+      del.addEventListener("click", function () { removeLine(i); });
       tools.appendChild(del);
       head.appendChild(tools);
       row.appendChild(head);
@@ -156,6 +275,7 @@
     });
     renderTotals();
     renderPreview();
+    refreshChips();
   }
 
   function lineSum(line) {
@@ -377,6 +497,7 @@
         var found = byId[l.id] || { cat: { label: "" }, mod: { title: l.id, desc: "", unit: "" } };
         return {
           uid: "l" + Math.random().toString(36).slice(2, 8),
+          modId: l.id,
           category: found.cat.label,
           title: l.title || found.mod.title,
           desc: l.desc || found.mod.desc || "",
