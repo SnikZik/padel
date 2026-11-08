@@ -1199,7 +1199,14 @@ html.modal-open { overflow: hidden; }
 .qp-meta { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 14px 0 0; font-size: 14.5px; color: var(--green); }
 .qp-meta p { margin: 0; }
 .qp-meta p:last-child { color: var(--green-2); margin-inline-start: auto; }
+.qb-media { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 12px; }
+.qp-hero { margin: 16px 0 0; }
+.qp-hero img { width: 100%; height: 190px; object-fit: cover; border-radius: 12px; display: block; }
 .qp-intro { margin: 14px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+.qp-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+.qp-photos img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; display: block; }
+.qp-photos span { display: block; margin-top: 5px; font-size: 11.5px; color: var(--green-2); }
+.qp-video { margin: 12px 0 0; font-size: 13px; font-weight: 600; color: var(--green); }
 .qp-table { width: 100%; border-collapse: collapse; margin-top: 18px; }
 .qp-table th { text-align: right; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--green-2);
   border-bottom: 1px solid var(--hairline); padding: 0 0 8px; }

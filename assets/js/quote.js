@@ -256,6 +256,33 @@
       sums.appendChild(line);
     });
 
+    var media = c.media || {};
+    var base = global.PADEL_BASE || "";
+    var hero = doc.getElementById("qp-hero");
+    hero.hidden = !(m.showHero && media.hero);
+    if (!hero.hidden) {
+      var heroImg = doc.getElementById("qp-hero-img");
+      heroImg.src = base + media.hero;
+      heroImg.alt = "מתחם The Padel Club Azor";
+    }
+    var photos = doc.getElementById("qp-photos");
+    photos.replaceChildren();
+    photos.hidden = !(m.showPhotos && (media.photos || []).length);
+    if (!photos.hidden) {
+      media.photos.forEach(function (ph) {
+        var li = el("li");
+        var img = doc.createElement("img");
+        img.src = base + ph.src;
+        img.alt = ph.caption || "";
+        li.appendChild(img);
+        if (ph.caption) li.appendChild(el("span", null, ph.caption));
+        photos.appendChild(li);
+      });
+    }
+    var video = doc.getElementById("qp-video");
+    video.hidden = !(m.showVideo && media.videoUrl);
+    if (!video.hidden) video.textContent = "תמונות וסרטונים מאירועים אצלנו: " + media.videoUrl;
+
     var terms = doc.getElementById("qp-terms");
     terms.replaceChildren();
     (m.terms || []).forEach(function (line) { terms.appendChild(el("li", null, line)); });
@@ -285,6 +312,12 @@
         if (key === "quoteDate") refreshTerms();
         renderTotals(); renderPreview(); save();
       });
+    });
+    ["showHero", "showPhotos", "showVideo"].forEach(function (key) {
+      var box = doc.getElementById("qb-" + key);
+      if (!box) return;
+      box.checked = Boolean(state.meta[key]);
+      box.addEventListener("change", function () { state.meta[key] = box.checked; renderPreview(); save(); });
     });
     var vat = doc.getElementById("qb-withVat");
     vat.checked = Boolean(state.meta.withVat);
@@ -328,6 +361,33 @@
     doc.getElementById("qb-whatsapp").addEventListener("click", function () {
       global.open("https://wa.me/?text=" + encodeURIComponent(quoteText()), "_blank", "noopener");
     });
+    var demoBtn = doc.getElementById("qb-demo");
+    if (demoBtn) demoBtn.addEventListener("click", function () {
+      var demo = state.catalogue.demo;
+      if (!demo) return;
+      if (state.lines.length && !global.confirm("להחליף את ההצעה הנוכחית בהצעה לדוגמה?")) return;
+      var byId = {};
+      state.catalogue.categories.forEach(function (cat) {
+        cat.modules.forEach(function (mod) { byId[mod.id] = { cat: cat, mod: mod }; });
+      });
+      state.meta = Object.assign({ quoteDate: today(), terms: [], showHero: true, showPhotos: true, showVideo: true }, demo.meta);
+      state.meta.terms = [];
+      refreshTerms();
+      state.lines = demo.lines.map(function (l) {
+        var found = byId[l.id] || { cat: { label: "" }, mod: { title: l.id, desc: "", unit: "" } };
+        return {
+          uid: "l" + Math.random().toString(36).slice(2, 8),
+          category: found.cat.label,
+          title: l.title || found.mod.title,
+          desc: l.desc || found.mod.desc || "",
+          unit: l.unit || found.mod.unit || "",
+          qty: l.qty, price: l.price
+        };
+      });
+      bindMeta(); renderLines(); save();
+      doc.getElementById("qp").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
     doc.getElementById("qb-clear").addEventListener("click", function () {
       if (!global.confirm("לנקות את ההצעה ולהתחיל מחדש?")) return;
       state.lines = [];

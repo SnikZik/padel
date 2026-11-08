@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261108-quote">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261108-quote2">
 </head>
 <body class="page-quote">
 
@@ -26,6 +26,7 @@
       <button class="btn btn-primary" id="qb-print" type="button">הדפסה או PDF</button>
       <button class="btn btn-light" id="qb-copy" type="button">העתקת טקסט</button>
       <button class="btn btn-light" id="qb-whatsapp" type="button">שליחה בוואטסאפ</button>
+      <button class="btn btn-light" id="qb-demo" type="button">הצעה לדוגמה</button>
       <button class="btn btn-light qb-clear" id="qb-clear" type="button">הצעה חדשה</button>
     </div>
   </header>
@@ -43,6 +44,11 @@
       <label class="qb-field qb-check"><input id="qb-withVat" type="checkbox"><span>המחירים כוללים מע״מ</span></label>
     </div>
     <label class="qb-field qb-wide"><span>פתיח</span><textarea id="qb-intro" rows="3"></textarea></label>
+    <div class="qb-media">
+      <label class="qb-check"><input id="qb-showHero" type="checkbox"><span>תמונה גדולה בראש ההצעה</span></label>
+      <label class="qb-check"><input id="qb-showPhotos" type="checkbox"><span>שורת תמונות מהמתחם</span></label>
+      <label class="qb-check"><input id="qb-showVideo" type="checkbox"><span>שורה עם קישור לסרטון ולגלריה</span></label>
+    </div>
   </section>
 
   <section class="qb-card">
@@ -82,6 +88,8 @@
     <p id="qp-date"></p>
   </div>
 
+  <figure class="qp-hero" id="qp-hero" hidden><img id="qp-hero-img" src="" alt=""></figure>
+
   <p class="qp-intro" id="qp-intro"></p>
 
   <table class="qp-table">
@@ -93,6 +101,9 @@
 
   <div class="qp-sums" id="qp-sums"></div>
 
+  <ul class="qp-photos" id="qp-photos" hidden></ul>
+  <p class="qp-video" id="qp-video" hidden></p>
+
   <footer class="qp-foot">
     <ul id="qp-terms"></ul>
     <p class="qp-validity" id="qp-validity"></p>
@@ -101,6 +112,6 @@
 </article>
 
 <script>window.PADEL_BASE = "../";</script>
-<script src="../assets/js/quote.js?v=20261108-quote" defer></script>
+<script src="../assets/js/quote.js?v=20261108-quote2" defer></script>
 </body>
 </html>
