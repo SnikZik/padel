@@ -453,7 +453,14 @@
 
     var video = doc.getElementById("qp-video");
     video.hidden = !(m.showVideo && media.videoUrl && !closing.hidden);
-    if (!video.hidden) video.textContent = "עוד תמונות וסרטונים מאירועים אצלנו: " + media.videoUrl;
+    if (!video.hidden) {
+      video.replaceChildren();
+      video.appendChild(doc.createTextNode("עוד תמונות וסרטונים מאירועים אצלנו "));
+      var vb = doc.createElement("bdi");
+      vb.dir = "ltr";
+      vb.textContent = media.videoUrl;
+      video.appendChild(vb);
+    }
 
     var terms = doc.getElementById("qp-terms");
     terms.replaceChildren();
