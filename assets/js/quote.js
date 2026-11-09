@@ -396,7 +396,42 @@
       doc.getElementById("qp-cover-intro").textContent = m.intro || "";
     }
 
-    // page 3
+    // a band of photos inside the offer page
+    var strip = doc.getElementById("qp-strip");
+    var sPicks = (m.strip || []).filter(function (src) { return capOf[src] !== undefined; });
+    strip.hidden = !(m.showStrip && sPicks.length);
+    strip.replaceChildren();
+    if (!strip.hidden) {
+      strip.dataset.count = String(sPicks.length);
+      sPicks.forEach(function (src) {
+        var fig = el("figure", "qp-band");
+        var bimg = doc.createElement("img");
+        bimg.src = base + src; bimg.alt = capOf[src] || "";
+        fig.appendChild(bimg);
+        strip.appendChild(fig);
+      });
+    }
+
+    // a page of photos on its own
+    var gal = doc.getElementById("qp-gallery");
+    var gPicks = (m.gallery || []).filter(function (src) { return capOf[src] !== undefined; });
+    gal.hidden = !(m.showGallery && gPicks.length);
+    if (!gal.hidden) {
+      doc.getElementById("qp-gallery-title").textContent = c.galleryTitle || "עוד מהמתחם";
+      var gg = doc.getElementById("qp-grid");
+      gg.replaceChildren();
+      gg.dataset.count = String(gPicks.length);
+      gPicks.forEach(function (src) {
+        var gfig = el("figure", "qp-tile");
+        var gimg = doc.createElement("img");
+        gimg.src = base + src; gimg.alt = capOf[src] || "";
+        gfig.appendChild(gimg);
+        if (capOf[src]) gfig.appendChild(el("figcaption", null, capOf[src]));
+        gg.appendChild(gfig);
+      });
+    }
+
+    // the closing page
     var closing = doc.getElementById("qp-closing");
     var picks = (m.collage || []).filter(function (src) { return capOf[src] !== undefined; });
     closing.hidden = !(m.showClosing && picks.length);
@@ -450,7 +485,7 @@
         renderTotals(); renderPreview(); save();
       });
     });
-    ["showCover", "showClosing", "showVideo"].forEach(function (key) {
+    ["showCover", "showStrip", "showGallery", "showClosing", "showVideo"].forEach(function (key) {
       var box = doc.getElementById("qb-" + key);
       if (!box) return;
       box.checked = Boolean(state.meta[key]);
@@ -471,6 +506,12 @@
   }
 
   /* ---------- picking photos ---------- */
+  var MULTI = {
+    strip: { pick: "qb-strip-pick", flag: "showStrip", max: 3, word: "לרצועה", off: "ירדה מהרצועה", full: "ברצועה" },
+    gallery: { pick: "qb-gallery-pick", flag: "showGallery", max: 6, word: "לעמוד התמונות", off: "ירדה מעמוד התמונות", full: "בעמוד התמונות" },
+    collage: { pick: "qb-collage-pick", flag: "showClosing", max: 5, word: "לקולאז\u05f3", off: "ירדה מהקולאז\u05f3", full: "בקולאז\u05f3" }
+  };
+
   function photoList() { return ((state.catalogue.media || {}).photos) || []; }
 
   function renderPickers() {
@@ -500,9 +541,11 @@
       });
     }
 
-    var col = doc.getElementById("qb-collage-pick");
-    if (col) {
-      col.replaceChildren();
+    Object.keys(MULTI).forEach(function (key) {
+      var cfg = MULTI[key];
+      var box = doc.getElementById(cfg.pick);
+      if (!box) return;
+      box.replaceChildren();
       photoList().forEach(function (ph) {
         var b = el("button", "qb-thumb");
         b.type = "button";
@@ -513,49 +556,87 @@
         b.appendChild(img);
         b.appendChild(el("i", "qb-thumb-n"));
         b.appendChild(el("span", "qb-thumb-cap", ph.caption || ""));
-        b.addEventListener("click", function () { toggleCollage(ph); });
-        col.appendChild(b);
+        b.addEventListener("click", function () { toggleMulti(key, ph); });
+        box.appendChild(b);
       });
-    }
+    });
     markPickers();
   }
 
-  function toggleCollage(ph) {
-    var list = state.meta.collage || (state.meta.collage = []);
+  function syncFlag(flag) {
+    var box = doc.getElementById("qb-" + flag);
+    if (box) box.checked = Boolean(state.meta[flag]);
+  }
+
+  function toggleMulti(key, ph) {
+    var cfg = MULTI[key];
+    var list = state.meta[key] || (state.meta[key] = []);
     var i = list.indexOf(ph.src);
     if (i > -1) {
       list.splice(i, 1);
       markPickers(); renderPreview(); save();
-      toast("ירדה מהקולאז׳: " + (ph.caption || ""), "החזרה", function () {
+      toast(cfg.off + ": " + (ph.caption || ""), "החזרה", function () {
         list.splice(Math.min(i, list.length), 0, ph.src);
         markPickers(); renderPreview(); save();
       });
       return;
     }
-    if (list.length >= 5) { toast("בקולאז׳ אפשר עד 5 תמונות. תורידו אחת קודם."); return; }
+    if (list.length >= cfg.max) { toast(cfg.full + " אפשר עד " + cfg.max + " תמונות. תורידו אחת קודם."); return; }
     list.push(ph.src);
-    state.meta.showClosing = true;
-    var box = doc.getElementById("qb-showClosing");
-    if (box) box.checked = true;
+    state.meta[cfg.flag] = true;
+    syncFlag(cfg.flag);
     markPickers(); renderPreview(); save();
-    toast("נוספה לקולאז׳: " + (ph.caption || "") + (list.length === 1 ? ", והיא הגדולה" : ""), "ביטול", function () {
+    var extra = (key === "collage" && list.length === 1) ? ", והיא הגדולה" : "";
+    toast("נוספה " + cfg.word + ": " + (ph.caption || "") + extra, "ביטול", function () {
       var at = list.indexOf(ph.src);
       if (at > -1) list.splice(at, 1);
       markPickers(); renderPreview(); save();
     });
   }
 
+  function spreadAll() {
+    var all = photoList().map(function (ph) { return ph.src; });
+    if (!all.length) return;
+    var before = {
+      coverSrc: state.meta.coverSrc,
+      strip: (state.meta.strip || []).slice(),
+      gallery: (state.meta.gallery || []).slice(),
+      collage: (state.meta.collage || []).slice()
+    };
+    var i = 0;
+    function take(n) { var out = []; while (out.length < n && i < all.length) { out.push(all[i++]); } return out; }
+    state.meta.coverSrc = take(1)[0] || "";
+    state.meta.strip = take(MULTI.strip.max);
+    state.meta.collage = take(MULTI.collage.max);
+    state.meta.gallery = take(MULTI.gallery.max);
+    ["showCover", "showStrip", "showGallery", "showClosing"].forEach(function (flag) {
+      state.meta[flag] = true;
+      syncFlag(flag);
+    });
+    markPickers(); renderPreview(); save();
+    toast(all.length + " תמונות התפזרו על ארבעת העמודים.", "החזרה", function () {
+      state.meta.coverSrc = before.coverSrc;
+      state.meta.strip = before.strip;
+      state.meta.gallery = before.gallery;
+      state.meta.collage = before.collage;
+      markPickers(); renderPreview(); save();
+    });
+  }
+
   function markPickers() {
-    var list = state.meta.collage || [];
     Array.prototype.forEach.call(doc.querySelectorAll("#qb-cover-pick .qb-thumb"), function (b) {
       b.classList.toggle("is-on", b.dataset.src === state.meta.coverSrc);
     });
-    Array.prototype.forEach.call(doc.querySelectorAll("#qb-collage-pick .qb-thumb"), function (b) {
-      var at = list.indexOf(b.dataset.src);
-      b.classList.toggle("is-on", at > -1);
-      b.classList.toggle("is-big", at === 0);
-      var n = b.querySelector(".qb-thumb-n");
-      if (n) n.textContent = at > -1 ? (at === 0 ? "גדולה" : String(at + 1)) : "";
+    Object.keys(MULTI).forEach(function (key) {
+      var list = state.meta[key] || [];
+      Array.prototype.forEach.call(doc.querySelectorAll("#" + MULTI[key].pick + " .qb-thumb"), function (b) {
+        var at = list.indexOf(b.dataset.src);
+        var big = key === "collage" && at === 0;
+        b.classList.toggle("is-on", at > -1);
+        b.classList.toggle("is-big", big);
+        var n = b.querySelector(".qb-thumb-n");
+        if (n) n.textContent = at > -1 ? (big ? "גדולה" : String(at + 1)) : "";
+      });
     });
   }
 
@@ -581,9 +662,13 @@
       outro: state.catalogue.outro || "",
       terms: [],
       showCover: true,
+      showStrip: true,
+      showGallery: true,
       showClosing: true,
       showVideo: true,
       coverSrc: media.cover || "",
+      strip: (media.strip || []).slice(),
+      gallery: (media.gallery || []).slice(),
       collage: (media.collage || []).slice()
     };
   }
@@ -631,6 +716,9 @@
       doc.getElementById("qp").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
+    var spread = doc.getElementById("qb-spread");
+    if (spread) spread.addEventListener("click", spreadAll);
+
     doc.getElementById("qb-clear").addEventListener("click", function () {
       if (!global.confirm("לנקות את ההצעה ולהתחיל מחדש?")) return;
       state.lines = [];
@@ -652,6 +740,8 @@
       if (!state.meta.intro) state.meta.intro = data.intro;
       if (!state.meta.outro) state.meta.outro = data.outro || "";
       if (!state.meta.coverSrc) state.meta.coverSrc = (data.media || {}).cover || "";
+      if (!state.meta.strip) state.meta.strip = ((data.media || {}).strip || []).slice();
+      if (!state.meta.gallery) state.meta.gallery = ((data.media || {}).gallery || []).slice();
       if (!state.meta.collage) state.meta.collage = ((data.media || {}).collage || []).slice();
       refreshTerms();
       bindMeta();

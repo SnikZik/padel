@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261108-quote4">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261109-quote5">
 </head>
 <body class="page-quote">
 
@@ -53,6 +53,20 @@
     <label class="qb-field qb-wide"><span>טקסט פתיחה</span><textarea id="qb-intro" rows="3"></textarea></label>
     <p class="qb-hint">התמונה הגדולה של עמוד הפתיחה. לחיצה בוחרת.</p>
     <div class="qb-picker qb-picker-one" id="qb-cover-pick"></div>
+  </section>
+
+  <section class="qb-card">
+    <h2>פיזור תמונות</h2>
+    <p class="qb-hint">התמונות של הלקוח מתפזרות על כל ההצעה. אפשר לבחור ידנית, או ללחוץ "לפזר את כולן".</p>
+    <div class="qb-media">
+      <label class="qb-check"><input id="qb-showStrip" type="checkbox"><span>רצועת תמונות בתוך עמוד ההצעה</span></label>
+      <label class="qb-check"><input id="qb-showGallery" type="checkbox"><span>עמוד תמונות שלם אחרי ההצעה</span></label>
+      <button class="btn btn-light qb-spread" id="qb-spread" type="button">לפזר את כולן</button>
+    </div>
+    <p class="qb-hint">הרצועה בעמוד ההצעה, עד 3 תמונות.</p>
+    <div class="qb-picker" id="qb-strip-pick"></div>
+    <p class="qb-hint">עמוד התמונות, עד 6 תמונות.</p>
+    <div class="qb-picker" id="qb-gallery-pick"></div>
   </section>
 
   <section class="qb-card">
@@ -122,6 +136,8 @@
 
     <p class="qp-intro" id="qp-intro"></p>
 
+    <div class="qp-strip" id="qp-strip" hidden></div>
+
     <table class="qp-table">
       <thead>
         <tr><th>מה כלול</th><th>כמות</th><th>מחיר</th></tr>
@@ -137,7 +153,14 @@
     </footer>
   </section>
 
-  <!-- page 3, the closing -->
+  <!-- page 3, more photos -->
+  <section class="qp-page qp-gallery" id="qp-gallery">
+    <p class="qp-eyebrow">גלריה</p>
+    <h2 class="qp-display qp-gallery-title" id="qp-gallery-title">עוד מהמתחם</h2>
+    <div class="qp-grid" id="qp-grid"></div>
+  </section>
+
+  <!-- page 4, the closing -->
   <section class="qp-page qp-closing" id="qp-closing">
     <p class="qp-eyebrow">מהמתחם</p>
     <h2 class="qp-display qp-closing-title" id="qp-closing-title">ככה זה נראה אצלנו</h2>
@@ -150,6 +173,6 @@
 </article>
 
 <script>window.PADEL_BASE = "../";</script>
-<script src="../assets/js/quote.js?v=20261108-quote4" defer></script>
+<script src="../assets/js/quote.js?v=20261109-quote5" defer></script>
 </body>
 </html>

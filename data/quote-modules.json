@@ -319,6 +319,17 @@
         "src": "assets/quote/players-group.webp",
         "caption": "קבוצת משתתפים על המגרש"
       }
+    ],
+    "strip": [
+      "assets/quote/player-pink-court.webp",
+      "assets/quote/lounge-courtside.webp",
+      "assets/quote/brand-wall.webp"
+    ],
+    "gallery": [
+      "assets/quote/fruit-station.webp",
+      "assets/quote/drinks-station.webp",
+      "assets/quote/drinks-on-ice.webp",
+      "assets/quote/players-group.webp"
     ]
   },
   "demo": {
@@ -343,6 +354,19 @@
         "assets/quote/branded-glasses.webp",
         "assets/quote/acai-station.webp",
         "assets/quote/branded-bar.webp"
+      ],
+      "showStrip": true,
+      "showGallery": true,
+      "strip": [
+        "assets/quote/player-pink-court.webp",
+        "assets/quote/lounge-courtside.webp",
+        "assets/quote/brand-wall.webp"
+      ],
+      "gallery": [
+        "assets/quote/fruit-station.webp",
+        "assets/quote/drinks-station.webp",
+        "assets/quote/drinks-on-ice.webp",
+        "assets/quote/players-group.webp"
       ]
     },
     "lines": [
@@ -411,5 +435,6 @@
     ]
   },
   "closingTitle": "ככה זה נראה אצלנו",
-  "outro": "נשמח לארח אתכם אצלנו. אם יש סעיף שחסר, או כזה שלא צריך, אומרים לנו ומעדכנים את ההצעה. סגירת תאריך נעשית בשיחה אחת ומשם אנחנו לוקחים את זה."
+  "outro": "נשמח לארח אתכם אצלנו. אם יש סעיף שחסר, או כזה שלא צריך, אומרים לנו ומעדכנים את ההצעה. סגירת תאריך נעשית בשיחה אחת ומשם אנחנו לוקחים את זה.",
+  "galleryTitle": "עוד מהמתחם"
 }
