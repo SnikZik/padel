@@ -5,14 +5,15 @@
  * gets, a unit, a quantity and a price. Inside a quote each of those is editable, so the catalogue is a starting
  * point. Nothing is invented: a module with no price shows an empty price field until someone types one.
  *
- * The result prints as an A4 page and copies as a WhatsApp message. Drafts live in this browser only
- * (localStorage), there is no server behind this.
+ * The result prints as an A4 page. Printing also files the quote in the saved list, so it can be opened
+ * and edited later. Everything lives in this browser only (localStorage), there is no server behind this.
  */
 (function (global, doc) {
   "use strict";
 
   var DRAFT_KEY = "padel.quote.draft.v1";
-  var state = { meta: {}, lines: [], catalogue: null };
+  var SAVED_KEY = "padel.quote.saved.v1";
+  var state = { meta: {}, lines: [], catalogue: null, currentId: null, dirty: false };
 
   function el(tag, cls, text) {
     var n = doc.createElement(tag);
@@ -309,35 +310,6 @@
     });
   }
 
-  function quoteText() {
-    var m = state.meta, c = state.catalogue, t = totals();
-    var out = [];
-    out.push(m.title || "הצעת מחיר לאירוע");
-    out.push("The Padel Club Azor, ז׳בוטינסקי 28 אזור");
-    if (m.client) out.push("לכבוד " + m.client);
-    var facts = [];
-    if (m.eventDate) facts.push("תאריך האירוע " + he(m.eventDate));
-    if (m.hours) facts.push(m.hours);
-    if (m.guests) facts.push(m.guests + " משתתפים");
-    if (facts.length) out.push(facts.join(" · "));
-    out.push("");
-    if (m.intro) { out.push(m.intro); out.push(""); }
-    state.lines.forEach(function (l) {
-      var p = parseFloat(l.price), q = parseFloat(l.qty);
-      var price = isNaN(p) || isNaN(q) ? "" : "  " + money(p * q) + " " + c.currency;
-      out.push("• " + l.title + price);
-      if (l.desc) out.push("  " + l.desc);
-      if (!isNaN(q) && l.unit) out.push("  " + q + " " + l.unit + (isNaN(p) ? "" : " × " + money(p) + " " + c.currency));
-    });
-    out.push("");
-    if (t.discount) out.push("הנחה " + money(t.discount) + " " + c.currency);
-    out.push("סך הכול " + money(t.total) + " " + c.currency + (m.withVat ? " כולל מע\"מ" : " לפני מע\"מ"));
-    out.push("");
-    (m.terms || []).forEach(function (line) { out.push(line); });
-    if (m.outro) { out.push(""); out.push(m.outro); }
-    return out.join("\n");
-  }
-
   function renderPreview() {
     var m = state.meta, c = state.catalogue, t = totals();
     doc.getElementById("qp-title").textContent = m.title || "הצעת מחיר לאירוע";
@@ -469,7 +441,10 @@
 
   /* ---------- draft ---------- */
   function save() {
-    try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ meta: state.meta, lines: state.lines })); } catch (e) { /* private window */ }
+    state.dirty = true;
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify({ meta: state.meta, lines: state.lines, currentId: state.currentId }));
+    } catch (e) { /* private window */ }
   }
   function load() {
     try {
@@ -680,58 +655,251 @@
     };
   }
 
+  /* ---------- quotes kept in this browser ---------- */
+  function savedAll() {
+    try {
+      var list = JSON.parse(localStorage.getItem(SAVED_KEY) || "[]");
+      return Array.isArray(list) ? list : [];
+    } catch (e) { return []; }
+  }
+  function savedWrite(list) {
+    try { localStorage.setItem(SAVED_KEY, JSON.stringify(list)); } catch (e) { /* private window */ }
+  }
+  function hasContent() {
+    return Boolean(state.lines.length || (state.meta.client || "").trim() || (state.meta.title || "").trim());
+  }
+  function quoteName(meta) {
+    var m = meta || state.meta;
+    return (m.client || "").trim() || (m.title || "").trim() || ("הצעה מ" + he(m.quoteDate || today()));
+  }
+  function newId() { return "q" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function clone(v) { return JSON.parse(JSON.stringify(v)); }
+
+  function saveCurrent(quiet) {
+    if (!hasContent()) {
+      if (!quiet) toast("אין עדיין מה לשמור. תוסיפו סעיף או שם לקוח.");
+      return null;
+    }
+    var list = savedAll();
+    var rec = {
+      id: state.currentId || newId(),
+      name: quoteName(),
+      client: state.meta.client || "",
+      total: totals().total,
+      updated: new Date().toISOString(),
+      meta: clone(state.meta),
+      lines: clone(state.lines)
+    };
+    var at = -1;
+    list.forEach(function (r, i) { if (r.id === rec.id) at = i; });
+    if (at > -1) list[at] = rec; else list.unshift(rec);
+    savedWrite(list);
+    state.currentId = rec.id;
+    save(); state.dirty = false;
+    renderSaved();
+    if (!quiet) toast(at > -1 ? "ההצעה עודכנה: " + rec.name : "ההצעה נשמרה: " + rec.name);
+    return rec;
+  }
+
+  function recById(id) {
+    var found = null;
+    savedAll().forEach(function (r) { if (r.id === id) found = r; });
+    return found;
+  }
+
+  function openQuote(id) {
+    var rec = recById(id);
+    if (!rec) return;
+    state.meta = Object.assign(freshMeta(), rec.meta);
+    state.lines = (rec.lines || []).map(function (l) { return Object.assign({}, l); });
+    state.currentId = rec.id;
+    bindMeta(); renderPickers(); renderLines();
+    save(); state.dirty = false;
+    renderSaved();
+    toast("נפתחה: " + rec.name);
+    doc.getElementById("qp").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function duplicateQuote(id) {
+    var rec = recById(id);
+    if (!rec) return;
+    var copy = clone(rec);
+    copy.id = newId();
+    copy.name = rec.name + " (עותק)";
+    copy.updated = new Date().toISOString();
+    var list = savedAll();
+    list.unshift(copy);
+    savedWrite(list);
+    renderSaved();
+    toast("נוצר עותק: " + copy.name, "פתיחה", function () { openQuote(copy.id); });
+  }
+
+  function deleteQuote(id) {
+    var list = savedAll();
+    var at = -1;
+    list.forEach(function (r, i) { if (r.id === id) at = i; });
+    if (at < 0) return;
+    var rec = list[at];
+    list.splice(at, 1);
+    savedWrite(list);
+    if (state.currentId === id) state.currentId = null;
+    renderSaved();
+    toast("נמחקה: " + rec.name, "החזרה", function () {
+      var back = savedAll();
+      back.splice(Math.min(at, back.length), 0, rec);
+      savedWrite(back);
+      renderSaved();
+    });
+  }
+
+  function renderSaved() {
+    var box = doc.getElementById("qb-saved");
+    if (!box) return;
+    var list = savedAll().sort(function (a, b) { return String(b.updated).localeCompare(String(a.updated)); });
+    box.replaceChildren();
+    if (!list.length) {
+      box.appendChild(el("p", "qb-hint", "עוד לא נשמרה הצעה. כל הדפסה נשמרת כאן, ואפשר גם ללחוץ שמירה."));
+      return;
+    }
+    list.forEach(function (r) {
+      var row = el("div", "qb-saved-row" + (r.id === state.currentId ? " is-open" : ""));
+      var text = el("div", "qb-saved-text");
+      text.appendChild(el("b", null, r.name));
+      var bits = [];
+      if (r.total) bits.push(money(r.total) + " " + ((state.catalogue || {}).currency || "₪"));
+      bits.push((r.lines || []).length + " סעיפים");
+      bits.push("עודכן " + he(String(r.updated).slice(0, 10)));
+      text.appendChild(el("span", "qb-saved-meta", bits.join(", ")));
+      row.appendChild(text);
+
+      var acts = el("div", "qb-saved-acts");
+      var open = el("button", "btn btn-light qb-saved-btn", r.id === state.currentId ? "פתוחה" : "פתיחה");
+      open.type = "button";
+      open.disabled = r.id === state.currentId && !state.dirty;
+      open.addEventListener("click", function () {
+        guard({
+          title: "לפתוח הצעה אחרת?",
+          text: "ההצעה שעל המסך לא נשמרה. אפשר לשמור אותה לפני שעוברים אל " + r.name + ".",
+          saveLabel: "לשמור ולפתוח"
+        }, function () { openQuote(r.id); });
+      });
+      var dup = el("button", "btn btn-light qb-saved-btn", "שכפול");
+      dup.type = "button";
+      dup.addEventListener("click", function () { duplicateQuote(r.id); });
+      var del = el("button", "btn btn-light qb-saved-btn qb-saved-del", "מחיקה");
+      del.type = "button";
+      del.addEventListener("click", function () { deleteQuote(r.id); });
+      acts.appendChild(open); acts.appendChild(dup); acts.appendChild(del);
+      row.appendChild(acts);
+      box.appendChild(row);
+    });
+  }
+
+  /* ---------- the question before a quote leaves the screen ---------- */
+  function askSwitch(opts) {
+    var modal = doc.getElementById("qb-modal");
+    if (!modal) { opts.proceed(); return; }
+    var saveBtn = doc.getElementById("qb-modal-save");
+    var skipBtn = doc.getElementById("qb-modal-skip");
+    var cancelBtn = doc.getElementById("qb-modal-cancel");
+    doc.getElementById("qb-modal-title").textContent = opts.title;
+    doc.getElementById("qb-modal-text").textContent = opts.text;
+    saveBtn.textContent = opts.saveLabel || "לשמור ולהמשיך";
+    modal.hidden = false;
+
+    function close() {
+      modal.hidden = true;
+      saveBtn.removeEventListener("click", onSave);
+      skipBtn.removeEventListener("click", onSkip);
+      cancelBtn.removeEventListener("click", close);
+      modal.removeEventListener("click", onBackdrop);
+      doc.removeEventListener("keydown", onKey);
+    }
+    function onSave() { saveCurrent(true); close(); opts.proceed(); }
+    function onSkip() { close(); opts.proceed(); }
+    function onBackdrop(e) { if (e.target === modal) close(); }
+    function onKey(e) { if (e.key === "Escape") close(); }
+
+    saveBtn.addEventListener("click", onSave);
+    skipBtn.addEventListener("click", onSkip);
+    cancelBtn.addEventListener("click", close);
+    modal.addEventListener("click", onBackdrop);
+    doc.addEventListener("keydown", onKey);
+    saveBtn.focus();
+  }
+
+  function guard(opts, proceed) {
+    if (!hasContent() || !state.dirty) { proceed(); return; }
+    askSwitch({ title: opts.title, text: opts.text, saveLabel: opts.saveLabel, proceed: proceed });
+  }
+
+  function newQuote() {
+    state.lines = [];
+    state.meta = freshMeta();
+    state.currentId = null;
+    refreshTerms();
+    bindMeta(); renderPickers(); renderLines();
+    save(); state.dirty = false;
+    renderSaved();
+    toast("מסך נקי, אפשר להתחיל הצעה חדשה.");
+  }
+
+  function loadDemo() {
+    var demo = state.catalogue.demo;
+    if (!demo) return;
+    var byId = {};
+    state.catalogue.categories.forEach(function (cat) {
+      cat.modules.forEach(function (mod) { byId[mod.id] = { cat: cat, mod: mod }; });
+    });
+    state.meta = Object.assign(freshMeta(), demo.meta, { quoteDate: today() });
+    state.meta.terms = [];
+    state.currentId = null;
+    refreshTerms();
+    state.lines = demo.lines.map(function (l) {
+      var found = byId[l.id] || { cat: { label: "" }, mod: { title: l.id, desc: "", unit: "" } };
+      return {
+        uid: "l" + Math.random().toString(36).slice(2, 8),
+        modId: l.id,
+        category: found.cat.label,
+        title: l.title || found.mod.title,
+        desc: l.desc || found.mod.desc || "",
+        unit: l.unit || found.mod.unit || "",
+        qty: l.qty, price: l.price
+      };
+    });
+    bindMeta(); renderPickers(); renderLines(); save();
+    renderSaved();
+    doc.getElementById("qp").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   /* ---------- buttons ---------- */
   function bindActions() {
-    doc.getElementById("qb-print").addEventListener("click", function () { global.print(); });
-    doc.getElementById("qb-copy").addEventListener("click", function () {
-      var text = quoteText();
-      navigator.clipboard.writeText(text).then(function () {
-        var b = doc.getElementById("qb-copy");
-        var was = b.textContent;
-        b.textContent = "הועתק";
-        setTimeout(function () { b.textContent = was; }, 1600);
-      });
+    doc.getElementById("qb-print").addEventListener("click", function () {
+      var rec = saveCurrent(true);
+      if (rec) toast("ההצעה נשמרה ברשימה: " + rec.name);
+      global.print();
     });
-    doc.getElementById("qb-whatsapp").addEventListener("click", function () {
-      global.open("https://wa.me/?text=" + encodeURIComponent(quoteText()), "_blank", "noopener");
-    });
+
+    doc.getElementById("qb-save").addEventListener("click", function () { saveCurrent(false); });
+
     var demoBtn = doc.getElementById("qb-demo");
     if (demoBtn) demoBtn.addEventListener("click", function () {
-      var demo = state.catalogue.demo;
-      if (!demo) return;
-      if (state.lines.length && !global.confirm("להחליף את ההצעה הנוכחית בהצעה לדוגמה?")) return;
-      var byId = {};
-      state.catalogue.categories.forEach(function (cat) {
-        cat.modules.forEach(function (mod) { byId[mod.id] = { cat: cat, mod: mod }; });
-      });
-      state.meta = Object.assign(freshMeta(), demo.meta, { quoteDate: today() });
-      state.meta.terms = [];
-      refreshTerms();
-      state.lines = demo.lines.map(function (l) {
-        var found = byId[l.id] || { cat: { label: "" }, mod: { title: l.id, desc: "", unit: "" } };
-        return {
-          uid: "l" + Math.random().toString(36).slice(2, 8),
-          modId: l.id,
-          category: found.cat.label,
-          title: l.title || found.mod.title,
-          desc: l.desc || found.mod.desc || "",
-          unit: l.unit || found.mod.unit || "",
-          qty: l.qty, price: l.price
-        };
-      });
-      bindMeta(); renderPickers(); renderLines(); save();
-      doc.getElementById("qp").scrollIntoView({ behavior: "smooth", block: "start" });
+      guard({
+        title: "להחליף בהצעה לדוגמה?",
+        text: "ההצעה שעל המסך לא נשמרה, והיא תוחלף בהצעה המלאה לדוגמה.",
+        saveLabel: "לשמור ולהחליף"
+      }, loadDemo);
     });
 
     var spread = doc.getElementById("qb-spread");
     if (spread) spread.addEventListener("click", spreadAll);
 
     doc.getElementById("qb-clear").addEventListener("click", function () {
-      if (!global.confirm("לנקות את ההצעה ולהתחיל מחדש?")) return;
-      state.lines = [];
-      state.meta = freshMeta();
-      refreshTerms();
-      bindMeta(); renderPickers(); renderLines(); save();
+      guard({
+        title: "להתחיל הצעה חדשה?",
+        text: "ההצעה שעל המסך תרד מהמסך. אפשר לשמור אותה קודם ולחזור אליה מתי שרוצים.",
+        saveLabel: "לשמור ולהתחיל חדשה"
+      }, newQuote);
     });
   }
 
@@ -750,14 +918,17 @@
       if (!state.meta.strip) state.meta.strip = ((data.media || {}).strip || []).slice();
       if (!state.meta.gallery) state.meta.gallery = ((data.media || {}).gallery || []).slice();
       if (!state.meta.collage) state.meta.collage = ((data.media || {}).collage || []).slice();
+      state.currentId = (draft && draft.currentId) || null;
       refreshTerms();
       bindMeta();
       bindActions();
+      renderSaved();
       renderPickers();
       renderCatalogue();
       renderLines();
       doc.getElementById("qp-validity").textContent =
         "ההצעה בתוקף עד " + he(addDays(state.meta.quoteDate || today(), data.validityDays));
+      state.dirty = false;
     })
     .catch(function () {
       doc.getElementById("qb-catalogue").textContent = "הרכיבים לא נטענו. צריך לפתוח את הדף משרת, לא מהדיסק.";

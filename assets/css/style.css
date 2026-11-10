@@ -1146,6 +1146,30 @@ html.modal-open { overflow: hidden; }
 .qb-actions .btn { min-height: 40px; padding: 0 16px; font-size: 13.5px; }
 .qb-actions .qb-clear { color: #8A2B3B; }
 
+/* the list of quotes kept in this browser */
+.qb-saved { display: flex; flex-direction: column; gap: 8px; }
+.qb-saved-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  border: 1px solid var(--hairline); border-radius: 12px; padding: 10px 14px; background: var(--cream); }
+.qb-saved-row.is-open { border-color: var(--green); }
+.qb-saved-text { display: flex; flex-direction: column; gap: 2px; min-width: 180px; flex: 1 1 auto; }
+.qb-saved-text b { font-size: 14.5px; color: var(--green); }
+.qb-saved-meta { font-size: 12.5px; color: var(--green-2); }
+.qb-saved-acts { display: flex; gap: 6px; margin-inline-start: auto; }
+.qb-saved-btn { min-height: 34px; padding: 0 12px; font-size: 12.5px; }
+.qb-saved-btn[disabled] { opacity: .5; cursor: default; }
+.qb-saved-del { color: #8A2B3B; }
+
+/* the question asked before a quote leaves the screen */
+.qb-modal { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center;
+  padding: 20px; background: rgba(12, 72, 38, .34); }
+.qb-modal[hidden] { display: none; }
+.qb-modal-box { width: min(440px, 100%); background: var(--cream); border-radius: 18px; padding: 24px;
+  box-shadow: 0 24px 60px rgba(12, 72, 38, .22); }
+.qb-modal-box h2 { margin: 0 0 8px; font-size: 19px; font-weight: 700; color: var(--green); }
+.qb-modal-box p { margin: 0 0 18px; font-size: 14px; line-height: 1.7; color: var(--green-2); }
+.qb-modal-acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.qb-modal-acts .btn { min-height: 40px; padding: 0 16px; font-size: 13.5px; }
+
 .qb-card { background: var(--white); border: 1px solid var(--hairline); border-radius: 16px; padding: 18px; margin-bottom: 14px; }
 .qb-card h2 { margin: 0 0 12px; font-size: 17px; font-weight: 700; color: var(--green); }
 .qb-hint, .qb-note { margin: 0 0 12px; font-size: 13px; color: var(--green-2); }
@@ -1348,7 +1372,7 @@ html.modal-open { overflow: hidden; }
 
 @media print {
   @page { size: A4; margin: 14mm; }
-  .qb, .qb-toasts { display: none; }
+  .qb, .qb-toasts, .qb-modal { display: none; }
   .page-quote { background: #fff; }
   .qp { max-width: none; margin: 0; display: block; }
   .qp-page { background: #fff; border: 0; border-radius: 0; padding: 0; break-after: page; }

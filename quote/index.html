@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..700&family=Heebo:wght@400;500;700;800&family=Inter:wght@500;600;800&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261109-quote5">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261110-quote6">
 </head>
 <body class="page-quote">
 
@@ -24,12 +24,17 @@
     </div>
     <div class="qb-actions">
       <button class="btn btn-primary" id="qb-print" type="button">הדפסה או PDF</button>
-      <button class="btn btn-light" id="qb-copy" type="button">העתקת טקסט</button>
-      <button class="btn btn-light" id="qb-whatsapp" type="button">שליחה בוואטסאפ</button>
+      <button class="btn btn-light" id="qb-save" type="button">שמירה</button>
       <button class="btn btn-light" id="qb-demo" type="button">הצעה לדוגמה</button>
       <button class="btn btn-light qb-clear" id="qb-clear" type="button">הצעה חדשה</button>
     </div>
   </header>
+
+  <section class="qb-card">
+    <h2>הצעות שמורות</h2>
+    <p class="qb-hint">כל הצעה שמדפיסים נשמרת כאן לבד. אפשר לפתוח, לשכפל ולהמשיך לערוך. השמירה בדפדפן הזה בלבד.</p>
+    <div class="qb-saved" id="qb-saved"></div>
+  </section>
 
   <section class="qb-card">
     <h2>פרטי ההצעה</h2>
@@ -99,6 +104,18 @@
   </section>
 
   <p class="qb-note">התצוגה למטה היא מה שהלקוח מקבל. "הדפסה או PDF" מדפיסה רק אותה.</p>
+
+  <div class="qb-modal" id="qb-modal" hidden>
+    <div class="qb-modal-box" role="dialog" aria-modal="true" aria-labelledby="qb-modal-title">
+      <h2 id="qb-modal-title">להתחיל הצעה חדשה?</h2>
+      <p id="qb-modal-text">ההצעה שעל המסך תוחלף.</p>
+      <div class="qb-modal-acts">
+        <button class="btn btn-primary" id="qb-modal-save" type="button">לשמור ולהמשיך</button>
+        <button class="btn btn-light" id="qb-modal-skip" type="button">להמשיך בלי לשמור</button>
+        <button class="btn btn-light" id="qb-modal-cancel" type="button">ביטול</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- what the client gets, this is what prints -->
@@ -173,6 +190,6 @@
 </article>
 
 <script>window.PADEL_BASE = "../";</script>
-<script src="../assets/js/quote.js?v=20261109-quote5" defer></script>
+<script src="../assets/js/quote.js?v=20261110-quote6" defer></script>
 </body>
 </html>
